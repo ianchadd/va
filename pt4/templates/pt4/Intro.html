@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Questionario finale
+{% endblock %}
+
+{% block content %}
+    <p>
+        Per concludere, ti faremo una serie di domande in cui non ci sono
+        risposte giuste o sbagliate. Ci interessano solo le tue opinioni
+        personali. Siamo interessati a quali caratteristiche sono associate
+        ai comportamenti delle persone in questo studio. <strong>Le risposte che
+        fornisci non influiranno in alcun modo sui tuoi guadagni in questo
+        studio e sono mantenuti riservati</strong>.
+    </p>
+    <p>
+        Fai click su Successivo per avviare il questionario.
+    </p>
+    {% next_button %}
+
+{% endblock %}

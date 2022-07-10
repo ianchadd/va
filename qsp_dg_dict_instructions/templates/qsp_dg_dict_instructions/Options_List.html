@@ -1,0 +1,46 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% load custom_tags %}
+
+{% block title %}
+{{block.super}}: Instructions I
+{% endblock %}
+
+
+{% block content %}
+
+<p>
+Given the options presented on the previous screen, all the participants have each constructed a personal ID that takes <b>one</b> of the following nine formats:
+</p>
+<div class="container-fluid">
+<div class="row">
+  <div class="col-12" style="background-color:#D0D3D4;">
+    <p></p>
+  </div>
+{% for an_id, flag in recip_options %}
+<div class="col-4" style="background-color:#D0D3D4;">
+  <p style="font-size:35px;text-align:center"><img style="height: 35px; width:auto;" src="{% static flag %}"/> {{an_id}}
+  </p>
+
+</div>
+{% endfor %}
+</div>
+</div>
+<br>
+{% delayed_next wait=0 label='NEXT'%}
+
+{% endblock %}
+
+
+
+<!--
+<div class = "mc-ma">
+    {{players.otherID.label}}
+    <ul>
+        {% for choice in player.otherID %}
+    <li>
+        <label>{{choice.tag}}{{choice.choice_label}}</label>
+    </li>
+    {% endfor %}
+    </ul>
+</div> -->

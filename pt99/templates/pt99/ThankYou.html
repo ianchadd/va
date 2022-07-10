@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Grazie per la tua presenza
+{% endblock %}
+
+{% block content %}
+    <p>
+        Grazie per la tua presenza in questo studio. Ti pagheremo
+        <strong>{{ session.config.partfee }}€</strong> per la presenza tramite
+        PayPal entro 2 settimane. Se non hai ricevuto i tuoi guadagni dopo 2
+        settimane, contattaci.
+    </p>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% include Constants.q_title %}
+
+
+{% block content %}
+{% include Constants.own_ID %}
+<br>
+<p>The ID that you chose is displayed above.</p>
+<br>
+<p>For the icon portion of your ID, you could have chosen from the following:</p>
+<div>
+    <img style = "height:auto; width:33%" src="{% static image_path_1 %}"/>
+    <img style = "height:auto; width:33%" src="{% static image_path_2 %}"/>
+    <img style = "height:auto; width:33%" src="{% static image_path_3 %}"/>
+</div>
+<br>
+{% formfields %}
+
+
+{% next_button %}
+{% endblock %}

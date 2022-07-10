@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% include Constants.q_title %}
+
+{% block content %}
+    <p>To create a randomly-generated ID, please click the button below.</p>
+    <div>
+        <button name="show_ID" value= True class="btn btn-primary btn-large">Randomize ID</button>
+    </div>
+{% endblock %}
+
+<!--
+<div class = "mc-ma">
+    {{players.otherID.label}}
+    <ul>
+        {% for choice in player.otherID %}
+    <li>
+        <label>{{choice.tag}}{{choice.choice_label}}</label>
+    </li>
+    {% endfor %}
+    </ul>
+</div> -->

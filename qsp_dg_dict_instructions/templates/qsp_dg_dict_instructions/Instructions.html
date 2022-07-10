@@ -1,0 +1,74 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% load custom_tags %}
+
+{% block title %}
+{{ block.super }}: Instructions I
+{% endblock %}
+
+
+{% block content %}
+  <p>
+In Task 1, you will be matched with a participant. We asked this participant to construct an ID earlier, and you will now be asked to make a decision that will determine their bonus payment from the experiment.   </p>
+<p>
+  <strong><u>Part I: Creation of Personal ID by Partner</u></strong>
+</p>
+
+  <p>
+Your matched partner was asked to create a personal ID that is a combination of (i) an 8-digit alpha-numeric string of characters and (ii) an icon.
+  </p>
+
+  <p>
+For each component, all the participants in the experiment were given the same three options to choose from:
+</p>
+<ol>
+  <li>
+    Alpha-numeric String:
+    <br>
+    <div class="col-12" style="background-color:#D0D3D4;">
+    <div class="row">
+
+  {% for id in id_list %}
+  <div class="col-4">
+    <p style="text-align: center;"><strong>{{id}}</strong></p>
+  </div>
+  {% endfor %}
+</div>
+</div>
+
+  </li>
+  <li>
+    Icon:
+    <br>
+    <div class="row">
+<div class="col-12" style="background-color:#D0D3D4;"> <p></p></div>
+  {% for flag in flag_list %}
+  <div class="col-4" style="background-color:#D0D3D4;">
+    <p style="font-size:35px; text-align: center"><img src="{% static flag %}"/>
+    </p>
+  </div>
+  {% endfor %}
+<div class="col-12" style="background-color:#D0D3D4;"> <p></p></div>
+
+</div>
+  </li>
+</ol>
+
+{% formfields %}
+
+
+{% delayed_next wait=0 label='NEXT'%}
+
+{% endblock %}
+
+<!--
+<div class = "mc-ma">
+    {{players.otherID.label}}
+    <ul>
+        {% for choice in player.otherID %}
+    <li>
+        <label>{{choice.tag}}{{choice.choice_label}}</label>
+    </li>
+    {% endfor %}
+    </ul>
+</div> -->

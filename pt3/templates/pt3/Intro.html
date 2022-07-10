@@ -1,0 +1,28 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Istruzioni per la parte 3 di 3
+{% endblock %}
+
+{% block content %}
+    <p>
+        In questa parte, risolverai puzzle con il tuo partner
+        per <strong>12 minuti</strong> spostando le tessere a turno,
+        e sia tu che il tuo partner guadagnerete
+        <strong>{{ session.config.pt3rate }}€ per ogni puzzle</strong>
+        che risolverete. C'è un massimo di 20 puzzle che tu e il tuo partner
+        potete risolvere (quindi il guadagno massimo è di 20 € per ciascuno di voi).
+        Come nella parte 2, uno di voi verrà scelto a caso per fare la prima
+        mossa all'inizio di ogni puzzle.
+    </p>
+    <p>
+        <strong><u>Domande di comprensione</u></strong>:<br>
+        Prima di procedere, rispondi alle seguenti domande di comprensione.
+        Dopo aver risposto, fai click su Successivo.
+    </p>
+    {% formfields %}
+
+    {% next_button %}
+
+{% endblock %}

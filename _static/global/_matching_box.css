@@ -1,0 +1,32 @@
+/* The heart of the matter */
+.btn-matrix>.btn:nth-child(3n+4) {
+    clear: left;
+    margin-left: 0;
+}
+
+.btn-matrix>.btn:nth-child(n+4) {
+    margin-top: -1px;
+}
+
+.btn-matrix>.btn:first-child {
+    border-bottom-left-radius: 0;
+}
+
+.btn-matrix>.btn:nth-child(3) {
+    border-top-right-radius: 4px !important;
+}
+
+.btn-matrix>.btn:nth-last-child(3) {
+    border-bottom-left-radius: 4px !important;
+}
+
+.btn-matrix>.btn:last-child {
+    border-top-right-radius: 0;
+}
+
+.btn-matrix {
+    flex-wrap: wrap;
+    margin: 20px;
+    min-width: 270px;
+    max-width: 290px;
+}

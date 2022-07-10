@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Prolific ID Entry
+{% endblock %}
+
+{% block content %}
+Thank you for participating in this survey. Before we begin, please fill out the field below.
+    {% formfields %}
+
+    {% next_button %}
+
+{% endblock %}

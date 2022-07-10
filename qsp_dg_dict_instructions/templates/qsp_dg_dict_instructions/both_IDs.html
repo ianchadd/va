@@ -1,0 +1,14 @@
+{% load otree static %}
+
+<table style="width:100%; font-size:60px">
+  <tr>
+    <th><center>Your ID</center></th>
+    <th><center>  </center></th>
+    <th><center>Other's ID</center></th>
+  </tr>
+  <tr>
+    <td><img style="height: 50px; width:auto;" src="{% static my_flag %}"/> <span style="font-size:50px">{{my_ID}}</span></td>
+    <td>  </td>
+    <td><img style="height: 50px; width:auto;" src="{% static their_flag %}"/> <span style="font-size:50px">{{their_ID}}</span></td>
+  </tr>
+</table>

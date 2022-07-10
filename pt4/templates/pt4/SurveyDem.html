@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Questionario pagina 2 di 2
+{% endblock %}
+
+{% block content %}
+    <p>
+        Infine, ti chiediamo alcune informazioni personali ed opinioni su
+        questo studio.
+    </p>
+    {% formfields %}
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% load custom_tags %}
+
+{% block title %}
+Choosing an ID
+{% endblock %}
+
+
+{% block content %}
+
+<p> The person with whom you will be matched chose a photo icon for their personal ID and were shown the screen displayed below:
+</p>
+<img src="{% static img%}" alt="Icon Choice" style="border: 5px solid #555;">
+
+<p> Every participant who has chosen a personal ID was shown the exact same options for the photo icon as displayed above, but the order of the list of options was randomized.
+</p>
+
+{% delayed_next wait=1000 label='NEXT'%}
+
+{% endblock %}
+
+
+
+<!--
+<div class = "mc-ma">
+    {{players.otherID.label}}
+    <ul>
+        {% for choice in player.otherID %}
+    <li>
+        <label>{{choice.tag}}{{choice.choice_label}}</label>
+    </li>
+    {% endfor %}
+    </ul>
+</div> -->

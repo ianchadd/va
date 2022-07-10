@@ -1,0 +1,87 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Istruzioni per la parte 2 di 3
+{% endblock %}
+
+{% block content %}
+    <p>
+        In questa parte, <strong>sceglierai il tuo partner per la parte 3</strong>,
+        l’ultima parte dello studio.
+    </p>
+    <p>
+        Sebbene non guadagnerai nulla in questa parte, è importante scegliere
+        il miglior partner possibile: nella parte 3, lavorerai su dei nuovi
+        puzzle per 12 minuti in coppia. Tu e il tuo partner sposterete le
+        celle del puzzle a turno fino a che non lo avrete risolto, e
+        guadagnerete {{ session.config.pt3rate }}€ a testa per ogni puzzle che risolverete assieme.
+        Nella parte 3 tu e il tuo partner potrete risolvere un massimo di 20
+        puzzle (quindi il guadagno massimo è di 20€ a testa per la parte 3).
+    </p>
+    <p>
+        Nella parte 2, incontrerai, una per volta, <strong>altre 7 persone</strong>
+        che, come te, partecipano a questa sessione. Con ciascuna di queste 7
+        persone risolverai 1 puzzle spostando a turno le tessere, così come
+        farai poi nella parte 3. Uno di voi sarà scelto a caso per fare la
+        prima mossa all'inizio del puzzle. Avrete un <strong>limite di 2
+        minuti</strong> per ogni puzzle.
+    </p>
+    <p>
+        Per ognuna delle 7 persone che incontrerai, dopo aver risolto il puzzle,
+        <strong>ti verrà chiesto di indicare se vuoi lavorare con questa persona
+        anche nella parte 3. Puoi scegliere quante persone vuoi tra le 7 che
+        incontrerai. Nessuno degli altri partecipanti sarà informato delle
+        tue scelte in questa parte</strong>.
+    </p>
+    <p>
+        Dopo aver incontrato le 7 persone e aver indicato le tue preferenze,
+        controlleremo tutte le scelte che tu e le altre 7 persone avete fatto
+        e assegneremo un partner per la parte 3 a ciascuno di voi. Procederemo
+        nel modo seguente:
+    </p>
+    <ol>
+        <li>
+            Selezioneremo a caso una persona tra te e le altre 7 persone.
+            Per esempio, chiamiamo questa persona Giovanni.
+        </li>
+        <li>
+            Verifichiamo se Giovanni ha una “corrispondenza”: ossia se tra le
+            persone che Giovanni ha indicato c’è qualcuno che - a sua volta -
+            ha scelto Giovanni. Se c’è allora faremo in modo che Giovanni e
+            questa persona diventino partner per la parte 3.
+        </li>
+        <li>
+            Se Giovanni ha più di una corrispondenza, selezioneremo in maniera
+            casuale una delle corrispondenze e assegneremo un partner a
+            Giovanni per la parte 3.
+        </li>
+        <li>
+            Se Giovanni non ha scelto nessuno, o le persone che Giovanni ha
+            scelto non hanno a loro volta indicato Giovanni, o infine, se le
+            persone che lo avevano indicato sono già state assegnate a un
+            partner per la parte 3, metteremo Giovanni in lista d'attesa e
+            ripeteremo i punti 1-3 sopra per gli altri partecipanti fino a
+            che ognuno avrà un partner o sarà assegnato alla lista d’attesa.
+        </li>
+        <li>
+            Dopo aver assegnato tutte le persone, prenderemo coloro che sono
+            stati posti in lista d’attesa e li abbineremo tra loro in maniera
+            casuale, in modo che ciascuno abbia un partner per la parte 3.
+        </li>
+    </ol>
+    <p>
+        Quindi, <strong>se indichi una persona in particolare, potresti non
+        essere in grado di lavorare con quella persona nella parte 3</strong>.
+        Pertanto, ti suggeriamo di indicare tutti coloro con cui sei disposto
+        a lavorare nella parte 3.
+    </p>
+    <p>
+        <strong><u>Domande di comprensione</u></strong>:<br>
+        Prima di procedere, rispondi alle seguenti domande di comprensione.
+        Dopo aver risposto, fai click su Successivo.
+    </p>
+    {% formfields %}
+    {% next_button %}
+
+{% endblock %}

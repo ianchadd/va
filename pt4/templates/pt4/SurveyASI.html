@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Questionario pagina 1 di 2
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            Di seguito troverai una serie di affermazioni riguardanti
+            uomini e donne e le loro relazioni nella società contemporanea.
+            Indica per favore il grado di accordo o di disaccordo con ciascuna
+            delle seguenti affermazioni.
+        </div>
+    </div>
+    {% formfields %}
+    {% next_button %}
+{% endblock %}
+
+{% block styles %}
+    <style>
+    .table td{
+        text-align:center;}
+    </style>
+{% endblock %}

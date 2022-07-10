@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    La tua moneta virtuale
+{% endblock %}
+
+{% block content %}
+    <p>
+        Hai ottenuto questo numero.
+    </p>
+    <p>
+    <img src="{% static image_path %}" width='100'/>
+    </p>
+    <p>
+        Si prega di attendere, la sessione inizierà a breve.
+    </p>
+
+{% endblock %}

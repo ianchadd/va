@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Il tuo partner nella parte 3
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        .slider_game td {
+            width: 100px;
+            height: 100px;
+        }
+        .vspace {
+            margin-top: 1em;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <p>
+        In base alle tue scelte e a quelle di altre 7 persone,
+        <strong>{{ otherid }}</strong> è diventato il tuo partner per la parte 3.
+    </p>
+
+    {% next_button %}
+{% endblock %}
+
+

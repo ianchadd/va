@@ -1,0 +1,10 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% include Constants.q_title %}
+
+{% block content %}
+    <p>Your randomly generated ID is {{ my_ID }}</p>
+
+    {% next_button %}
+{% endblock %}

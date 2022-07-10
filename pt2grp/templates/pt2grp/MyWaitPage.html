@@ -1,0 +1,15 @@
+{% extends 'otree/WaitPage.html' %}
+{% load otree %}
+{% block title %}{{ title_text }}{% endblock %}
+{% block content %}
+    {{ body_text }}
+    <p>
+    </p>
+{% endblock %}
+{% block app_scripts %}
+    <script>
+        setTimeout(function() { <!--To refresh the wait page more frequently. Default is about 30 seconds-->
+            location.reload();
+            }, 5000); <!--in milisecond, so 1000 is 1 second-->
+    </script>
+{% endblock %}

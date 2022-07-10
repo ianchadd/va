@@ -1,0 +1,236 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block styles %}
+    <style>
+      table {
+        border-collapse: separate;
+        border-spacing: 15px 0;
+      }
+    </style>
+{% endblock %}
+
+{% block title %}
+    Istruzioni per la parte 1 di 3
+{% endblock %}
+
+{% block content %}
+    <p>
+        In questa parte, risolverai il puzzle in maniera individuale per
+        familiarizzare con esso. Hai <strong>4 minuti</strong> per risolvere
+        il maggior numero di puzzle possibile (fino a un massimo di 15 puzzle).
+        Guadagnerai <strong>{{ session.config.pt1rate }}€ per ogni puzzle</strong>
+        risolto.
+    </p>
+    <p>
+        Il tuo obiettivo è spostare le tessere e ordinarle come segue:
+    </p>
+    <p>
+        <img src="{% static 'puzzle_goal.png' %}" width='200'/>
+    </p>
+    <p>
+        Prima di iniziare, segui i tre esempi seguenti
+        per capire come risolvere il puzzle.
+    </p>
+
+    <p>
+        <strong><u>Esempio 1</u></strong>:
+    </p>
+    <p>
+        Per prima cosa, considera il seguente puzzle.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_1.png' %}" width='200'/>
+    </p>
+    <p>
+        Puoi solo spostare le tessere vicine a una cella vuota e la tessera
+        che scegli viene spostata automaticamente nella cella vuota.
+        Ad esempio, in questo puzzle ci sono 3 mosse che puoi fare:
+        muovere la tessera con il 3 in basso, muovere quella con il 5 a destra,
+        oppure muovere la tessera con il 6 in alto.
+    </p>
+    <p>
+        Tra le 3 mosse, spostare la tessera con il numero 6 verso l’alto è
+        l'unica mossa corretta: spostando il 6 in su, puoi risolvere il puzzle.
+        Le altre mosse non risolvono il puzzle.
+    </p>
+    <p>
+        Quando fai click su una tessera vicina a una cella vuota, la tessera
+        verrà spostata automaticamente nella cella vuota. Quindi, in questo
+        caso, dovresti fai click sul 6 per spostarlo verso l'alto.
+    </p>
+    <p>
+        <strong><u>Esempio 2</u></strong>:
+    </p>
+    <p>
+        Ora, considera il seguente puzzle.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_2_0.png' %}" width='200'/>
+    </p>
+    <p>
+        Innanzitutto, ci sono 2 mosse che puoi fare: muovere il 2 a destra
+        o muovere il 3 in alto. Quale mossa dovresti fare?
+    </p>
+    <p>
+        Osserva che le uniche tessere che non sono nell'ordine corretto sono
+        il 3 e il 6. Quindi, prima di tutto devi spostare il 3 in su.
+    </p>
+    <p>
+        Dopo aver spostato il 3 in su, il puzzle apparirà come quello
+        nell'esempio 1. Quindi dovresti spostare il 6 in su e il puzzle
+        sarà risolto.
+    </p>
+    <p>
+        <strong><u>Esempio 3</u></strong>:
+    </p>
+    <p>
+        Infine, considera il seguente puzzle.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_3_0.png' %}" width='200'/>
+    </p>
+    <p>
+        Questo puzzle è un po' complicato, ma osserva che la riga superiore
+        è già nell'ordine corretto. Quindi, manteniamo la riga superiore
+        così com'è e pensiamo alla parte rimanente.
+        <strong>Quando la riga superiore è nell'ordine corretto, dovresti
+        sempre mantenerla così com'è</strong>.
+        Quindi, pensa a questo puzzle come al seguente puzzle più semplice.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_3_0_2x3.png' %}" width='200'/>
+    </p>
+    <p>
+        Potresti risolvere il puzzle per tentativi ed errori. Tuttavia,
+        c’è anche una regola generale per risolvere il puzzle più velocemente:
+        <strong>dopo aver sistemato la riga superiore nell'ordine corretto,
+        dovresti procedere sistemando la colonna di sinistra nell'ordine
+        corretto</strong>.
+        In questo esempio ci sono due mosse possibili: muovere il 4 a destra
+        o muovere il 7 in basso. Qual è il modo più veloce per sistemare
+        la colonna di sinistra nell'ordine corretto in base a quanto abbiamo
+        appena detto?
+    </p>
+    <p>
+        Proviamo a spostare il 4 a destra.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_3_1_bad_0.png' %}" width='200'/>
+    </p>
+    <p>
+        Ora l'unica tessera che puoi spostare è l’8.
+        Quindi spostiamola verso il basso.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_3_1_bad_1.png' %}" width='200'/>
+    </p>
+    <p>
+        Ora, se ignori la riga in alto che è già nell'ordine corretto,
+        l'unica tessera che puoi spostare è la 7. Quindi, spostiamola a sinistra.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_3_1_bad_2.png' %}" width='200'/>
+    </p>
+    <p>
+        Poi, sposta il 4 in alto, l’8 a destra e infine il 7 in basso.
+        Così facendo hai sistemato la colonna sinistra nell’ordine corretto.
+        Hai spostato le tessere sette volte fino ad ora.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_3_1_bad_3.png' %}" width='200'/>
+    </p>
+    <p>
+        Ora lasciamo anche la colonna di sinistra così com'è.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_3_1_bad_3_2x2.png' %}" width='133.33'/>
+    </p>
+    <p>
+        Quindi puoi risolvere il puzzle spostando il 5 a sinistra e
+        poi il 6 in alto. Con questo metodo,
+        <strong>hai spostato le tessere nove volte in totale</strong>.
+    </p>
+    <p>
+        Torniamo al puzzle iniziale.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_3_0.png' %}" width='200'/>
+    </p>
+    <p>
+        Questa volta, proviamo a spostare il 7 verso il basso.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_3_1_good.png' %}" width='200'/>
+    </p>
+    <p>
+        Poi sposta di l’8 a destra, il 4 in alta e, infine, il 7 a sinistra.
+        Ora hai sistemato la colonna di sinistra nell'ordine corretto
+        solo con quattro mosse.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_3_4_good.png' %}" width='200'/>
+    </p>
+    <p>
+        Manteniamo la colonna di sinistra così com'è
+        (così come la riga superiore).
+    </p>
+    <p>
+        <img src="{% static 'puzzle_3_4_good_2x2.png' %}" width='133.33'/>
+    </p>
+    <p>
+        Ora è facile risolvere il puzzle: sposta l’8 in basso, il 5 a sinistra
+        e, infine, il 6 in alto. Con questo metodo,
+        <strong>hai spostato le tessere solo sette volte in totale</strong>.
+    </p>
+    <p>
+        Poiché esiste un limite di tempo, è meglio risolvere il puzzle con
+        il numero minimo di mosse.
+        <strong>Definiremo una mossa come “giusta” se rende un puzzle più
+            vicino alla soluzione, e una mossa come “sbagliata” se rende un
+            puzzle più lontano dalla soluzione. Non ci sono mosse neutre:
+            tutte le mosse sono giuste o sbagliate</strong>.
+    </p>
+    <p>
+        <br>
+        <strong>In sintesi: quando risolvi il puzzle, per prima cosa,
+            sistema le celle della prima la riga in alto nell'ordine
+            corretto, poi procedi sistemando le celle della colonna di
+            sinistra nell'ordine corretto. Cerca sempre di ridurre il
+            più possibile il numero di mosse.</strong>
+    </p>
+    <p>
+        <strong><u>Domande di comprensione</u></strong>:<br>
+        Prima di procedere, rispondi alle seguenti domande di comprensione.
+        Dopo aver risposto, fai click su Successivo.
+    </p>
+    {% formfield player.uq1 %}
+    {% formfield player.uq2 %}
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    A <br>
+                    <img src="{% static 'puzzle_2_0.png' %}" width='200'/>
+                </td>
+                <td>
+                    B <br>
+                    <img src="{% static 'puzzle_goal.png' %}" width='200'/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    {% formfield player.uq3 %}
+    {% formfield player.uq4 %}
+    <p>
+        <img src="{% static 'puzzle_3_3_good.png' %}" width='200'/>
+    </p>
+    {% formfield player.uq5 %}
+    {% formfield player.uq6 %}
+    <p>
+        <img src="{% static 'puzzle_3_5_good.png' %}" width='200'/>
+    </p>
+    {% formfield player.uq7 %}
+    {% next_button %}
+
+{% endblock %}

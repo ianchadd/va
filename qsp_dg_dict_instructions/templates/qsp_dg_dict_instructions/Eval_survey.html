@@ -1,0 +1,47 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+{% block content %}
+<p>Below, you can see your own ID on the left and a different ID on the right.</p>
+<br>
+{% include Constants.both_IDs %}
+<br>
+
+<p>Suppose the ID on the right has been selected by another person in the same way as you selected your own ID for this survey (i.e., they were given a randomly generated alpha-numeric string of characters and chose the icon).  </p>
+<br>
+<p> Please answer the following questions about <img style="height: 25px; width:auto;" src="{% static their_flag %}"/> <b>{{their_ID}}</b>.</p>
+
+<p>I think that <img style="height: 25px; width:auto;" src="{% static their_flag %}"/> <b>{{their_ID}}</b>'s gender is most likely: </p>
+
+{% formfield player.inferred_gender%}
+
+<p>I think that <img style="height: 25px; width:auto;" src="{% static their_flag %}"/> <b>{{their_ID}}</b>'s age is most likely: </p>
+
+{% formfield player.inferred_age %}
+
+<p>I think that <img style="height: 25px; width:auto;" src="{% static their_flag %}"/> <b>{{their_ID}}</b>'s income is most likely: </p>
+
+{% formfield player.inferred_income %}
+
+<p>I think that <img style="height: 25px; width:auto;" src="{% static their_flag %}"/> <b>{{their_ID}}</b>'s sexual orientation is most likely: </p>
+
+{% formfield player.inferred_orientation %}
+
+<p>When it comes to <b>economic</b> issues, I think that <img style="height: 25px; width:auto;" src="{% static their_flag %}"/> <b>{{their_ID}}</b> is politically: </p>
+
+{% formfield player.inferred_econ_politics %}
+
+<p>When it comes to <b>social</b> issues, I think that <img style="height: 25px; width:auto;" src="{% static their_flag %}"/> <b>{{their_ID}}</b> is politically: </p>
+
+{% formfield player.inferred_social_politics %}
+
+<p>Do you think that <img style="height: 25px; width:auto;" src="{% static their_flag %}"/> <b>{{their_ID}}</b> considers themselves to be an ally to the LGBTQ+ community? </p>
+
+{% formfield player.inferred_ally %}
+
+{% formfield player.attn_check_3 %}
+
+{% next_button %}
+{% endblock %}

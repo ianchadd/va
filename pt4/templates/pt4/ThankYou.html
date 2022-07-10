@@ -1,0 +1,49 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Grazie per la partecipazione
+{% endblock %}
+
+{% block content %}
+    <p>
+        Grazie per la partecipazione. Hai completato lo studio.
+    </p>
+    <p>
+        I tuoi guadagni sono composti come segue:
+    </p>
+        <ul>
+            <li>
+                <strong>{{ session.config.partfee }}€</strong>
+                per la partecipazione.
+            </li>
+            <li>
+                <strong>{{ pt1earn }}€</strong>
+                per i puzzle che hai risolto nella parte 1.
+            </li>
+            <li>
+                <strong>{{ pt3earn }}€</strong>
+                per i puzzle che tu e il tuo partner avete risolto nella parte 3.
+            </li>
+        </ul>
+    <p>
+        Quindi, hai guadagnato <strong>{{ player.payment }}€</strong> in totale.
+        Ti invieremo il denaro tramite PayPal entro 2 settimane. Se non hai
+        ricevuto i tuoi guadagni dopo 2 settimane, contattaci.
+    </p>
+    <p>
+    <strong><u>Opzionale</u></strong>: Se desideri conoscere i risultati di
+        questo studio, saremo più che felici di inviarti l’articolo via e-mail
+        una volta terminato questo studio.
+    </p>
+    <div style="text-align: center;">
+    <button name="send_results" value="False" class="btn btn-primary">
+        No, non desidero ricevere l’articolo
+    </button>
+    <button name="send_results" value="True" class="btn btn-primary">
+        Sì, desidero ricevere l’articolo
+    </button>
+    </div>
+{% endblock %}
+
+

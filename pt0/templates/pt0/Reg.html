@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Pagina di registrazione 1 di 2
+{% endblock %}
+
+{% block content %}
+    <p>
+        Compila i seguenti campi. Assicurati che corrispondano alle informazioni
+        che hai registrato su ORSEE in modo da poterti inviare il pagamento
+        dopo la sessione.
+    </p>
+    <p>
+        N.B. Inserisci in maiuscolo solo la prima lettera del tuo nome e cognome.
+    </p>
+    <p>
+        Buoni esempi: Marco Rossi; Maria Bianchi; Anna Maria Gallo
+    </p>
+    <p>
+        Cattivi esempi: MARCO ROSSI; maria bianchi; Anna maria Gallo
+    </p>
+    {% formfields %}
+    {% next_button %}
+
+{% endblock %}
