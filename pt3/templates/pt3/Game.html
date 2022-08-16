@@ -286,20 +286,20 @@
             send(e.type, e.detail);
             history.push(e.detail);
             $('#id_move_history').val(JSON.stringify(history));
-            orange_message('Aspetta il tuo partner!');
+            orange_message('Wait for your partner!');
         }, false);
 
         sg.table.addEventListener('solved', function () {
             $('#id_puzzle_solved').val('True');
             $('.otree-btn-next').show();
-            green_message("Avete risolto il puzzle!");
+            green_message("You have solved the puzzle!");
         }, false);
 
         if (!js_vars.starting_player) {
             sg.enabled = false;
-            orange_message('Aspetta il tuo partner!');
+            orange_message('Wait for your partner!');
         } else {
-            green_message('È il tuo turno!');
+            green_message("It's your turn!");
         }
 
         $('.otree-btn-next').hide();

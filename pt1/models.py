@@ -68,40 +68,40 @@ class Player(BasePlayer):
     puzzles_solved_pt1 = models.IntegerField()
     puzzle_histories = models.LongStringField()
     # understanding questions
-    uq1 = models.IntegerField(
-        label='1. Quale delle seguenti affermazioni è vera?',
-        widget=widgets.RadioSelect,
-        choices=[
-            [1, 'In questa parte, lavorerò sui puzzle individualmente per 4 minuti e guadagnerò 0,2€ per ogni puzzle che risolvo.'],
-            [2, 'In questa parte, lavorerò sugli enigmi in coppia per 4 minuti e guadagnerò 0,2€ per ogni puzzle che risolviamo.'],
-            [3, 'In questa parte, lavorerò individualmente sui puzzle per 4 minuti, ma non guadagnerò nulla.'], ])
-    uq2 = models.IntegerField(
-        label="2. Quale dei seguenti puzzle è nell'ordine corretto?",
-        widget=widgets.RadioSelect,
-        choices=[[1, 'A.'], [2, 'B.'], ])
-    uq3 = models.IntegerField(
-        label='3. Qual è la strategia da utilizzare per risolvere il puzzle il più velocemente possibile?',
-        widget=widgets.RadioSelect,
-        choices=[
-            [1, "Per prima cosa, sistema le celle della colonna di sinistra nell'ordine corretto, quindi quelle della riga in basso. Riduci sempre al minimo il numero di mosse da fare."],
-            [2, "Per prima cosa, sistema le celle della riga superiore nell'ordine corretto, quindi quelle della colonna di destra. Riduci sempre al minimo il numero di mosse da fare."],
-            [3, "In primo luogo, sistema le celle della riga superiore nell'ordine corretto, quindi quelle della colonna di sinistra. Riduci sempre al minimo il numero di mosse da fare."], ])
-    uq4 = models.IntegerField(
-        label='4. Guarda il seguente puzzle. Qual è la mossa giusta?',
-        widget=widgets.RadioSelect,
-        choices=[[1, 'Sposta il 4 in basso.'], [2, 'Spostare il 7 a sinistra.'], ])
-    uq5 = models.IntegerField(
-        label='5. Considera il puzzle in questione 4. Qual è il numero minimo di mosse per risolvere il puzzle?',
-        widget=widgets.RadioSelect,
-        choices=[[1, '2'], [2, '3'], [3, '4'], ])
-    uq6 = models.IntegerField(
-        label='6. Guarda il seguente puzzle. Qual è la mossa giusta?',
-        widget=widgets.RadioSelect,
-        choices=[[1, 'Spostare il 5 a sinistra.'], [2, 'Sposta l’8 in alto.'], ])
-    uq7 = models.IntegerField(
-        label='7. Considera il puzzle in questione 6. Qual è il numero minimo di mosse per risolvere il puzzle?',
-        widget=widgets.RadioSelect,
-        choices=[[1, '2'], [2, '3'], [3, '4'], ])
+    uq1 = models.IntegerField (
+        label = '1. Which of the following statements is true? ',
+        widget = widgets.RadioSelect,
+        choices = [
+            [1, 'In this part, I will work on puzzles individually for 4 minutes and earn € 0.2 for each puzzle I solve.'],
+            [2, 'In this part, I will work on puzzles in pairs for 4 minutes and earn € 0.2 for each puzzle we solve.'],
+            [3, 'In this part, I will work on the puzzles individually for 4 minutes, but I will not gain anything.'],])
+    uq2 = models.IntegerField (
+        label = "2. Which of the following puzzles is in the correct order?",
+        widget = widgets.RadioSelect,
+        choices = [[1, 'A.'], [2, 'B.'],])
+    uq3 = models.IntegerField (
+        label = '3. What is the strategy to use to solve the puzzle as fast as possible? ',
+        widget = widgets.RadioSelect,
+        choices = [
+            [1, "First, arrange the cells in the left column in the correct order, then those in the bottom row. Always minimize the number of moves you have to make."],
+            [2, "First, arrange the cells in the top row in the correct order, then those in the right column. Always minimize the number of moves to make."],
+            [3, "First, arrange the cells in the top row in the correct order, then those in the left column. Always minimize the number of moves to make."],])
+    uq4 = models.IntegerField (
+        label = "4. Look at the following puzzle. What's the right move? ",
+        widget = widgets.RadioSelect,
+        choices = [[1, 'Move 4 down.'], [2, 'Move 7 to left.'],])
+    uq5 = models.IntegerField (
+        label = '5. Consider the puzzle in question 4. What is the minimum number of moves to solve the puzzle? ',
+        widget = widgets.RadioSelect,
+        choices = [[1, '2'], [2, '3'], [3, '4'],])
+    uq6 = models.IntegerField (
+        label = "6. Look at the following puzzle. What's the right move?",
+        widget = widgets.RadioSelect,
+        choices = [[1, 'Move the 5 to the left.'], [2, 'Move the 8 up.'],])
+    uq7 = models.IntegerField (
+        label = '7. Consider the puzzle in question 6. What is the minimum number of moves to solve the puzzle? ',
+        widget = widgets.RadioSelect,
+        choices = [[1, '2'], [2, '3'], [3, '4'],])
 
     # error messages
     def uq1_error_message(self, uq1):

@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Il puzzle {{ group.round_number }} su 7
+    The puzzle {{group.round_number}} of 7
 {% endblock %}
 
 {% block styles %}
@@ -23,8 +23,8 @@
 
 {% block content %}
     <p>
-        Hai risolto il puzzle con <strong>{{ otherid }}</strong>.
-        Sei disposto a lavorare con {{ otherid }} nella parte 3?
+        You solved the puzzle with <strong> {{otherid}} </strong>.
+        Are you willing to work with {{otherid}} in part 3?
     </p>
     {% formfields %}
     {% next_button %}

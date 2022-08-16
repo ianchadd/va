@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Round individuale
+    Individual round
 {% endblock %}
 
 {% block styles %}
@@ -261,7 +261,7 @@
 
         sg.table.addEventListener('solved', function () {
             $('#id_puzzle_solved').val(num_solved);
-            green_message("Hai risolto il puzzle!");
+            green_message("You have solved the puzzle!");
             window.setTimeout(function() {
                 // if it was solved, we clear the board, take the next board and reset the game
                 if (current_board + 1 < boards.length) {
@@ -271,7 +271,7 @@
                     sg.set_board(boards[current_board]);
                     green_message("");
                 } else {
-                    orange_message("Hai risolto tutti i puzzle! ");
+                    orange_message("You have solved all the puzzles!");
                 }
             }, 2000);
         }, false);

@@ -35,9 +35,9 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # 1st page info
-    fname = models.StringField(label='Nome:')
-    lname = models.StringField(label='Cognome:')
-    email = models.StringField(label='Indirizzo e-mail che hai registrato su ORSEE:')
+    fname = models.StringField(label='First Name:')
+    lname = models.StringField(label='Last Name:')
+    email = models.StringField(label='E-mail address you registered on ORSEE:')
     # 2nd page info and random number
     coin = models.IntegerField()
     # participation flag

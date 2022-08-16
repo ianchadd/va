@@ -11,198 +11,198 @@
 {% endblock %}
 
 {% block title %}
-    Istruzioni per la parte 1 di 3
+    Instructions for part 1 of 3
 {% endblock %}
 
 {% block content %}
     <p>
-        In questa parte, risolverai il puzzle in maniera individuale per
-        familiarizzare con esso. Hai <strong>4 minuti</strong> per risolvere
-        il maggior numero di puzzle possibile (fino a un massimo di 15 puzzle).
-        Guadagnerai <strong>{{ session.config.pt1rate }}€ per ogni puzzle</strong>
-        risolto.
+        In this part, you will solve the puzzle individually for
+        familiarize yourself with it. You have <strong> 4 minutes </strong> to resolve
+        as many puzzles as possible (up to a maximum of 15 puzzles).
+        You will earn <strong> {{session.config.pt1rate}} € for each puzzle </strong>
+        Resolved.
     </p>
     <p>
-        Il tuo obiettivo è spostare le tessere e ordinarle come segue:
+        Your goal is to move the tiles and sort them as follows:
     </p>
     <p>
         <img src="{% static 'puzzle_goal.png' %}" width='200'/>
     </p>
     <p>
-        Prima di iniziare, segui i tre esempi seguenti
-        per capire come risolvere il puzzle.
+        Before you begin, follow the three examples below
+        to understand how to solve the puzzle.
     </p>
 
     <p>
-        <strong><u>Esempio 1</u></strong>:
+        <strong><u>Example 1</u></strong>:
     </p>
     <p>
-        Per prima cosa, considera il seguente puzzle.
+        First, consider the following puzzle.
     </p>
     <p>
         <img src="{% static 'puzzle_1.png' %}" width='200'/>
     </p>
-    <p>
-        Puoi solo spostare le tessere vicine a una cella vuota e la tessera
-        che scegli viene spostata automaticamente nella cella vuota.
-        Ad esempio, in questo puzzle ci sono 3 mosse che puoi fare:
-        muovere la tessera con il 3 in basso, muovere quella con il 5 a destra,
-        oppure muovere la tessera con il 6 in alto.
+   <p>
+        You can only move the tiles next to an empty cell and the tile
+        you choose is automatically moved to the empty cell.
+        For example, in this puzzle there are 3 moves you can do:
+        move the tile with the 3 down, move the one with the 5 to the right,
+        or move the tile with the 6 up.
     </p>
     <p>
-        Tra le 3 mosse, spostare la tessera con il numero 6 verso l’alto è
-        l'unica mossa corretta: spostando il 6 in su, puoi risolvere il puzzle.
-        Le altre mosse non risolvono il puzzle.
+        Between the 3 moves, move the tile with the number 6 upwards
+        the only correct move: by moving the 6 up, you can solve the puzzle.
+        The other moves do not solve the puzzle.
     </p>
     <p>
-        Quando fai click su una tessera vicina a una cella vuota, la tessera
-        verrà spostata automaticamente nella cella vuota. Quindi, in questo
-        caso, dovresti fai click sul 6 per spostarlo verso l'alto.
+        When you click on a tile next to an empty cell, the tile
+        it will automatically be moved to the empty cell. So, in this
+        case, you should click on the 6 to move it up.
     </p>
     <p>
-        <strong><u>Esempio 2</u></strong>:
+        <strong> <u> Example 2 </u> </strong>:
     </p>
     <p>
-        Ora, considera il seguente puzzle.
+        Now, consider the following puzzle.
     </p>
     <p>
         <img src="{% static 'puzzle_2_0.png' %}" width='200'/>
     </p>
-    <p>
-        Innanzitutto, ci sono 2 mosse che puoi fare: muovere il 2 a destra
-        o muovere il 3 in alto. Quale mossa dovresti fare?
+   <p>
+        First, there are 2 moves you can do: move the 2 to the right
+        or move the 3 up. What move should you make?
     </p>
     <p>
-        Osserva che le uniche tessere che non sono nell'ordine corretto sono
-        il 3 e il 6. Quindi, prima di tutto devi spostare il 3 in su.
+        Note that the only tiles that are not in the correct order are
+        the 3 and the 6. So, first of all you have to move the 3 up.
     </p>
     <p>
-        Dopo aver spostato il 3 in su, il puzzle apparirà come quello
-        nell'esempio 1. Quindi dovresti spostare il 6 in su e il puzzle
-        sarà risolto.
+        After moving the 3 up, the puzzle will look like that
+        in example 1. So you should move the 6 up and the puzzle
+        will be resolved.
     </p>
     <p>
-        <strong><u>Esempio 3</u></strong>:
+        <strong> <u> Example 3 </u> </strong>:
     </p>
     <p>
-        Infine, considera il seguente puzzle.
+        Finally, consider the following puzzle.
     </p>
     <p>
         <img src="{% static 'puzzle_3_0.png' %}" width='200'/>
     </p>
     <p>
-        Questo puzzle è un po' complicato, ma osserva che la riga superiore
-        è già nell'ordine corretto. Quindi, manteniamo la riga superiore
-        così com'è e pensiamo alla parte rimanente.
-        <strong>Quando la riga superiore è nell'ordine corretto, dovresti
-        sempre mantenerla così com'è</strong>.
-        Quindi, pensa a questo puzzle come al seguente puzzle più semplice.
+        This puzzle is a little tricky, but note that the top row
+        it is already in the correct order. So, let's keep the top row
+        as it is and think about the remaining part.
+        <strong> When the top line is in the correct order, you should
+        always keep it as it is </strong>.
+        So, think of this puzzle as the following simpler puzzle.
     </p>
     <p>
         <img src="{% static 'puzzle_3_0_2x3.png' %}" width='200'/>
     </p>
     <p>
-        Potresti risolvere il puzzle per tentativi ed errori. Tuttavia,
-        c’è anche una regola generale per risolvere il puzzle più velocemente:
-        <strong>dopo aver sistemato la riga superiore nell'ordine corretto,
-        dovresti procedere sistemando la colonna di sinistra nell'ordine
-        corretto</strong>.
-        In questo esempio ci sono due mosse possibili: muovere il 4 a destra
-        o muovere il 7 in basso. Qual è il modo più veloce per sistemare
-        la colonna di sinistra nell'ordine corretto in base a quanto abbiamo
-        appena detto?
+        You could solve the puzzle by trial and error. However,
+        there is also a general rule for solving the puzzle faster:
+        <strong> after placing the top row in the correct order,
+        you should proceed by arranging the left column in order
+        correct </strong>.
+        In this example there are two possible moves: move the 4 to the right
+        or move the 7 down. What is the fastest way to fix
+        the left column in the correct order based on how much we have
+        just said?
     </p>
     <p>
-        Proviamo a spostare il 4 a destra.
+        Let's try to move the 4 to the right.
     </p>
     <p>
         <img src="{% static 'puzzle_3_1_bad_0.png' %}" width='200'/>
     </p>
     <p>
-        Ora l'unica tessera che puoi spostare è l’8.
-        Quindi spostiamola verso il basso.
+        Now the only tile you can move is 8.
+        So let's move it down.
     </p>
     <p>
         <img src="{% static 'puzzle_3_1_bad_1.png' %}" width='200'/>
     </p>
     <p>
-        Ora, se ignori la riga in alto che è già nell'ordine corretto,
-        l'unica tessera che puoi spostare è la 7. Quindi, spostiamola a sinistra.
+        Now, if you ignore the top row which is already in the correct order,
+        the only tile you can move is 7. So, let's move it to the left.
     </p>
     <p>
         <img src="{% static 'puzzle_3_1_bad_2.png' %}" width='200'/>
     </p>
     <p>
-        Poi, sposta il 4 in alto, l’8 a destra e infine il 7 in basso.
-        Così facendo hai sistemato la colonna sinistra nell’ordine corretto.
-        Hai spostato le tessere sette volte fino ad ora.
+        Then, move the 4 up, the 8 to the right and finally the 7 down.
+        By doing so, you have placed the left column in the correct order.
+        You have moved the tiles seven times so far.
     </p>
     <p>
         <img src="{% static 'puzzle_3_1_bad_3.png' %}" width='200'/>
     </p>
     <p>
-        Ora lasciamo anche la colonna di sinistra così com'è.
+        Now we also leave the left column as it is.
     </p>
     <p>
         <img src="{% static 'puzzle_3_1_bad_3_2x2.png' %}" width='133.33'/>
     </p>
     <p>
-        Quindi puoi risolvere il puzzle spostando il 5 a sinistra e
-        poi il 6 in alto. Con questo metodo,
-        <strong>hai spostato le tessere nove volte in totale</strong>.
+        Then you can solve the puzzle by moving the 5 to the left and
+        then 6 at the top. With this method,
+        <strong> you moved the tiles nine times in total </strong>.
     </p>
     <p>
-        Torniamo al puzzle iniziale.
+        Let's go back to the initial puzzle.
     </p>
     <p>
         <img src="{% static 'puzzle_3_0.png' %}" width='200'/>
     </p>
     <p>
-        Questa volta, proviamo a spostare il 7 verso il basso.
+        This time, let's try to move the 7 down.
     </p>
     <p>
         <img src="{% static 'puzzle_3_1_good.png' %}" width='200'/>
     </p>
     <p>
-        Poi sposta di l’8 a destra, il 4 in alta e, infine, il 7 a sinistra.
-        Ora hai sistemato la colonna di sinistra nell'ordine corretto
-        solo con quattro mosse.
+        Then move the 8 to the right, the 4 to the top and, finally, the 7 to the left.
+        You have now arranged the left column in the correct order
+        with only four moves.
     </p>
     <p>
         <img src="{% static 'puzzle_3_4_good.png' %}" width='200'/>
     </p>
     <p>
-        Manteniamo la colonna di sinistra così com'è
-        (così come la riga superiore).
+        We keep the left column as it is
+        (as well as the top row).
     </p>
     <p>
         <img src="{% static 'puzzle_3_4_good_2x2.png' %}" width='133.33'/>
     </p>
     <p>
-        Ora è facile risolvere il puzzle: sposta l’8 in basso, il 5 a sinistra
-        e, infine, il 6 in alto. Con questo metodo,
-        <strong>hai spostato le tessere solo sette volte in totale</strong>.
+        Now it's easy to solve the puzzle: move the 8 down, the 5 to the left
+        and finally the 6 above. With this method,
+        <strong> you only moved the tiles seven times in total </strong>.
     </p>
     <p>
-        Poiché esiste un limite di tempo, è meglio risolvere il puzzle con
-        il numero minimo di mosse.
-        <strong>Definiremo una mossa come “giusta” se rende un puzzle più
-            vicino alla soluzione, e una mossa come “sbagliata” se rende un
-            puzzle più lontano dalla soluzione. Non ci sono mosse neutre:
-            tutte le mosse sono giuste o sbagliate</strong>.
+        Since there is a time limit, it is best to solve the puzzle with
+        the minimum number of moves.
+        <strong> We will define a move as "right" if it makes a puzzle more
+            close to the solution, and a move as "wrong" if it makes a
+            puzzle farthest from the solution. There are no neutral moves:
+            all moves are right or wrong </strong>.
     </p>
     <p>
         <br>
-        <strong>In sintesi: quando risolvi il puzzle, per prima cosa,
-            sistema le celle della prima la riga in alto nell'ordine
-            corretto, poi procedi sistemando le celle della colonna di
-            sinistra nell'ordine corretto. Cerca sempre di ridurre il
-            più possibile il numero di mosse.</strong>
+        <strong> In summary: when you solve the puzzle, first,
+            arranges the cells of the first row at the top in order
+            correct, then proceed by arranging the cells of the column of
+            left in the correct order. Always try to reduce the
+            as many moves as possible. </strong>
     </p>
     <p>
-        <strong><u>Domande di comprensione</u></strong>:<br>
-        Prima di procedere, rispondi alle seguenti domande di comprensione.
-        Dopo aver risposto, fai click su Successivo.
+        <strong> <u> Questions for understanding </u> </strong>: <br>
+        Before proceeding, answer the following comprehension questions.
+        After answering, click Next.
     </p>
     {% formfield player.uq1 %}
     {% formfield player.uq2 %}

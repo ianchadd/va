@@ -166,17 +166,16 @@ class Player(BasePlayer):
     is_starting_player = models.BooleanField()
     puzzle_solved = models.BooleanField(initial=False)
     # understanding questions
-    uq1 = models.IntegerField(
-        label='1. Quale delle seguenti affermazioni è vera?',
-        widget=widgets.RadioSelect,
-        choices=[[1, 'In questa parte, tu e il tuo partner guadagnerete 1€ per ogni puzzle risolto, il che significa che guadagnerete 1€ per ogni puzzle risolto.'],
-                 [2, 'In questa parte, tu e il tuo partner guadagnerete 1€ per ogni puzzle risolto da voi due, il che significa che guadagnerete 0,5€ per ogni puzzle risolto.'], ])
-    uq2 = models.IntegerField(
-        label='2. Tu e il tuo partner...',
-        widget=widgets.RadioSelect,
-        choices=[[1, "lavorerete sui puzzle per 12 minuti spostando le tessere a turno. Chi di voi farà la prima mossa viene determinato casualmente all'inizio di ogni puzzle."],
-                 [2, "lavorerete sui puzzle per 12 minuti. Chi di voi farà la prima mossa viene determinato casualmente all'inizio di questa parte e fissato in seguito."], ])
-    # count number of puzzles solved
+    uq1 = models.IntegerField (
+        label = '1. Which of the following statements is true? ',
+        widget = widgets.RadioSelect,
+        choices = [[1, 'In this part, you and your partner will earn € 1 for each puzzle solved, which means you will earn € 1 for each puzzle solved.'],
+                 [2, 'In this part, you and your partner will earn € 1 for each puzzle solved by the two of you, which means you will earn € 0.5 for each puzzle solved.'],])
+    uq2 = models.IntegerField (
+        label = '2. You and your partner ... ',
+        widget = widgets.RadioSelect,
+        choices = [[1, "you will work on the puzzles for 12 minutes by moving the tiles in turn. Which of you will make the first move is determined randomly at the beginning of each puzzle."],
+                 [2, "You will work on the puzzles for 12 minutes. Which of you will make the first move is randomly determined at the beginning of this part and fixed later."],])    # count number of puzzles solved
     puzzles_solved_pt3 = models.IntegerField(initial=0)
 
     # error messages

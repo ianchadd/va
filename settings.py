@@ -47,7 +47,7 @@ SESSION_CONFIGS = [
         pt3rate=1,
         num_part=16,
         max_earning=25,
-        uq_error='Controlla la tua risposta.',
+        uq_error='Check your answer.',
         doc="""
         Program for gender differences in the cost of contradictions.
         Number of participants: multiple of 8.
@@ -68,7 +68,7 @@ SESSION_CONFIGS = [
         pt3rate=1,
         num_part=16,
         max_earning=25,
-        uq_error='Controlla la tua risposta.',
+        uq_error='Check your answer.',
         doc="""
         Program for gender differences in the cost of contradictions.
         Number of participants: multiple of 8.

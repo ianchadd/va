@@ -2,24 +2,24 @@
 {% load otree static %}
 
 {% block title %}
-    Istruzioni per la parte 3 di 3
+    Instructions for part 3 of 3
 {% endblock %}
 
 {% block content %}
     <p>
-        In questa parte, risolverai puzzle con il tuo partner
-        per <strong>12 minuti</strong> spostando le tessere a turno,
-        e sia tu che il tuo partner guadagnerete
-        <strong>{{ session.config.pt3rate }}€ per ogni puzzle</strong>
-        che risolverete. C'è un massimo di 20 puzzle che tu e il tuo partner
-        potete risolvere (quindi il guadagno massimo è di 20 € per ciascuno di voi).
-        Come nella parte 2, uno di voi verrà scelto a caso per fare la prima
-        mossa all'inizio di ogni puzzle.
+        In this part, you will be solving puzzles with your partner
+        for <strong> 12 minutes </strong> by moving the tiles in turn,
+        and both you and your partner will earn
+        <strong> {{session.config.pt3rate}} € for each puzzle </strong>
+        that you will solve. There is a maximum of 20 puzzles that you and your partner
+        you can solve (so the maximum gain is € 20 for each of you).
+        As in part 2, one of you will be chosen at random to make the first
+        move at the beginning of each puzzle.
     </p>
     <p>
-        <strong><u>Domande di comprensione</u></strong>:<br>
-        Prima di procedere, rispondi alle seguenti domande di comprensione.
-        Dopo aver risposto, fai click su Successivo.
+        <strong> <u> Understanding questions </u> </strong>: <br>
+        Before proceeding, answer the following comprehension questions.
+        After answering, click Next.
     </p>
     {% formfields %}
 

@@ -55,7 +55,7 @@ class Game(Page):
     form_fields = ['puzzle_solved', 'move_history']
 
     # display manual timer text
-    timer_text = 'Tempo rimasto per completare questa parte:'
+    timer_text = 'Time left to complete this part:'
 
     # call up global timer
     def get_timeout_seconds(self):

@@ -1,15 +1,15 @@
 {% extends "global/Page.html" %}
 {% load otree static %}
 {% block title %}
-    Il round con il tuo partner è finito
+    The round with your partner is over
 {% endblock %}
 {% block content %}
     <p>
-        Il round con il tuo partner è finito. Avete risolto
-        <strong>{{ num_solved }} puzzle</strong>.
+        The round with your partner is over. You have solved
+        <strong> {{num_solved}} puzzle </strong>.
     </p>
     <p>
-        Fai click su Successivo per procedere.
+        Click Next to proceed.
     </p>
         {% next_button %}
 {% endblock %}

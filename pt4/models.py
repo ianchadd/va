@@ -45,59 +45,59 @@ class Player(BasePlayer):
     # a variable to store payment
     payment = models.FloatField()
     # survey questions demographics
-    age = models.IntegerField(label='Età:')
-    female = models.BooleanField(
-        label='Sesso:', choices=[[0, 'Uomo'], [1, 'Donna'], ])
-    region = models.IntegerField(
-        label='Regione di origine:',
-        choices=[[1, 'Nord-Ovest'], [2, 'Nord-Est'], [3, 'Centro'], [4, 'Sud'],
-                 [5, 'Isole'], [6, 'Estero'], ])
-    major = models.IntegerField(
-        label='Campo di studi principale:',
-        choices=[[1, 'Studi umanistici'], [2, 'Giurisprudenza'],
-                 [3, 'Scienze sociali'], [4, 'Scienze naturali / Matematica'],
-                 [5, 'Medicina'], [6, 'Ingegneria'], ])
-    prog = models.IntegerField(
-        label='Tipo di corso:',
-        choices=[[1, 'Laurea'], [2, 'Laurea Magistrale/Post-Laurea'],
-                 [3, 'Ciclo Unico (1 °, 2 ° o 3 ° anno)'],
-                 [4, 'Ciclo Unico (4 ° anno o oltre)'],
-                 [5, 'Dottorato'], ])
-    freeq1 = models.StringField(
-        label='Cosa pensi di questo studio?')
-    freeq2 = models.StringField(
-        label="C'era qualcosa di poco chiaro o di confuso in questo studio?")
-    freeq3 = models.StringField(
-        label='Hai qualche altro commento? (opzionale)', blank=True)
-    puzzle_difficulty = models.IntegerField(
-        label='I puzzle erano difficili?',
-        choices=[[1, 'Difficili'], [2, 'Abbastanza difficili'],
-                 [3, 'Giusto'], [4, 'Abbastanza facili'],
-                 [5, 'Facili'], ])
+    age = models.IntegerField (label = 'Age:')
+    female = models.BooleanField (
+        label = 'Gender:', choices = [[0, 'Male'], [1, 'Female'],])
+    region = models.IntegerField (
+        label = 'Region of origin:',
+        choices = [[1, 'North-West'], [2, 'North-East'], [3, 'Center'], [4, 'South'],
+                 [5, 'Islands'], [6, 'Abroad'],])
+    major = models.IntegerField (
+        label = 'Main field of study:',
+        choices = [[1, 'Humanities'], [2, 'Law'],
+                 [3, 'Social sciences'], [4, 'Natural sciences / Mathematics'],
+                 [5, 'Medicine'], [6, 'Engineering'],])
+    prog = models.IntegerField (
+        label = 'Course type:',
+        choices = [[1, 'Bachelor'], [2, "Master's / Postgraduate"],
+                 [3, 'Single cycle (1st, 2nd or 3rd year)'],
+                 [4, 'Single cycle (4th year or more)'],
+                 [5, 'Doctorate'],])
+    freeq1 = models.StringField (
+        label = 'What do you think about this study?')
+    freeq2 = models.StringField (
+        label = "Was there anything unclear or confusing about this study?")
+    freeq3 = models.StringField (
+        label = 'Do you have any other comments? (optional) ', blank = True)
+    puzzle_difficulty = models.IntegerField (
+        label = 'Were the puzzles difficult?',
+        choices = [[1, 'Difficult'], [2, 'Fairly difficult'],
+                 [3, 'Right'], [4, 'Easy enough'],
+                 [5, 'Easy'],])
 
     # survey questions BFI
-    bigfive = RadioGridField(
-        rows=(
-            (1, " è riservata"),
-            (2, " generalmente si fida"),
-            (3, " tende a essere pigra"),
-            (4, " è rilassata, sopporta bene lo stress"),
-            (5, " ha pochi interessi artistici"),
-            (6, " è spigliata, socievole"),
-            (7, " tende a trovare i difetti negli altri"),
-            (8, ' è coscienziosa nel lavoro'),
-            (9, ' si agita facilmente'),
-            (10, ' ha una fervida immaginazione'),
+    bigfive = RadioGridField (
+        rows = (
+            (1, "is reserved"),
+            (2, "generally trusts"),
+            (3, "tends to be lazy"),
+            (4, "she's relaxed, she tolerates stress well"),
+            (5, "has few artistic interests"),
+            (6, "is self-confident, sociable"),
+            (7, "tends to find faults in others"),
+            (8, 'she is conscientious in her work'),
+            (9, 'easily stirred'),
+            (10, 'has a vivid imagination'),
         ),
-        values=(
-            (4, "Del tutto d’accordo"),
-            (3, "Abbastanza d’accordo"),
-            (2, "Nè d'accordo né in disaccordo"),
-            (1, "Abbastanza in disaccordo"),
-            (0, "Per niente d’accordo"),
+        values = (
+            (4, "Totally agree"),
+            (3, "Fairly agree"),
+            (2, "Neither Agree nor Disagree"),
+            (1, "Quite Disagree"),
+            (0, "Disagree"),
         ),
-        require_all_fields=True, verbose_name='Mi vedo come una persona che...',
-    null=True)
+        require_all_fields = True, verbose_name = 'I see myself as a person who ...',
+    null = True)
 
     extraversion = models.FloatField()
     agreeableness = models.FloatField()
@@ -110,24 +110,24 @@ class Player(BasePlayer):
         return (6 - int(self.bigfive[i]) + int(self.bigfive[j]))/2
 
     # survey questions ASI
-    genderatt = RadioGridField(
-        rows=(
-            (1, " Le donne si offendono troppo facilmente."),
-            (2, " Molte donne, sotto la veste dell’uguaglianza, cercano in realtà favoritismi, come per esempio politiche di assunzione che le favoriscano rispetto agli uomini."),
-            (3, " Per mantenere economicamente le loro donne, gli uomini dovrebbero essere disposti a sacrificare il proprio benessere."),
-            (4, " Molte donne hanno una qualità di purezza che pochi uomini posseggono."),
-            (5, " Per quanto realizzato sia, un uomo non è mai veramente completo come persona se non ha l’amore di una donna."),
-            (6, " Le donne tendono a ingigantire i problemi che hanno sul lavoro."),
+    genderatt = RadioGridField (
+        rows = (
+            (1, "Women are too easily offended."),
+            (2, "Many women, under the guise of equality, actually seek favoritism, such as employment policies that favor them over men."),
+            (3, "To keep their women financially, men should be willing to sacrifice their own well-being."),
+            (4, "Many women have a quality of purity that few men possess."),
+            (5, "However accomplished he may be, a man is never truly complete as a person if he does not have the love of a woman."),
+            (6, "Women tend to exaggerate the problems they have at work."),
         ),
-        values=(
-            (4, "Del tutto d’accordo"),
-            (3, "Abbastanza d’accordo"),
-            (2, "Nè d'accordo né in disaccordo"),
-            (1, "Abbastanza in disaccordo"),
-            (0, "Per niente d’accordo"),
+        values = (
+            (4, "Totally agree"),
+            (3, "Fairly agree"),
+            (2, "Neither Agree nor Disagree"),
+            (1, "Quite Disagree"),
+            (0, "Disagree"),
         ),
-        require_all_fields=True, verbose_name='',
-        null=True)
+        require_all_fields = True, verbose_name = '',
+        null = True)
 
     sexism = models.FloatField()
 

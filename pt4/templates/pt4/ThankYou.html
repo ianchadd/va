@@ -2,46 +2,46 @@
 {% load otree static %}
 
 {% block title %}
-    Grazie per la partecipazione
+    Thank you for participating
 {% endblock %}
 
 {% block content %}
     <p>
-        Grazie per la partecipazione. Hai completato lo studio.
+        Thank you for participating. You have completed the study.
     </p>
     <p>
-        I tuoi guadagni sono composti come segue:
+        Your earnings are composed as follows:
     </p>
         <ul>
             <li>
-                <strong>{{ session.config.partfee }}€</strong>
-                per la partecipazione.
+                <strong> {{session.config.partfee}} € </strong>
+                for participation.
             </li>
             <li>
-                <strong>{{ pt1earn }}€</strong>
-                per i puzzle che hai risolto nella parte 1.
+                <strong> {{pt1earn}} € </strong>
+                for the puzzles you solved in part 1.
             </li>
             <li>
-                <strong>{{ pt3earn }}€</strong>
-                per i puzzle che tu e il tuo partner avete risolto nella parte 3.
+                <strong> {{pt3earn}} € </strong>
+                for the puzzles you and your partner solved in part 3.
             </li>
         </ul>
     <p>
-        Quindi, hai guadagnato <strong>{{ player.payment }}€</strong> in totale.
-        Ti invieremo il denaro tramite PayPal entro 2 settimane. Se non hai
-        ricevuto i tuoi guadagni dopo 2 settimane, contattaci.
+        So, you have earned <strong> {{player.payment}} € </strong> in total.
+        We will send you the money via PayPal within 2 weeks. If you do not have
+        received your earnings after 2 weeks, contact us.
     </p>
     <p>
-    <strong><u>Opzionale</u></strong>: Se desideri conoscere i risultati di
-        questo studio, saremo più che felici di inviarti l’articolo via e-mail
-        una volta terminato questo studio.
+    <strong> <u> Optional </u> </strong>: If you want to know the results of
+        this study, we will be more than happy to send you the article by e-mail
+        once this study is finished.
     </p>
     <div style="text-align: center;">
     <button name="send_results" value="False" class="btn btn-primary">
-        No, non desidero ricevere l’articolo
+        No, I do not wish to receive the article
     </button>
     <button name="send_results" value="True" class="btn btn-primary">
-        Sì, desidero ricevere l’articolo
+        Yes, I would like to receive the article
     </button>
     </div>
 {% endblock %}

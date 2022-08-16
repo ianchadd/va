@@ -262,66 +262,65 @@ class Player(BasePlayer):
                                choices=[[1, 'Sì'], [0, 'No'], ])
     match = models.BooleanField()
     # understanding questions
-    uq1 = models.IntegerField(
-        label='1. Quale delle seguenti affermazioni è vera?',
-        widget=widgets.RadioSelect,
-        choices=[
-            [1, 'In questa parte, sceglierò il mio partner per la parte 3.'],
-            [2, 'In questa parte, lavorerò sui puzzle per 12 minuti in coppia spostando le tessere a turno.'], ])
-    uq2 = models.IntegerField(
-        label='2. Quante persone puoi scegliere con cui vuoi lavorare nella parte 3?',
-        widget=widgets.RadioSelect,
-        choices=[[1, '1 persona.'],
-                 [2, '2 persone.'],
-                 [3, 'Tutte le persone che vuoi.'], ])
-    uq3 = models.IntegerField(
-        label='3. Perché è importante scegliere il miglior partner per la parte 3?',
-        widget=widgets.RadioSelect,
-        choices=[[1, 'perché quanti puzzle posso risolvere nella parte 3 dipende dalle mosse del mio partner.'],
-                 [2, 'perché il mio partner risolverà i puzzle per me.'], ])
-    uq4 = models.IntegerField(
-        label='4. Supponi di aver scelto Giovanni e Valeria. Tuttavia, mentre Valeria ha scelto te, Giovanni no. Se ti abbiamo scelto a caso per primo, chi sarà il tuo partner per la parte 3?',
-        widget=widgets.RadioSelect,
-        choices=[[1, 'Giovanni'],
+    uq1 = models.IntegerField (
+        label = '1. Which of the following statements is true? ',
+        widget = widgets.RadioSelect,
+        choices = [
+            [1, 'In this part, I will choose my partner for part 3.'],
+            [2, 'In this part, I will work on the puzzles for 12 minutes in pairs by moving the tiles in turn.'],])
+    uq2 = models.IntegerField (
+        label = '2. How many people can you choose who you want to work with in Part 3? ',
+        widget = widgets.RadioSelect,
+        choices = [[1, '1 person.'],
+                 [2, '2 persons.'],
+                 [3, 'All the people you want.'],])
+    uq3 = models.IntegerField (
+        label = '3. Why is it important to choose the best partner for part 3? ',
+        widget = widgets.RadioSelect,
+        choices = [[1, "because how many puzzles I can solve in part 3 depends on my partner's moves."],
+                 [2, 'because my partner will solve the puzzles for me.'],])
+    uq4 = models.IntegerField (
+        label = '4. Suppose you have chosen Giovanni and Valeria. However, while Valeria chose you, Giovanni did not. If we randomly picked you first, who will be your partner for Part 3? ',
+        widget = widgets.RadioSelect,
+        choices = [[1, 'John'],
                  [2, 'Valeria'],
-                 [3, "Qualcuno in lista d'attesa"],
-                 [4, 'Scelto a caso da Giovanni e Valeria'], ])
-    uq5 = models.IntegerField(
-        label='5. Supponi di aver scelto Giovanni e Valeria. Tuttavia, a differenza della domanda 4, mentre Giovanni ha scelto te, Valeria no. Se ti abbiamo scelto a caso per primo, chi sarà il tuo partner per la parte 3?',
-        widget=widgets.RadioSelect,
-        choices=[[1, 'Giovanni'],
+                 [3, "Someone on the Waiting List"],
+                 [4, 'Chosen at random by Giovanni and Valeria'],])
+    uq5 = models.IntegerField (
+        label = '5. Suppose you have chosen Giovanni and Valeria. However, unlike question 4, while Giovanni chose you, Valeria did not. If we randomly picked you first, who will be your partner for Part 3? ',
+        widget = widgets.RadioSelect,
+        choices = [[1, 'John'],
                  [2, 'Valeria'],
-                 [3, "Qualcuno in lista d'attesa"],
-                 [4, 'Scelto a caso da Giovanni e Valeria'], ])
-    uq6 = models.IntegerField(
-        label='6. Supponi di aver scelto Giovanni e Valeria. Inoltre, sia Giovanni che Valeria hanno scelto te. Se ti abbiamo scelto a caso per primo, chi sarà il tuo partner per la parte 3?',
-        widget=widgets.RadioSelect,
-        choices=[[1, 'Giovanni'],
+                 [3, "Someone on the Waiting List"],
+                 [4, 'Chosen at random by Giovanni and Valeria'],])
+    uq6 = models.IntegerField (
+        label = '6. Suppose you have chosen Giovanni and Valeria. Also, both Giovanni and Valeria have chosen you. If we randomly picked you first, who will be your partner for Part 3? ',
+        widget = widgets.RadioSelect,
+        choices = [[1, 'John'],
                  [2, 'Valeria'],
-                 [3, "Qualcuno in lista d'attesa"],
-                 [4, 'Scelto a caso da Giovanni e Valeria'], ])
-    uq7 = models.IntegerField(
-        label='7. Supponi di aver scelto Giovanni e Valeria. Inoltre, sia Giovanni che Valeria hanno scelto te. Tuttavia, abbiamo già abbinato Valeria a Giovanni prima di scegliere te. Chi sarà il tuo partner per la parte 3?',
-        widget=widgets.RadioSelect,
-        choices=[[1, 'Giovanni'],
+                 [3, "Someone on the Waiting List"],
+                 [4, 'Chosen at random by Giovanni and Valeria'],])
+    uq7 = models.IntegerField (
+        label = '7. Suppose you have chosen Giovanni and Valeria. Also, both Giovanni and Valeria have chosen you. However, we have already paired Valeria with Giovanni before choosing you. Who will be your partner for part 3? ',
+        widget = widgets.RadioSelect,
+        choices = [[1, 'John'],
                  [2, 'Valeria'],
-                 [3, "Qualcuno in lista d'attesa"],
-                 [4, 'Scelto a caso da Giovanni e Valeria'], ])
-    uq8 = models.IntegerField(
-        label='8. Supponi di non aver scelto nessuno. Inoltre, sia Giovanni che Valeria hanno scelto te. Se ti abbiamo scelto a caso per primo, chi sarà il tuo partner per la parte 3?',
-        widget=widgets.RadioSelect,
-        choices=[[1, 'Giovanni'],
+                 [3, "Someone on the Waiting List"],
+                 [4, 'Chosen at random by Giovanni and Valeria'],])
+    uq8 = models.IntegerField (
+        label = "8. Suppose you haven't chosen anyone. Also, both Giovanni and Valeria have chosen you. If we randomly picked you first, who will be your partner for Part 3? ",
+        widget = widgets.RadioSelect,
+        choices = [[1, 'John'],
                  [2, 'Valeria'],
-                 [3, "Qualcuno in lista d'attesa"],
-                 [4, 'Scelto a caso da Giovanni e Valeria'], ])
-    uq9 = models.IntegerField(
-        label='9. Supponi di aver scelto Giovanni e Valeria. Tuttavia, né Giovanni né Valeria ti hanno scelto. Se ti abbiamo scelto a caso per primo, chi sarà il tuo partner per la parte 3?',
-        widget=widgets.RadioSelect,
-        choices=[[1, 'Giovanni'],
+                 [3, "Someone on the Waiting List"],
+                 [4, 'Chosen at random by Giovanni and Valeria'],])
+    uq9 = models.IntegerField (
+        label = '9. Suppose you have chosen Giovanni and Valeria. However, neither Giovanni nor Valeria chose you. If we randomly picked you first, who will be your partner for Part 3? ',
+        widget = widgets.RadioSelect,
+        choices = [[1, 'John'],
                  [2, 'Valeria'],
-                 [3, "Qualcuno in lista d'attesa"],
-                 [4, 'Scelto a caso da Giovanni e Valeria'], ])
-
+                 [3, "Someone on the Waiting List"],
+                 [4, 'Chosen at random by Giovanni and Valeria'],])
     # error messages
     def uq1_error_message(self, uq1):
         print(uq1)

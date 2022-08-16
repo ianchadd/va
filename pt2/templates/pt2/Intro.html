@@ -2,84 +2,84 @@
 {% load otree static %}
 
 {% block title %}
-    Istruzioni per la parte 2 di 3
+   Instructions for part 2 of 3
 {% endblock %}
 
 {% block content %}
     <p>
-        In questa parte, <strong>sceglierai il tuo partner per la parte 3</strong>,
-        l’ultima parte dello studio.
+        In this part, <strong> you will choose your partner for part 3 </strong>,
+        the last part of the study.
     </p>
     <p>
-        Sebbene non guadagnerai nulla in questa parte, è importante scegliere
-        il miglior partner possibile: nella parte 3, lavorerai su dei nuovi
-        puzzle per 12 minuti in coppia. Tu e il tuo partner sposterete le
-        celle del puzzle a turno fino a che non lo avrete risolto, e
-        guadagnerete {{ session.config.pt3rate }}€ a testa per ogni puzzle che risolverete assieme.
-        Nella parte 3 tu e il tuo partner potrete risolvere un massimo di 20
-        puzzle (quindi il guadagno massimo è di 20€ a testa per la parte 3).
+        While you won't earn anything in this part, it's important to choose
+        the best partner possible: in part 3, you will work on new ones
+        puzzle for 12 minutes in pairs. You and your partner will move the
+        cells of the puzzle in turn until you have solved it, e
+        you will earn {{session.config.pt3rate}} € each for each puzzle you solve together.
+        In part 3 you and your partner can solve a maximum of 20
+        puzzle (so the maximum profit is € 20 each for part 3).
     </p>
     <p>
-        Nella parte 2, incontrerai, una per volta, <strong>altre 7 persone</strong>
-        che, come te, partecipano a questa sessione. Con ciascuna di queste 7
-        persone risolverai 1 puzzle spostando a turno le tessere, così come
-        farai poi nella parte 3. Uno di voi sarà scelto a caso per fare la
-        prima mossa all'inizio del puzzle. Avrete un <strong>limite di 2
-        minuti</strong> per ogni puzzle.
+        In part 2, you will meet <strong> 7 other people </strong> one at a time
+        who, like you, participate in this session. With each of these 7
+        people you will solve 1 puzzle by moving the tiles in turn, as well as
+        you will then do in part 3. One of you will be chosen at random to do the
+        first move at the beginning of the puzzle. You will have a <strong> limit of 2
+        minutes </strong> for each puzzle.
     </p>
     <p>
-        Per ognuna delle 7 persone che incontrerai, dopo aver risolto il puzzle,
-        <strong>ti verrà chiesto di indicare se vuoi lavorare con questa persona
-        anche nella parte 3. Puoi scegliere quante persone vuoi tra le 7 che
-        incontrerai. Nessuno degli altri partecipanti sarà informato delle
-        tue scelte in questa parte</strong>.
+        For each of the 7 people you will meet, after solving the puzzle,
+        <strong> you will be asked to indicate if you want to work with this person
+        also in part 3. You can choose how many people you want among the 7 that
+        you will meet. None of the other participants will be informed of the
+        your choices in this part </strong>.
     </p>
     <p>
-        Dopo aver incontrato le 7 persone e aver indicato le tue preferenze,
-        controlleremo tutte le scelte che tu e le altre 7 persone avete fatto
-        e assegneremo un partner per la parte 3 a ciascuno di voi. Procederemo
-        nel modo seguente:
+        After meeting the 7 people and indicating your preferences,
+        we will check all the choices that you and the other 7 people have made
+        and we will assign a partner for Part 3 to each of you. We will proceed
+        in the following way:
     </p>
     <ol>
         <li>
-            Selezioneremo a caso una persona tra te e le altre 7 persone.
-            Per esempio, chiamiamo questa persona Giovanni.
+            We will randomly select one person from you and the other 7 people.
+            For example, let's call this person John.
         </li>
         <li>
-            Verifichiamo se Giovanni ha una “corrispondenza”: ossia se tra le
-            persone che Giovanni ha indicato c’è qualcuno che - a sua volta -
-            ha scelto Giovanni. Se c’è allora faremo in modo che Giovanni e
-            questa persona diventino partner per la parte 3.
+            Let's check if John has a "correspondence": that is, if between the
+            people that John has indicated there is someone who - in turn -
+            chose Giovanni. If there is, then we will make sure that John and
+            this person become partner for part 3.
         </li>
         <li>
-            Se Giovanni ha più di una corrispondenza, selezioneremo in maniera
-            casuale una delle corrispondenze e assegneremo un partner a
-            Giovanni per la parte 3.
+            If John has more than one match, we will select in a manner
+            random one of the matches and we will assign a partner to
+            John for part 3.
         </li>
         <li>
-            Se Giovanni non ha scelto nessuno, o le persone che Giovanni ha
-            scelto non hanno a loro volta indicato Giovanni, o infine, se le
-            persone che lo avevano indicato sono già state assegnate a un
-            partner per la parte 3, metteremo Giovanni in lista d'attesa e
-            ripeteremo i punti 1-3 sopra per gli altri partecipanti fino a
-            che ognuno avrà un partner o sarà assegnato alla lista d’attesa.
+            If John didn't choose anyone, or the people that John has
+            chosen have not in turn indicated John, or finally, if the
+            people who indicated it have already been assigned to a
+            partner for part 3, we will put Giovanni on the waiting list e
+            we will repeat steps 1-3 above for the other participants up to
+            that everyone will have a partner or will be assigned to the waiting list.
         </li>
         <li>
-            Dopo aver assegnato tutte le persone, prenderemo coloro che sono
-            stati posti in lista d’attesa e li abbineremo tra loro in maniera
-            casuale, in modo che ciascuno abbia un partner per la parte 3.
+            After all the people have been assigned, we will take who they are
+            been placed on the waiting list and we will match them together in a way
+            random, so that everyone has a partner for part 3.
         </li>
     </ol>
     <p>
-        Quindi, <strong>se indichi una persona in particolare, potresti non
-        essere in grado di lavorare con quella persona nella parte 3</strong>.
-        Pertanto, ti suggeriamo di indicare tutti coloro con cui sei disposto
-        a lavorare nella parte 3.
+        So, <strong> if you point to a particular person, you may not
+        be able to work with that person in part 3 </strong>.
+        Therefore, we suggest that you indicate all those with whom you are willing
+        to work in part 3.
     </p>
     <p>
-        <strong><u>Domande di comprensione</u></strong>:<br>
-        Prima di procedere, rispondi alle seguenti domande di comprensione.
-        Dopo aver risposto, fai click su Successivo.
+        <strong> <u> Questions for understanding </u> </strong>: <br>
+        Before proceeding, answer the following comprehension questions.
+        After answering, click Next.
     </p>
     {% formfields %}
     {% next_button %}

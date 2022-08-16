@@ -1,15 +1,15 @@
 {% extends "global/Page.html" %}
 {% load otree static %}
 {% block title %}
-    Il round individuale è finito
+    The individual round is over
 {% endblock %}
 {% block content %}
     <p>
-        Il round individuale è finito. Hai risolto
-        <strong>{{ player.puzzles_solved_pt1 }} puzzle</strong>.
+        The individual round is over. You solved
+        <strong> {{player.puzzles_solved_pt1}} puzzle </strong>.
     </p>
     <p>
-        Fai click su Successivo per procedere.
+        Click Next to proceed.
     </p>
         {% next_button %}
 {% endblock %}

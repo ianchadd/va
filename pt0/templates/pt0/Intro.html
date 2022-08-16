@@ -2,52 +2,52 @@
 {% load otree static %}
 
 {% block title %}
-    Istruzioni generali
+    General instructions
 {% endblock %}
 
 {% block content %}
     <p>
-        <strong><u>Indicazioni generali</u></strong>:
-        questo studio è composto da <strong>3 parti</strong> e da
-        un questionario finale.
-        Il tutto durerà circa <strong>1 ora</strong>.
-        All'inizio di ogni parte riceverai istruzioni specifiche,
-        seguite da una serie di domande di comprensione. Devi rispondere
-        correttamente a queste domande di comprensione per procedere.
+        <strong><u>General instructions</u></strong>:
+        this study consists of <strong>3 parts</strong> and
+        a final questionnaire.
+        Everything will last about <strong>1 hour </strong>.
+        At the beginning of each part you will receive specific instructions,
+        followed by a series of comprehension questions. You must reply
+        correctly to these comprehension questions to proceed.
     </p>
     <p>
-        <strong><u>Il tuo pagamento</u></strong>:
-        ti sono garantiti
-        <strong>{{ session.config.partfee }}€</strong>
-        per la tua partecipazione,
-        ma puoi guadagnare fino a
-        <strong>{{ session.config.max_earning }}€</strong>
-        a seconda di quanto sarai bravo a risolvere esercizi.
-        Questo consistono nel risolvere dei puzzle scorrevoli,
-        come quello mostrato qui di seguito.
+        <strong><u>Your payment</u></strong>:
+        they are guaranteed to you
+        <strong>{{session.config.partfee}}€</strong>
+        for your participation,
+        but you can earn up to
+        <strong>{{session.config.max_earning}}€</strong>
+        depending on how good you are at solving exercises.
+        This consists in solving sliding puzzles,
+        like the one shown below.
     </p>
     <p>
         <img src="{% static 'puzzle_2_0.png' %}" width='200'/>
     </p>
     <p>
-        <strong><u>Privacy</u></strong>:
-        le altre persone che partecipano a questo studio possono vedere
-        il tuo nome. A parte il tuo nome, gli altri partecipanti non
-        vedranno alcuna altra informazione su di te.
-        <strong>Alla conclusione dello studio, tutte le informazioni di
-        identificazione verranno rimosse e i dati saranno trattati
-        in maniera riservata</strong>.
-        Se c'è più di un partecipante con lo stesso
-        nome, aggiungiamo un numero alla fine del tuo nome
-        (ad esempio, Marco2).
+        <strong> <u> Privacy </u> </strong>:
+        other people participating in this study can see
+        your name. Aside from your name, the other attendees don't
+        they will see no other information about you.
+        <strong> At the conclusion of the study, all information of
+        identification will be removed and the data will be processed
+        confidentially </strong>.
+        If there is more than one participant with the same
+        name, let's add a number at the end of your name
+        (for example, Marco2).
     </p>
     <p>
-        <strong><u>Regole generali</u></strong>:
-        durante lo studio, si prega di spegnere la videocamera e il microfono,
-        e non comunicare con nessuno tranne noi. Inoltre, si prega di non
-        aggiornare la pagina o chiudere il browser in quanto potrebbe rendere
-        il puzzle irrisolvibile. In caso di domande o di problemi, inviaci
-        una chat privata su Zoom.
+        <strong> <u> General rules </u> </strong>:
+        while studying, please turn off the camera and microphone,
+        and don't communicate with anyone but us. Also, please don't
+        refresh the page or close the browser as it could render
+        the unsolvable puzzle. If you have any questions or problems, please send us
+        a private chat on Zoom.
     </p>
 
 {% endblock %}

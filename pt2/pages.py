@@ -7,8 +7,8 @@ class FormGrp(WaitPage):
     template_name = 'pt2/MyWaitPage.html'
     group_by_arrival_time = True
 
-    body_text = 'In attesa degli altri partecipanti finire il puzzle. ' \
-                'Questo potrebbe richiedere alcuni minuti.'
+    body_text = 'Waiting for the other participants to finish the puzzle. '\
+                'This may take a few minutes.'
 
 
 class Intro(Page):
