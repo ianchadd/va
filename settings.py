@@ -38,8 +38,8 @@ SESSION_CONFIGS = [
         display_name='Full session',
         num_demo_participants=24,
         app_sequence=['pt0', 'slider_training', 
-                      #'pt1grp', 'pt2', 'pt2grp',
-                      #'pt3', 'pt4', 'pt99'
+                      'pt1grp', 'pt2', 'pt2grp',
+                      'pt3', 'pt4', 'pt99'
                      ],
         test=0,
         participation_fee=0,  # this is set to 0 b/c this is added to payoff
@@ -61,8 +61,8 @@ SESSION_CONFIGS = [
         display_name='Full session (Shorter version)',
         num_demo_participants=24,
         app_sequence=['pt0', 'slider_training', 
-                      #'pt1grp', 'pt2', 'pt2grp',
-                      #'pt3', 'pt4', 'pt99'
+                      'pt1grp', 'pt2', 'pt2grp',
+                      'pt3', 'pt4', 'pt99'
                      ],
         test=1,
         participation_fee=0,  # this is set to 0 b/c this is added to payoff
