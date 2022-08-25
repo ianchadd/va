@@ -131,7 +131,7 @@ SECRET_KEY = '7vfsh(zo@d)v)zizkf#@xqzb3q%juzu65zoh4r+#$tckdfji5r'
 INSTALLED_APPS = ['otree',
                   'custom_templates',
                   'django.contrib.humanize',
-#                 'otreeutils'
+                  'otreeutils'
                   ]
 EXTENSION_APPS = ['slider_puzzle']
 # inactive session configs
