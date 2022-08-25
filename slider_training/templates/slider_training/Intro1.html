@@ -1,0 +1,64 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block styles %}
+    <style>
+      table {
+        border-collapse: separate;
+        border-spacing: 15px 0;
+      }
+    </style>
+{% endblock %}
+
+{% block title %}
+    Instructions for part 1 of 6
+{% endblock %}
+
+{% block content %}
+    <p>
+        In this part, you will solve the puzzle individually for
+        familiarize yourself with it. You have <strong> 4 minutes </strong> to resolve
+        as many puzzles as possible (up to a maximum of 15 puzzles).
+        You will earn <strong> {{session.config.pt1rate}} € for each puzzle </strong>
+        Resolved.
+    </p>
+    <p>
+        Your goal is to move the tiles and sort them as follows:
+    </p>
+    <p>
+        <img src="{% static 'puzzle_goal.png' %}" width='200'/>
+    </p>
+    <p>
+        Before you begin, follow the three examples below
+        to understand how to solve the puzzle.
+    </p>
+
+    <p>
+        <strong><u>Example 1</u></strong>:
+    </p>
+    <p>
+        First, consider the following puzzle.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_1.png' %}" width='200'/>
+    </p>
+   <p>
+        You can only move the tiles next to an empty cell and the tile
+        you choose is automatically moved to the empty cell.
+        For example, in this puzzle there are 3 moves you can do:
+        move the tile with the 3 down, move the one with the 5 to the right,
+        or move the tile with the 6 up.
+    </p>
+    <p>
+        Between the 3 moves, move the tile with the number 6 upwards
+        the only correct move: by moving the 6 up, you can solve the puzzle.
+        The other moves do not solve the puzzle.
+    </p>
+    <p>
+        When you click on a tile next to an empty cell, the tile
+        it will automatically be moved to the empty cell. So, in this
+        case, you should click on the 6 to move it up.
+    </p>
+    {% next_button %}
+
+{% endblock %}

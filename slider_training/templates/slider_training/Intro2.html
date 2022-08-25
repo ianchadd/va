@@ -1,0 +1,42 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block styles %}
+    <style>
+      table {
+        border-collapse: separate;
+        border-spacing: 15px 0;
+      }
+    </style>
+{% endblock %}
+
+{% block title %}
+    Instructions for part 2 of 6
+{% endblock %}
+
+{% block content %}
+    <p>
+        <strong> <u> Example 2 </u> </strong>:
+    </p>
+    <p>
+        Now, consider the following puzzle.
+    </p>
+    <p>
+        <img src="{% static 'puzzle_2_0.png' %}" width='200'/>
+    </p>
+   <p>
+        First, there are 2 moves you can do: move the 2 to the right
+        or move the 3 up. What move should you make?
+    </p>
+    <p>
+        Note that the only tiles that are not in the correct order are
+        the 3 and the 6. So, first of all you have to move the 3 up.
+    </p>
+    <p>
+        After moving the 3 up, the puzzle will look like that
+        in example 1. So you should move the 6 up and the puzzle
+        will be resolved.
+    </p>
+    {% next_button %}
+
+{% endblock %}
