@@ -1,0 +1,220 @@
+{% extends 'otreeutils/ExtendedPage.html' %}
+
+{% load staticfiles otree_tags otreeutils_tags %}
+
+{% block app_styles %}
+<link href="{% static 'otreeutils/surveys.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+{{ base_form.non_field_errors }}
+
+{% for survey_form_name, survey_form in survey_forms.items %}
+    <div class="survey_form_container {{ survey_form_name }}">
+        {% if survey_form.form_opts.form_help_initial %}
+            <div class="survey_form_help_initial">
+                {{ survey_form.form_opts.form_help_initial|safe }}
+            </div>
+        {% endif %}
+
+        {% if survey_form.form_opts.render_type == 'table' %}
+            <table class="survey_form">
+                <tr class="header">
+                    <th class="first"></th>
+                    {% for header_label in survey_form.form_opts.header_labels %}
+                        <th>{{ header_label }}</th>
+                    {% endfor %}
+                </tr>
+                {% for field_name in survey_form.fields %}
+                    {% with field=form|get_form_field:field_name %}
+                    <tr class="formrow {% if survey_form.form_opts.table_rows_alternate %}{% cycle 'odd' 'even' %}{% endif %}"{% if field.help_text.condition_javascript %} style="display: none"{% endif %}>
+                        <th>
+                            {% if not field.help_text.help_text_below %}{{ field.help_text.help_text|safe }}{% endif %}
+                            {% if field.help_text.make_label_tag %}{{ field.label_tag }}{% else %}{{ field.label|safe }}{% endif %}
+                            {% if field.help_text.help_text_below %}{{ field.help_text.help_text|safe }}{% endif %}
+                        </th>
+                        {% for choice in field %}
+                            <td>{{ field.help_text.input_prefix|safe }} {{ choice.tag }} {{ field.help_text.input_suffix|safe }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endwith %}
+                {% endfor %}
+            </table>
+
+            <script>
+                $(function () {
+                    var survey_form_tbl = $('.{{ survey_form_name }} table.survey_form');
+                    var rows;
+
+                    {% if survey_form.form_opts.table_rows_randomize %}
+                        function shuffle(array) {
+                            var counter = array.length;
+
+                            // While there are elements in the array
+                            while (counter > 0) {
+                                // Pick a random index
+                                var index = Math.floor(Math.random() * counter);
+
+                                // Decrease counter by 1
+                                counter--;
+
+                                // And swap the last element with it
+                                var temp = array[counter];
+                                array[counter] = array[index];
+                                array[index] = temp;
+                            }
+
+                            return array;
+                        }
+
+                        rows = shuffle(survey_form_tbl.find('tr.formrow').detach());
+                        rows.each(function(i) {
+                            $(this).removeClass('even').removeClass('odd').addClass(i % 2 === 0 ? 'odd' : 'even');
+                        });
+
+                        survey_form_tbl.append(rows);
+                    {% endif %}
+
+                    {% if survey_form.form_opts.table_repeat_header_each_n_rows > 0 %}
+                        // repeat table header (using JS here instead of template code because of possible row randomization)
+                        var header_row = survey_form_tbl.find('tr.header');
+                        rows = survey_form_tbl.find('tr.formrow');
+                        rows.each(function(i) {
+                            if (i > 0 && i % {{ survey_form.form_opts.table_repeat_header_each_n_rows }} === 0) {
+                                $(this).before(header_row.clone());
+                            }
+                        });
+                    {% endif %}
+
+                    {% if survey_form.form_opts.table_cols_equal_width %}
+                        // equal column width for likert tables
+                        var n_cols = survey_form_tbl.find('tr:nth(1) td').length;  // only columns with input fields
+
+                        if (n_cols > 0) {
+                            var th_width = {{ survey_form.form_opts.table_row_header_width_pct|escapejs }};
+                            var td_width = (100 - th_width) / n_cols;
+                            $(survey_form_tbl.find('tr.header th.first')[0]).css('width', th_width + '%');
+                            survey_form_tbl.find('td').css('width', td_width + '%');
+                        }
+                    {% endif %}
+
+                    {% if survey_form.form_opts.table_rows_equal_height %}
+                        // equal column height for likert tables
+                        var max_h = 0;
+                        rows = survey_form_tbl.find('tr.formrow');
+                        rows.each(function() {
+                            var h = $(this).height();
+                            if (h > max_h) {
+                                max_h = h;
+                            }
+                        });
+
+                        rows.css('height', max_h + 'px');
+                    {% endif %}
+
+                    {% if survey_form.form_opts.table_rows_highlight %}
+                        // highlight table rows on mouse-over
+                        survey_form_tbl.find('tr.formrow').hover(function() {
+                            $(this).addClass('active');
+                        }, function() {
+                            $(this).removeClass('active');
+                        });
+                    {% endif %}
+
+                    {% if survey_form.form_opts.table_cells_highlight %}
+                        // highlight form cells on mouse-over
+                        survey_form_tbl.find('tr.formrow td').hover(function() {
+                            $(this).addClass('active');
+                        }, function() {
+                            $(this).removeClass('active');
+                        });
+                    {% endif %}
+
+                    {% if survey_form.form_opts.table_cells_clickable %}
+                        // make form cells clickable for selection (otherwise only the small radio buttons can be clicked)
+                        survey_form_tbl.find('tr.formrow td').click(function() {
+                            $(this).parent().find('input').prop('checked', false).trigger('change');
+                            $(this).find('input').prop('checked', true).trigger('change');
+                        });
+                    {% endif %}
+                });
+            </script>
+        {% else %}
+            <div class="survey_form">
+                {% for field_name in survey_form.fields %}
+                    {% with field=form|get_form_field:field_name %}
+                    <div class="field_container"{% if field.help_text.condition_javascript %} style="display: none"{% endif %}>
+                        {% if not field.help_text.help_text_below %}{{ field.help_text.help_text|safe }}{% endif %}
+                        <div class="field_errors">{{ field.errors }}</div>
+                        <div class="field_label_and_input">
+                            {% if field.help_text.make_label_tag %}{{ field.label_tag }}{% else %}{{ field.label|safe }}{% endif %}
+                            {{ field.help_text.input_prefix|safe }} {{ field }} {{ field.help_text.input_suffix|safe }}
+                        </div>
+                        {% if field.help_text.help_text_below %}{{ field.help_text.help_text|safe }}{% endif %}
+                    </div>
+                    {% endwith %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if survey_form.form_opts.form_help_final %}
+            <div class="survey_form_help_final">
+                {{ survey_form.form_opts.form_help_final|safe }}
+            </div>
+        {% endif %}
+    </div>
+{% endfor %}
+
+<script>
+    var cond_fields_defaults = {};   // conditional form field defaults
+
+    $(function () {
+        $('form').on('change', update_form_field_display);
+        update_form_field_display(null);  // initial update
+    });
+
+    function update_form_field_display (e) {
+        //console.log('update_form_field_display', e);
+        var inp;
+
+        if (e === null) {  // store defaults on first call
+            {% for survey_form_name, survey_form in survey_forms.items %}
+                {% for field_name in survey_form.fields %}
+                    {% with field=form|get_form_field:field_name %}
+                        {% if field.help_text.condition_javascript %}
+                            inp = $('#id_{{ field_name }}');
+                            cond_fields_defaults['{{ field_name }}'] = inp.val();
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            {% endfor %}
+        }
+
+        {% for survey_form_name, survey_form in survey_forms.items %}
+            {% for field_name in survey_form.fields %}
+                {% with field=form|get_form_field:field_name %}
+                    {% if field.help_text.condition_javascript %}
+                        var cond = ({{ field.help_text.condition_javascript|safe }});
+                        inp = $('#id_{{ field_name }}');
+                        var field = inp.parent().parent();
+                        if (cond) {
+                            //console.log('{{ field_name }} show');
+                            field.show();
+                        } else {
+                            //console.log('{{ field_name }} hide');
+                            field.hide();
+                            inp.val(cond_fields_defaults['{{ field_name }}']);  // reset to default
+                        }
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+        {% endfor %}
+    }
+</script>
+
+{% next_button %}
+
+{% endblock %}
+
+
