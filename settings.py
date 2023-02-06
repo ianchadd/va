@@ -60,9 +60,15 @@ SESSION_CONFIGS = [
         name='main_session_test',
         display_name='Full session (Shorter version)',
         num_demo_participants=24,
-        app_sequence=['pt0', 'slider_training', 
-                      'pt1grp', 'pt2', 'pt2grp',
-                      'pt3', 'pt4', 'pt99'
+        app_sequence=[
+                    #'pt0',
+                      'slider_training',
+                      'pt1grp',
+                      'pt2',
+                      'pt2grp',
+                      'pt3',
+                      'pt4',
+                      'pt99'
                      ],
         test=1,
         participation_fee=0,  # this is set to 0 b/c this is added to payoff
@@ -135,7 +141,8 @@ SECRET_KEY = '7vfsh(zo@d)v)zizkf#@xqzb3q%juzu65zoh4r+#$tckdfji5r'
 INSTALLED_APPS = ['otree',
                   'custom_templates',
                   'django.contrib.humanize',
-                  'otreeutils'
+                  'otreeutils',
+                  'radiogrid'
                   ]
 EXTENSION_APPS = ['slider_puzzle']
 # inactive session configs
