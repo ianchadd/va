@@ -18,7 +18,7 @@ Individual round
 
 
 class Constants(BaseConstants):
-    name_in_url = 'pt1_VA'
+    name_in_url = 'pt1_VA2'
     players_per_group = None
     num_rounds = 1
 

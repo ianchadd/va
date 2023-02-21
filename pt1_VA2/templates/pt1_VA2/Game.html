@@ -171,6 +171,42 @@
                 if (this.solved()) {
                     this.enabled = false;
                 }
+
+                // delay(1000).then(() => this.vamove());
+                this.vamove();
+
+                return true;
+            }
+
+            delay(time) {
+                return new Promise(resolve => setTimeout(resolve, time));
+            }
+
+            vamove() {
+                if (!this.enabled) {
+                    return false;
+                }
+
+                let allpos = this.get_movable_blocks(this.board);
+                let pos = allpos[Math.floor(Math.random() * allpos.length)];
+
+                if (this.searchForArray(this.get_movable_blocks(this.board), pos) === -1) {
+                    return false;
+                }
+                let empty = this.get_empty_field(this.board);
+                this.board[empty[0]][empty[1]] = this.board[pos[0]][pos[1]];
+                this.board[pos[0]][pos[1]] = null;
+                setTimeout(() => {this.draw();}, 1000);
+                if (!external) {
+                    let move_event = new CustomEvent('move', { detail: { from: pos, to: empty } });
+                    this.table.dispatchEvent(move_event);
+                }
+
+                setTimeout(() => {let solved = this.solved();}, 1000);
+                if (solved) {
+                    this.enabled = false;
+                }
+
                 return true;
             }
 
