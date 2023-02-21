@@ -59,18 +59,19 @@ SESSION_CONFIGS = [
     dict(
         name='main_session_test',
         display_name='Full session (Shorter version)',
-        num_demo_participants=24,
+        num_demo_participants=8,
         app_sequence=[
-                    #'pt0',
-                      'slider_training',
-                      'pt1grp',
-                      'pt2',
-                      'pt2grp',
-                      'pt3',
-                      'pt4',
+                      'pt0',
+                      'pt1_VA2',
+                      #'slider_training',
+                      #'pt1grp',
+                      #'pt2',
+                      #'pt2grp',
+                      #'pt3',
+                      #'pt4',
                       'pt99'
                      ],
-        test=1,
+        test=0,
         participation_fee=0,  # this is set to 0 b/c this is added to payoff
         real_world_currency_per_point=1,
         partfee=2,
