@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+{% block title %}
+    The individual round is over
+{% endblock %}
+{% block content %}
+    <p>
+        The individual round is over. You solved
+        <strong> {{player.puzzles_solved_pt1}} puzzle </strong>.
+    </p>
+    <p>
+        Click Next to proceed.
+    </p>
+        {% next_button %}
+{% endblock %}
