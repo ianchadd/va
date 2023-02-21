@@ -116,7 +116,7 @@ class Group(BaseGroup):
                 unmatched.pop(0)
                 unmatched.pop(0)
                 k -= 2
-        # store the matches in a participant.vars, which we will restore in pt3
+        # store the matches in a participant.vars, which we will restore in pt1_VA
         for p in self.get_players():
             p.participant.vars['mypairs'] = str(pairs)
         self.mypairs = self.get_player_by_id(1).participant.vars['mypairs']

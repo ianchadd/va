@@ -41,7 +41,6 @@ class Proceed(Page):
         self.player.pass_variable()
 
 
-page_sequence = [Intro,
-                 Ready,
+page_sequence = [Ready,
                  Game,
                  Proceed]

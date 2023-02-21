@@ -20,7 +20,7 @@ Group round.
 
 
 class Constants(BaseConstants):
-    name_in_url = 'pt3'
+    name_in_url = 'pt1_VA'
     players_per_group = 2
     num_rounds = 20
 
