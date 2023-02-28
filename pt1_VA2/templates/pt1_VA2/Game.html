@@ -1,0 +1,552 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Individual round
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        table.slider_game {
+            width: 300px;
+            height: 300px;
+            text-align: center;
+            background-color: #000;
+            font-size: 2em;
+            border-collapse: unset;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .slider_game td {
+            width: 100px;
+            height: 100px;
+        }
+
+        .full {
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        .empty {
+            background-color: #fff;
+        }
+
+        .vspace {
+            margin-top: 1em;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        #message {
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .green {
+            color: forestgreen;
+        }
+
+        .orange {
+            color: orangered;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="center vspace">
+        <p>
+
+        </p>
+
+        <table class="slider_game" id="sgame_table"></table>
+
+         <p id="message"></p>
+
+        <input type="hidden" name="puzzles_solved_pt1" id="id_puzzle_solved" value=0>
+        <input type='hidden' name='puzzle_histories' id='id_puzzle_histories'>
+
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+
+        class State {
+            constructor(level, board, move, parent) {
+                this.level = level;
+                this.board = board.map(function(arr) {
+                        return arr.slice();
+                });
+                this.cost = this.countdiffs() + this.level;
+                this.id = JSON.stringify(board);
+                this.move = move;
+                this.parent = parent;
+            }
+
+            countdiffs() {
+                let rows = this.board.length;
+                let cols = this.board[0].length;
+                let diffs = 0;
+
+                for (let r = 0; r < rows; r++) {
+                    for (let c = 0; c < cols; c++) {
+                        if (r !== rows - 1 || c !== cols - 1) {
+                                    if (this.board[r][c] !== (r * this.board[0].length) + (c+1)) {
+                                        //console.log("Difference:", this.board[r][c], "Pos:", r, c);
+                                        diffs++;
+                                    }
+                                }
+                                else {
+                                    if (this.board[r][c] !== null) {
+                                        //console.log("Difference:", this.board[r][c], "Pos:", r, c);
+                                        diffs++;
+                                    }
+                                }
+                            }
+                        }
+                        return diffs;
+                    }
+
+            get_empty_field() {
+                for (let row = 0; row < this.board.length; row++) {
+                    for (let col = 0; col < this.board[row].length; col++) {
+                        if (this.board[row][col] === null) {
+                            return [row, col];
+                        }
+                    }
+                }
+            }
+
+            get_movable_blocks() {
+                let pos_empty_field = this.get_empty_field();
+                let empty_row = pos_empty_field[0];
+                let empty_col = pos_empty_field[1];
+
+                // naive definition of row and col candidates
+                let candidate_rows = [empty_row - 1, empty_row + 1];
+                let candidate_cols = [empty_col - 1, empty_col + 1];
+
+                let rows = [];
+                let cols = [];
+
+                // remove candidates outside of board
+                for (let c_row = 0; c_row < candidate_rows.length; c_row++) {
+                    if (candidate_rows[c_row] >= 0 && candidate_rows[c_row] < this.board.length) {
+                        rows.push(candidate_rows[c_row]);
+                    }
+                }
+
+                for (let c_col = 0; c_col < candidate_cols.length; c_col++) {
+                    if (candidate_cols[c_col] >= 0 && candidate_cols[c_col] < this.board[0].length) { // assumes symmetric, min 1x1 board
+                        cols.push(candidate_cols[c_col]);
+                    }
+                }
+
+                // combine candidates with empty columns
+                let block_pos = [];
+                for (let i = 0; i < rows.length; i++) {
+                    block_pos.push([rows[i], empty_col]);
+                }
+
+                for (let j = 0; j < cols.length; j++) {
+                    block_pos.push([empty_row, cols[j]]);
+                }
+
+                return block_pos;
+            }
+        }
+
+        class SlidePuzzle {
+            constructor(table_id, board) {
+                this.table = document.getElementById(table_id);
+                this.board = board;
+                this.enabled = true;
+                this.probs = js_vars.probs;
+                this.draw();
+            }
+
+            set_board(board) {
+                this.board = board;
+                this.enabled = true;
+                this.draw();
+            }
+
+            get_empty_field() {
+                for (let row = 0; row < this.board.length; row++) {
+                    for (let col = 0; col < this.board[row].length; col++) {
+                        if (this.board[row][col] === null) {
+                            return [row, col];
+                        }
+                    }
+                }
+            }
+
+            get_movable_blocks() {
+                let pos_empty_field = this.get_empty_field();
+                let empty_row = pos_empty_field[0];
+                let empty_col = pos_empty_field[1];
+
+                // naive definition of row and col candidates
+                let candidate_rows = [empty_row - 1, empty_row + 1];
+                let candidate_cols = [empty_col - 1, empty_col + 1];
+
+                let rows = [];
+                let cols = [];
+
+                // remove candidates outside of board
+                for (let c_row = 0; c_row < candidate_rows.length; c_row++) {
+                    if (candidate_rows[c_row] >= 0 && candidate_rows[c_row] < this.board.length) {
+                        rows.push(candidate_rows[c_row]);
+                    }
+                }
+
+                for (let c_col = 0; c_col < candidate_cols.length; c_col++) {
+                    if (candidate_cols[c_col] >= 0 && candidate_cols[c_col] < this.board[0].length) { // assumes symmetric, min 1x1 board
+                        cols.push(candidate_cols[c_col]);
+                    }
+                }
+
+                // combine candidates with empty columns
+                let block_pos = [];
+                for (let i = 0; i < rows.length; i++) {
+                    block_pos.push([rows[i], empty_col]);
+                }
+
+                for (let j = 0; j < cols.length; j++) {
+                    block_pos.push([empty_row, cols[j]]);
+                }
+
+                return block_pos;
+            }
+
+            searchForArray(haystack, needle){
+                var i, j, current;
+                for(i = 0; i < haystack.length; ++i){
+                    if(needle.length === haystack[i].length){
+                        current = haystack[i];
+                        for(j = 0; j < needle.length && needle[j] === current[j]; ++j);
+                            if(j === needle.length)
+                                return i;
+                        }
+                    }
+                return -1;
+            }
+
+            move(pos, external=false) {
+                if (!this.enabled) {
+                    return false;
+                }
+                if (this.searchForArray(this.get_movable_blocks(this.board), pos) === -1) {
+                    return false;
+                }
+                let empty = this.get_empty_field(this.board);
+                this.board[empty[0]][empty[1]] = this.board[pos[0]][pos[1]];
+                this.board[pos[0]][pos[1]] = null;
+                this.draw();
+                if (!external) {
+                    let move_event = new CustomEvent('move', { detail: { from: pos, to: empty, good: null } });
+                    this.table.dispatchEvent(move_event);
+                }
+
+                if (this.solved()) {
+                    this.enabled = false;
+                }
+
+                //this.vamove_random();
+                this.vamove_astar();
+
+                return true;
+            }
+
+            vamove_random() {
+                if (!this.enabled) {
+                    return false;
+                }
+
+                let allstates = this.get_movable_blocks(this.board);
+                console.log(allstates);
+                let pos = allstates[Math.floor(Math.random() * allstates.length)];
+
+                if (this.searchForArray(this.get_movable_blocks(this.board), pos) === -1) {
+                    return false;
+                }
+                let empty = this.get_empty_field(this.board);
+                this.board[empty[0]][empty[1]] = this.board[pos[0]][pos[1]];
+                this.board[pos[0]][pos[1]] = null;
+                setTimeout(() => {this.draw();}, 1000);
+                if (!external) {
+                    let move_event = new CustomEvent('move', { detail: { from: pos, to: empty, good: null } });
+                    this.table.dispatchEvent(move_event);
+                }
+
+                if (this.solved()) {
+                    this.enabled = false;
+                }
+
+                return true;
+            }
+
+            async vamove_astar() {
+                if (!this.enabled) {
+                    return false;
+                }
+
+                //Use A* to find entire correct solution from current game state
+                var solution = this.astar();
+                console.log("Final solution:", JSON.parse(JSON.stringify(solution)));
+                console.log("Best move:", solution[1].move);
+
+                let empty = this.get_empty_field();
+                var pos;
+                var isgood;
+
+                console.log("Probabilities:", JSON.parse(JSON.stringify(this.probs)));
+                let thisprob = Math.floor(Math.random() * 100);
+
+                //If weighted coin flip successful, take the turn found by A*
+                if (thisprob < this.probs[0]) {
+                    pos = solution[1].move;
+                    isgood = true;
+                    console.log("Success");
+                }
+                //Otherwise, randomly select a valid turn not in the solution
+                else {
+                    let wrongs = this.get_movable_blocks();
+                    let j = this.searchForArray(wrongs, solution[1].move);
+                    wrongs.splice(j,1);
+                    let randindex = Math.floor(Math.random() * wrongs.length);
+                    pos = wrongs[randindex];
+                    isgood = false;
+                    console.log("Failure");
+                    //console.log("Wrongs:", JSON.parse(JSON.stringify(wrongs)));
+                }
+                console.log("Move taken:", pos);
+
+                this.board[empty[0]][empty[1]] = this.board[pos[0]][pos[1]];
+                this.board[pos[0]][pos[1]] = null;
+                await this.timer(1000);
+                this.draw();
+                let move_event = new CustomEvent('move', { detail: { from: pos, to: empty, good: isgood } });
+                this.table.dispatchEvent(move_event);
+
+                //Wrap the probability value used to the back of the probabilities list
+                var prob = this.probs.splice(0,1);
+                this.probs.push(prob[0]);
+
+                this.solved();
+            }
+
+            // Implements and outputs to console the results of a full run of A* on the current puzzle
+            astar() {
+                //Initialize beginning state as open node
+                let level = 0;
+                const init = new State(level, this.board, null, null);
+                console.log("Level:", level);
+
+                var open = [];
+                open.push(init);
+                var closed = [];
+                var solution = [];
+
+                var state = open[0];
+                var allstates;
+
+                while (open.length !== 0) {
+                    level++;
+                    console.log("Level:", level);
+                    //Process the open game state with lowest A* cost
+                    open = open.sort(function(a,b) { return a.cost - b.cost });
+                    state = open[0];
+
+                    //console.log("Open nodes:", JSON.parse(JSON.stringify(open)));
+                    console.log("Open game state:", JSON.parse(JSON.stringify(state.board)));
+
+                    open.splice(0,1);
+                    closed.push(state);
+                    //console.log("Closed nodes:", JSON.parse(JSON.stringify(closed)));
+
+                    solution.push(state);
+                    console.log("Current solution:", JSON.parse(JSON.stringify(solution)));
+
+                    //If the puzzle is solved, remove any unused branches of the game tree from the solution
+                    //array before returning it
+                    if (state.countdiffs() == 0) {
+                        for (let i = solution.length - 1; i > 0; i--) {
+                            if (solution[i].parent != solution[i-1].id) {
+                                solution.splice(i-1,1);
+                            }
+                        }
+                        return solution;
+                    }
+
+                    //For each valid move, if the resulting game state is not in open[] or close[], declare a State()
+                    //to represent it and push it to open[] for processing
+                    allstates = state.get_movable_blocks();
+                    //console.log("All turns:", JSON.parse(JSON.stringify(allstates)));
+                    for (let i = 0; i < allstates.length; i++) {
+                        let moved = state.board.map(function(arr) {
+                            return arr.slice();
+                        });
+
+                        let empty = state.get_empty_field();
+                        moved[empty[0]][empty[1]] = moved[allstates[i][0]][allstates[i][1]];
+                        moved[allstates[i][0]][allstates[i][1]] = null;
+
+                        let currentlevel = state.level+1;
+                        let currentstate = new State(currentlevel, moved, allstates[i], state.id);
+
+                        let visited = false;
+                        for (let j = 0; j < open.length; j++) {
+                            if (open[j].id === currentstate.id) { visited = true; }
+                        }
+                        if (!visited) {
+                            for (let k = 0; k < closed.length; k++) {
+                                if (closed[k].id === currentstate.id) { visited = true; }
+                            }
+                        }
+
+                        if (!visited) {
+                            open.push(currentstate);
+                            console.log("Neighbor added:", JSON.parse(JSON.stringify(currentstate.board)));
+                        }
+                    }
+                }
+            }
+
+            timer(ms) { return new Promise(res => setTimeout(res, ms)); }
+
+            async astar_tester() {
+                var solution = this.astar();
+                console.log(solution);
+                for (let i = 1; i < solution.length; i++) {
+                    let empty = this.get_empty_field();
+                    let pos = solution[i].move;
+                    console.log("Move:", pos);
+                    this.board[empty[0]][empty[1]] = this.board[pos[0]][pos[1]];
+                    this.board[pos[0]][pos[1]] = null;
+                    console.log("Board:", JSON.parse(JSON.stringify(this.board)));
+                    await this.timer(1000);
+                    this.draw();
+                    let move_event = new CustomEvent('move', { detail: { from: pos, to: empty, good: true } });
+                    this.table.dispatchEvent(move_event);
+                }
+                this.solved();
+            }
+
+            clear() {
+                const l = this.table.rows.length;
+                for (let r = 0; r < l; r++) {
+                    this.table.deleteRow(-1);
+                }
+            }
+
+            draw() {
+                this.clear();
+                for (let r = 0; r < this.board.length; r++) {
+                    let row = this.table.insertRow(-1);
+                    for (let c = 0; c < this.board[0].length; c++) {
+                        let cell = row.insertCell(-1);
+                        let value;
+                        if (this.board[r][c] == null) {
+                            value = "";
+                            cell.classList.add('empty');
+                        } else {
+                            value = this.board[r][c];
+                            cell.classList.add('full');
+                        }
+                        cell.setAttribute('onclick', "sg.move(["+r+","+c+"])");
+                        cell.innerHTML = value;
+                    }
+                }
+            }
+
+            solved() {
+                let rows = this.board.length;
+                let cols = this.board[0].length;
+
+                if (this.board[rows - 1][cols - 1] != null) {
+                    return false;
+                }
+
+                for (let r = 0; r < rows; r++) {
+                    for (let c = 0; c < cols; c++) {
+                        if (this.board[r][c] !== (r * this.board[0].length) + (c+1)) {
+                            if (r !== rows - 1 || c !== cols - 1) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+                let solved_event = new Event('solved');
+                this.table.dispatchEvent(solved_event);
+                return true;
+            }
+        }
+
+
+        function green_message(msg) {
+            let m = $('#message');
+            m.removeClass('orange');
+            m.addClass('green');
+            m.text(msg);
+        }
+
+        function orange_message(msg) {
+            let m = $('#message');
+            m.removeClass('green');
+            m.addClass('orange');
+            m.text(msg);
+        }
+
+        // Game
+        // Define a list of boards to be played one after the other.
+        // Make sure these can be solved!
+        // You could also come up with a function that generates solvable boards...
+        let boards = js_vars.boards;
+
+        let current_board = 0;
+        let sg = new SlidePuzzle('sgame_table', boards[current_board]);
+
+        let histories = [];
+        for (board in boards) {
+            histories.push([]);
+        }
+        let num_solved = 1;
+        // initialize the game with the first board from the list.
+
+        sg.table.addEventListener('move', function (e) {
+            histories[current_board].push(e.detail);
+            $('#id_puzzle_histories').val(JSON.stringify(histories));
+            //console.log("History:", histories[current_board]);
+        }, false);
+
+        sg.table.addEventListener('solved', function () {
+            $('#id_puzzle_solved').val(num_solved);
+            setTimeout(() => {green_message("You have solved the puzzle!");}, 1000);
+
+            window.setTimeout(function() {
+                // if it was solved, we clear the board, take the next board and reset the game
+                if (current_board + 1 < boards.length) {
+                    num_solved +=1;
+                    current_board +=1;
+                    sg.clear();
+                    sg.set_board(boards[current_board]);
+                    green_message("");
+                    //sg.astar_tester();
+                } else {
+                    orange_message("You have solved all the puzzles!");
+                }
+            }, 2000);
+        }, false);
+
+        //sg.astar_tester();
+
+    </script>
+{% endblock %}
