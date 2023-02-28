@@ -251,7 +251,7 @@
                 this.board[pos[0]][pos[1]] = null;
                 this.draw();
                 if (!external) {
-                    let move_event = new CustomEvent('move', { detail: { board: this.board } });
+                    let move_event = new CustomEvent('move', { detail: { from: pos, to: empty, good: null } });
                     this.table.dispatchEvent(move_event);
                 }
 
@@ -282,11 +282,10 @@
                 this.board[pos[0]][pos[1]] = null;
                 setTimeout(() => {this.draw();}, 1000);
                 if (!external) {
-                    let move_event = new CustomEvent('move', { detail: { from: pos, to: empty } });
+                    let move_event = new CustomEvent('move', { detail: { from: pos, to: empty, good: null } });
                     this.table.dispatchEvent(move_event);
                 }
 
-                //setTimeout(() => {let solved = this.solved();}, 1000);
                 if (this.solved()) {
                     this.enabled = false;
                 }
@@ -306,6 +305,7 @@
 
                 let empty = this.get_empty_field();
                 var pos;
+                var isgood;
 
                 console.log("Probabilities:", JSON.parse(JSON.stringify(this.probs)));
                 let thisprob = Math.floor(Math.random() * 100);
@@ -313,6 +313,7 @@
                 //If weighted coin flip successful, take the turn found by A*
                 if (thisprob < this.probs[0]) {
                     pos = solution[1].move;
+                    isgood = true;
                     console.log("Success");
                 }
                 //Otherwise, randomly select a valid turn not in the solution
@@ -322,6 +323,7 @@
                     wrongs.splice(j,1);
                     let randindex = Math.floor(Math.random() * wrongs.length);
                     pos = wrongs[randindex];
+                    isgood = false;
                     console.log("Failure");
                     //console.log("Wrongs:", JSON.parse(JSON.stringify(wrongs)));
                 }
@@ -331,7 +333,7 @@
                 this.board[pos[0]][pos[1]] = null;
                 await this.timer(1000);
                 this.draw();
-                let move_event = new CustomEvent('move', { detail: { from: pos, to: empty } });
+                let move_event = new CustomEvent('move', { detail: { from: pos, to: empty, good: isgood } });
                 this.table.dispatchEvent(move_event);
 
                 //Wrap the probability value used to the back of the probabilities list
@@ -432,7 +434,7 @@
                     console.log("Board:", JSON.parse(JSON.stringify(this.board)));
                     await this.timer(1000);
                     this.draw();
-                    let move_event = new CustomEvent('move', { detail: { from: pos, to: empty } });
+                    let move_event = new CustomEvent('move', { detail: { from: pos, to: empty, good: true } });
                     this.table.dispatchEvent(move_event);
                 }
                 this.solved();
