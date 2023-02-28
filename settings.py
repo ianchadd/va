@@ -42,6 +42,7 @@ SESSION_CONFIGS = [
                       'pt3', 'pt4', 'pt99'
                      ],
         test=0,
+        va_probs=[100],
         participation_fee=0,  # this is set to 0 b/c this is added to payoff
         real_world_currency_per_point=1,
         partfee=2,
@@ -59,9 +60,9 @@ SESSION_CONFIGS = [
     dict(
         name='main_session_test',
         display_name='Full session (Shorter version)',
-        num_demo_participants=8,
+        num_demo_participants=1,
         app_sequence=[
-                      'pt0',
+                      #'pt0',
                       'pt1_VA2',
                       #'slider_training',
                       #'pt1grp',
@@ -72,6 +73,7 @@ SESSION_CONFIGS = [
                       'pt99'
                      ],
         test=0,
+        va_probs=[0, 25, 50, 75, 100],
         participation_fee=0,  # this is set to 0 b/c this is added to payoff
         real_world_currency_per_point=1,
         partfee=2,

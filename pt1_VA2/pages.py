@@ -31,7 +31,8 @@ class Game(Page):
 
     def js_vars(self):
         return {
-            'boards': self.player.puzzle_to_play(formatting=0)
+            'boards': self.player.puzzle_to_play(formatting=0),
+            'probs': self.session.config['va_probs']
         }
 
 
@@ -41,7 +42,6 @@ class Proceed(Page):
         self.player.pass_variable()
 
 
-page_sequence = [Intro,
-                 Ready,
+page_sequence = [Ready,
                  Game,
                  Proceed]
