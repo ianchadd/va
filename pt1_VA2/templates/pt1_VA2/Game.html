@@ -318,14 +318,20 @@
                 }
                 //Otherwise, randomly select a valid turn not in the solution
                 else {
-                    let wrongs = this.get_movable_blocks();
-                    let j = this.searchForArray(wrongs, solution[1].move);
-                    wrongs.splice(j,1);
-                    let randindex = Math.floor(Math.random() * wrongs.length);
-                    pos = wrongs[randindex];
-                    isgood = false;
-                    console.log("Failure");
-                    //console.log("Wrongs:", JSON.parse(JSON.stringify(wrongs)));
+                    if (js_vars.failure == 0) {
+                        pos = this.get_empty_field();
+                        console.log("Failure (No move)");
+                    }
+                    else {
+                        let wrongs = this.get_movable_blocks();
+                        let j = this.searchForArray(wrongs, solution[1].move);
+                        wrongs.splice(j,1);
+                        let randindex = Math.floor(Math.random() * wrongs.length);
+                        pos = wrongs[randindex];
+                        isgood = false;
+                        console.log("Failure (Wrong move)");
+                        //console.log("Wrongs:", JSON.parse(JSON.stringify(wrongs)));
+                    }
                 }
                 console.log("Move taken:", pos);
 
