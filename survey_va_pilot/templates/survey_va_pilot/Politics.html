@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<p>On <b>economic</b> issues, politically I am:</p>
+    {% formfield player.econ_politics %}
+
+<p>On <b>social</b> issues, politically I am:</p>
+        {% formfield player.social_politics %}
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+Questionnaire
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Over the next several pages, you will be asked questions about yourself.
+    </p>
+    <p>
+        Please answer each question to the best of your ability.
+    </p>
+
+    {% next_button %}
+
+{% endblock %}

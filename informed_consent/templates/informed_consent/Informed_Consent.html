@@ -1,0 +1,46 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Consent to Participate in Research
+{% endblock %}
+
+{% block content %}
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <h1></h1>
+    <p>Please review the information contained in the form below.</p>
+    <iframe src= "{% static informed_consent %}" width="100%" height="500px">
+    </iframe>
+  </body>
+</html>
+<p> {{message}}</p>
+{% if consent_link %}
+<p>If you are unable to see the embedded form above, please click <a href={{consent_url}} target = "_blank">here</a>
+</p>
+{% endif %}
+<p>If you do not consent to participate in this study, please go back to Prolific now and mark this study as Incomplete.</p>
+
+<p>By clicking on the button below, you consent to participate in this study.</p>
+<div style="text-align: center;">
+    <button name="consent" value= True class="btn btn-primary btn-large">I consent</button>
+</div>
+
+
+
+{% endblock %}
+
+<!--
+<div class = "mc-ma">
+    {{players.otherID.label}}
+    <ul>
+        {% for choice in player.otherID %}
+    <li>
+        <label>{{choice.tag}}{{choice.choice_label}}</label>
+    </li>
+    {% endfor %}
+    </ul>
+</div> -->

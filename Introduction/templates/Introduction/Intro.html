@@ -1,0 +1,58 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Overview of Study
+{% endblock %}
+
+{% block content %}
+    <html>
+      <head>
+        <title></title>
+      </head>
+      <body>
+        <p>Welcome!
+          Here is a brief overview of the study.</p>
+
+        <h5><u>What will I have to do?</u></h5>
+
+            <p>    This study consists of <strong>two</strong> tasks, which will be explained in detail in a moment, and a survey.
+            The study should take no longer than <strong>20</strong> minutes in total.  Your participation and your answers will be kept anonymous.
+            </p>
+        <h5>  <u>How much payment will I receive for my participation?</u>
+        </h5>
+            <p>    You will be paid {{ participation_fee }} for completing the study.
+            </p>
+            <p>    Additionally, you may receive <strong>additional bonus payments</strong> based on your decisions and luck. Your entire payment ({{participation_fee}} + whatever additional amount you earn) will be paid to you via the Prolific platform once your responses have been validated.
+
+            </p>
+
+    <h5> <u>Attention Checks</u>
+    </h5>
+
+    <p>    There will be several <strong>Attention Check</strong> questions throughout this study meant to test whether you are paying attention as well as your understanding of the intructions.
+      If you fail to correctly complete any of these Attention Check questions, you may not be paid.
+    </p>
+
+
+
+        <h5> <u>Please note!</u>
+        </h5>
+
+        <p>
+          On most pages in this study, a NEXT button will appear after some delay.
+          This is not a bug. It is to ensure that you have read the instructions/interface.
+          A NEXT button will appear on this page 25 seconds after it was loaded.
+        </p>
+
+        <p> Finally, please note that in line with standard economics experiments, your bonus payments will be determined in the manner as described in the instructions.
+
+
+
+<!-- {% delayed_next wait=30000 label='NEXT'%} -->
+
+{% delayed_next wait=5000 label='NEXT'%}
+
+
+{% endblock %}
