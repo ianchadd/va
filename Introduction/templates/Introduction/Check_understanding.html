@@ -1,0 +1,55 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Instructions: Slider Puzzle
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+
+
+  <p>
+      <strong> <u> Questions for understanding </u> </strong>: <br>
+      Before proceeding, we'd like to make sure that you understand the slider puzzle. Please answer the following questions.
+  </p>
+
+  {% formfield player.uq2 %}
+  <table>
+      <tbody>
+          <tr>
+              <td>
+                  A <br>
+                  <img src="{% static 'puzzle_2_0.png' %}" width='200'/>
+              </td>
+              <td>
+                  B <br>
+                  <img src="{% static 'puzzle_goal.png' %}" width='200'/>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+  {% formfield player.uq3 %}
+  {% formfield player.uq4 %}
+  <p>
+      <img src="{% static 'puzzle_3_3_good.png' %}" width='200'/>
+  </p>
+  {% formfield player.uq5 %}
+  {% formfield player.uq6 %}
+  <p>
+      <img src="{% static 'puzzle_3_5_good.png' %}" width='200'/>
+  </p>
+  {% formfield player.uq7 %}
+
+
+  <p>
+      <strong>Note:</strong> you will not be able to move on from this page until you answer all of these questions correctly.
+  </p>
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=5000 label='NEXT'%}
+
+{% endblock %}

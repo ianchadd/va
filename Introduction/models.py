@@ -27,10 +27,37 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
     # def creating_session(self):
     pass
-    
+
 class Group(BaseGroup):
     pass
 
 
 class Player(BasePlayer):
-    pass
+
+    uq2 = models.IntegerField (
+        label = "1. Which of the following puzzles is in the correct order?",
+        widget = widgets.RadioSelect,
+        choices = [[1, 'A.'], [2, 'B.'],])
+    uq3 = models.IntegerField (
+        label = '2. What is the correct strategy to use to solve the puzzle as fast as possible? ',
+        widget = widgets.RadioSelect,
+        choices = [
+            [1, "First arrange the cells in the left column in the correct order, then those in the bottom row. Always minimize the number of moves you make."],
+            [2, "First arrange the cells in the top row in the correct order, then those in the right column. Always minimize the number of moves make."],
+            [3, "First arrange the cells in the top row in the correct order, then those in the left column. Always minimize the number of moves make."],])
+    uq4 = models.IntegerField (
+        label = "3. Look at the following puzzle. What's the correct move? ",
+        widget = widgets.RadioSelect,
+        choices = [[1, 'Move 4 down.'], [2, 'Move 7 to left.'],])
+    uq5 = models.IntegerField (
+        label = '4. Consider the puzzle in question 3. What is the minimum number of moves to solve the puzzle? ',
+        widget = widgets.RadioSelect,
+        choices = [[1, '2'], [2, '3'], [3, '4'],])
+    uq6 = models.IntegerField (
+        label = "5. Look at the following puzzle. What's the correct move?",
+        widget = widgets.RadioSelect,
+        choices = [[1, 'Move the 5 to the left.'], [2, 'Move the 8 up.'],])
+    uq7 = models.IntegerField (
+        label = '6. Consider the puzzle in question 5. What is the minimum number of moves to solve the puzzle? ',
+        widget = widgets.RadioSelect,
+        choices = [[1, '2'], [2, '3'], [3, '4'],])

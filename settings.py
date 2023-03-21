@@ -41,7 +41,8 @@ SESSION_CONFIGS = [
             # 'prolific_id_begin',
             # 'informed_consent',
             'Introduction',
-            'pt1_VA2',
+            'slider_individual',
+            # 'pt1_VA2',
             'survey_va_pilot'
             # 'prolific_id_end'
                      ],
