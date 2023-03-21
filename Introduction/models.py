@@ -61,3 +61,33 @@ class Player(BasePlayer):
         label = '6. Consider the puzzle in question 5. What is the minimum number of moves to solve the puzzle? ',
         widget = widgets.RadioSelect,
         choices = [[1, '2'], [2, '3'], [3, '4'],])
+
+    def uq2_error_message(self, uq2):
+        print(uq2)
+        if uq2 != 2:
+            return self.session.config['uq_error']
+
+    def uq3_error_message(self, uq3):
+        print(uq3)
+        if uq3 != 3:
+            return self.session.config['uq_error']
+
+    def uq4_error_message(self, uq4):
+        print(uq4)
+        if uq4 != 2:
+            return self.session.config['uq_error']
+
+    def uq5_error_message(self, uq5):
+        print(uq5)
+        if uq5 != 3:
+            return self.session.config['uq_error']
+
+    def uq6_error_message(self, uq6):
+        print(uq6)
+        if uq6 != 1:
+            return self.session.config['uq_error']
+
+    def uq7_error_message(self, uq7):
+        print(uq7)
+        if uq7 != 1:
+            return self.session.config['uq_error']
