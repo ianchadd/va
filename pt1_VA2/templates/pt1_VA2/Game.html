@@ -7,6 +7,15 @@
 
 {% block styles %}
     <style type="text/css">
+        img {
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          padding: 5px;
+          width: 150px;
+          margin-bottom: 25px;
+          display: inline-block;
+        }
+
         table.slider_game {
             width: 300px;
             height: 300px;
@@ -21,6 +30,14 @@
         .slider_game td {
             width: 100px;
             height: 100px;
+        }
+
+        .blocked {
+            opacity: 0.5;
+        }
+
+        .unblocked {
+            opacity: 1;
         }
 
         .full {
@@ -45,6 +62,13 @@
             display: inline-block;
         }
 
+        #vamessage {
+            width: 750px;
+            padding-left: 50px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
         .green {
             color: forestgreen;
         }
@@ -58,10 +82,17 @@
 
 {% block content %}
 
-    <div class="center vspace">
+    <div>
         <p>
 
         </p>
+
+        <img src="{{ static pt1image_path }}"/>
+
+        <p id="vamessage"></p>
+    </div>
+
+    <div class="center vspace">
 
         <table class="slider_game" id="sgame_table"></table>
 
@@ -169,6 +200,7 @@
                 this.board = board;
                 this.enabled = true;
                 this.probs = js_vars.probs;
+                this.solvedflag = 0;
                 this.draw();
             }
 
@@ -239,13 +271,14 @@
                 return -1;
             }
 
-            move(pos, external=false) {
+            async move(pos, external=false) {
                 if (!this.enabled) {
                     return false;
                 }
                 if (this.searchForArray(this.get_movable_blocks(this.board), pos) === -1) {
                     return false;
                 }
+
                 let empty = this.get_empty_field(this.board);
                 this.board[empty[0]][empty[1]] = this.board[pos[0]][pos[1]];
                 this.board[pos[0]][pos[1]] = null;
@@ -259,10 +292,15 @@
                     this.enabled = false;
                 }
 
-                //this.vamove_random();
-                this.vamove_astar();
+                await this.timer(1000);
+                this.draw_blocked();
 
                 return true;
+            }
+
+            async timeout(e) {
+                const test = await this.timer(e);
+                console.log("Timeout function finished.");
             }
 
             vamove_random() {
@@ -293,10 +331,17 @@
                 return true;
             }
 
+
+
             async vamove_astar() {
+                console.log("Entered VA turn.");
                 if (!this.enabled) {
                     return false;
                 }
+
+                va_message("");
+                this.draw_blocked();
+                const taketurn = await this.timer({{ turnlength }} * 1000);
 
                 //Use A* to find entire correct solution from current game state
                 var solution = this.astar();
@@ -314,39 +359,64 @@
                 if (thisprob < this.probs[0]) {
                     pos = solution[1].move;
                     isgood = true;
+                    va_message("The VA found and made an optimal move.");
                     console.log("Success");
                 }
                 //Otherwise, randomly select a valid turn not in the solution
                 else {
-                    if (js_vars.failure == 0) {
-                        pos = this.get_empty_field();
-                        console.log("Failure (No move)");
+                    let wrongs = this.get_movable_blocks();
+                    let j = this.searchForArray(wrongs, solution[1].move);
+                    wrongs.splice(j,1);
+                    let randindex = Math.floor(Math.random() * wrongs.length);
+                    pos = wrongs[randindex];
+                    isgood = false;
+                    if ({{ failure }} == 0) {
+                        va_message("The VA was unable to find an optimal move this turn. They did not make any move at all.");
                     }
-                    else {
-                        let wrongs = this.get_movable_blocks();
-                        let j = this.searchForArray(wrongs, solution[1].move);
-                        wrongs.splice(j,1);
-                        let randindex = Math.floor(Math.random() * wrongs.length);
-                        pos = wrongs[randindex];
-                        isgood = false;
-                        console.log("Failure (Wrong move)");
-                        //console.log("Wrongs:", JSON.parse(JSON.stringify(wrongs)));
+                    else if ({{ failure }} == 1) {
+                        va_message("The VA was unable to find an optimal move this turn. They instead made a move that was suboptimal.");
                     }
+                    console.log("Failure");
+                    //console.log("Wrongs:", JSON.parse(JSON.stringify(wrongs)));
                 }
-                console.log("Move taken:", pos);
+                if (!(isgood == false && {{ failure }} == 0)) {
+                    console.log("Move taken:", pos);
 
-                this.board[empty[0]][empty[1]] = this.board[pos[0]][pos[1]];
-                this.board[pos[0]][pos[1]] = null;
-                await this.timer(1000);
-                this.draw();
-                let move_event = new CustomEvent('move', { detail: { from: pos, to: empty, good: isgood } });
-                this.table.dispatchEvent(move_event);
+                    this.board[empty[0]][empty[1]] = this.board[pos[0]][pos[1]];
+                    this.board[pos[0]][pos[1]] = null;
+
+                    let move_event = new CustomEvent('move', { detail: { from: pos, to: empty, good: isgood } });
+                    this.table.dispatchEvent(move_event);
+                }
 
                 //Wrap the probability value used to the back of the probabilities list
                 var prob = this.probs.splice(0,1);
                 this.probs.push(prob[0]);
 
+                await this.timer(2000);
+                va_message("");
+                this.draw();
                 this.solved();
+
+                this.ptimeout();
+
+                return true;
+            }
+
+            //Times participant's 10 second turns
+            async ptimeout() {
+                console.log("Entered participant timer");
+                await this.timer({{ turnlength }} * 1000);
+                console.log("Participant timeout");
+                if (this.solvedflag == 1) {
+                    this.solvedflag = 0;
+                    return;
+                }
+                this.draw();
+                va_message("Your turn time is up. The VA will now make a move.");
+                await this.timer(2000);
+                va_message("");
+                this.vamove_astar();
             }
 
             // Implements and outputs to console the results of a full run of A* on the current puzzle
@@ -455,6 +525,7 @@
 
             draw() {
                 this.clear();
+                this.table.classList.add('unblocked');
                 for (let r = 0; r < this.board.length; r++) {
                     let row = this.table.insertRow(-1);
                     for (let c = 0; c < this.board[0].length; c++) {
@@ -469,6 +540,29 @@
                         }
                         cell.setAttribute('onclick', "sg.move(["+r+","+c+"])");
                         cell.innerHTML = value;
+                        cell.classList.add('unblocked');
+                    }
+                }
+            }
+
+            draw_blocked() {
+                this.clear();
+                this.table.classList.add('blocked');
+                for (let r = 0; r < this.board.length; r++) {
+                    let row = this.table.insertRow(-1);
+                    for (let c = 0; c < this.board[0].length; c++) {
+                        let cell = row.insertCell(-1);
+                        let value;
+                        if (this.board[r][c] == null) {
+                            value = "";
+                            cell.classList.add('empty');
+                        } else {
+                            value = this.board[r][c];
+                            cell.classList.add('full');
+                        }
+                        cell.setAttribute('onclick', null);
+                        cell.innerHTML = value;
+                        cell.classList.add('blocked');
                     }
                 }
             }
@@ -490,12 +584,19 @@
                         }
                     }
                 }
+
+                this.solvedflag = 1;
                 let solved_event = new Event('solved');
                 this.table.dispatchEvent(solved_event);
                 return true;
             }
         }
 
+        function va_message(msg) {
+            let m = $('#vamessage');
+            m.addClass('green');
+            m.text(msg);
+        }
 
         function green_message(msg) {
             let m = $('#message');
@@ -535,6 +636,7 @@
 
         sg.table.addEventListener('solved', function () {
             $('#id_puzzle_solved').val(num_solved);
+            va_message("");
             setTimeout(() => {green_message("You have solved the puzzle!");}, 1000);
 
             window.setTimeout(function() {
@@ -545,6 +647,7 @@
                     sg.clear();
                     sg.set_board(boards[current_board]);
                     green_message("");
+                    sg.ptimeout();
                     //sg.astar_tester();
                 } else {
                     orange_message("You have solved all the puzzles!");
@@ -552,6 +655,7 @@
             }, 2000);
         }, false);
 
+        sg.ptimeout();
         //sg.astar_tester();
 
     </script>

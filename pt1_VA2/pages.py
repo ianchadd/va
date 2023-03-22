@@ -36,6 +36,13 @@ class Game(Page):
             'failure': self.session.config['failure_tracking']
         }
 
+    def vars_for_template(self):
+        return dict(
+            pt1image_path='GenderedIcons/{}.png'.format(self.session.config['pt1gender']),
+            failure=self.session.config['failure_tracking'],
+            turnlength=self.session.config['turnlength']
+        )
+
 
 class Proceed(Page):
     def before_next_page(self):
