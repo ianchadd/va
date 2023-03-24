@@ -32,8 +32,16 @@ class Game(Page):
     def js_vars(self):
         return {
             'boards': self.player.puzzle_to_play(formatting=0),
-            'probs': self.session.config['va_probs']
+            'probs': self.session.config['va_probs'],
+            'failure': self.session.config['failure_tracking']
         }
+
+    def vars_for_template(self):
+        return dict(
+            pt1image_path='GenderedIcons/{}.png'.format(self.session.config['pt1gender']),
+            failure=self.session.config['failure_tracking'],
+            turnlength=self.session.config['turnlength']
+        )
 
 
 class Proceed(Page):
