@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Individual round
+VA Task 1
 {% endblock %}
 
 {% block styles %}
@@ -14,6 +14,11 @@
           width: 150px;
           margin-bottom: 25px;
           display: inline-block;
+        }
+
+        a {
+           display: inline-block;
+           margin-right: 20px;
         }
 
         table.slider_game {
@@ -57,12 +62,24 @@
             text-align: center;
         }
 
+        #turntimer {
+            font-weight: bold;
+            display: inline-block;
+        }
+
         #message {
             font-weight: bold;
             display: inline-block;
         }
 
         #vamessage {
+            width: 750px;
+            padding-left: 50px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        #turnindicator {
             width: 750px;
             padding-left: 50px;
             font-weight: bold;
@@ -87,7 +104,14 @@
 
         </p>
 
-        <img src="{{ static pt1image_path }}"/>
+        <p id="turnindicator"></p>
+
+        <div>
+            <a> Time remaining:   </a><p id="turntimer"></p>
+
+        </div>
+
+        <img src="{% static pt1image_path %}"/>
 
         <p id="vamessage"></p>
     </div>
@@ -101,6 +125,12 @@
         <input type="hidden" name="puzzles_solved_pt1" id="id_puzzle_solved" value=0>
         <input type='hidden' name='puzzle_histories' id='id_puzzle_histories'>
 
+    </div>
+
+    <div>
+        <button id="button" hidden="hidden">
+            Submit
+        </button>
     </div>
 
 
@@ -201,6 +231,7 @@
                 this.enabled = true;
                 this.probs = js_vars.probs;
                 this.solvedflag = 0;
+                this.turncount = 0;
                 this.draw();
             }
 
@@ -335,13 +366,28 @@
 
             async vamove_astar() {
                 console.log("Entered VA turn.");
-                if (!this.enabled) {
-                    return false;
-                }
 
+                await new Promise((resolve) => {
+                    if (this.turncount >= {{ roundlength }} / {{ turnlength }}) {
+                        document.getElementById("button").removeAttribute("hidden");
+                        turnindicator("This round is over.");
+                        va_message("Please click submit.");
+                        return false;
+                    }
+                    resolve();
+                });
+
+                turnindicator("It's the VA's turn.");
                 va_message("");
                 this.draw_blocked();
-                const taketurn = await this.timer({{ turnlength }} * 1000);
+
+                for (var remaining = {{ turnlength }} * 1000; remaining > 0; remaining-=1000) {
+                    var minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+                    document.getElementById("turntimer").innerHTML = minutes + ":" + seconds;
+                    await this.timer(1000);
+                }
+                this.turncount = this.turncount + 1;
 
                 //Use A* to find entire correct solution from current game state
                 var solution = this.astar();
@@ -395,8 +441,16 @@
 
                 await this.timer(2000);
                 va_message("");
+                turnindicator("");
                 this.draw();
+
                 this.solved();
+                if (this.solvedflag == 1) {
+                    let solved_event = new Event('solved');
+                    this.table.dispatchEvent(solved_event);
+                    this.solvedflag = 0;
+                    return;
+                }
 
                 this.ptimeout();
 
@@ -405,18 +459,41 @@
 
             //Times participant's 10 second turns
             async ptimeout() {
-                console.log("Entered participant timer");
-                await this.timer({{ turnlength }} * 1000);
-                console.log("Participant timeout");
+                await new Promise((resolve) => {
+                    if (this.turncount >= {{ roundlength }} / {{ turnlength }}) {
+                        document.getElementById("button").removeAttribute("hidden");
+                        turnindicator("This round is over.");
+                        va_message("Please click submit.");
+                        return false;
+                    }
+                    resolve();
+                });
+
+                turnindicator("It is your turn.");
+                for (var remaining = {{ turnlength }} * 1000; remaining > 0; remaining-=1000) {
+                    var minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+                    document.getElementById("turntimer").innerHTML = minutes + ":" + seconds;
+                    await this.timer(1000);
+                }
+
+                this.turncount = this.turncount + 1;
                 if (this.solvedflag == 1) {
+                    let solved_event = new Event('solved');
+                    this.table.dispatchEvent(solved_event);
                     this.solvedflag = 0;
                     return;
                 }
+
                 this.draw();
+                console.log("End player turn");
                 va_message("Your turn time is up. The VA will now make a move.");
                 await this.timer(2000);
                 va_message("");
+                turnindicator("");
+
                 this.vamove_astar();
+                return true;
             }
 
             // Implements and outputs to console the results of a full run of A* on the current puzzle
@@ -586,10 +663,15 @@
                 }
 
                 this.solvedflag = 1;
-                let solved_event = new Event('solved');
-                this.table.dispatchEvent(solved_event);
+
                 return true;
             }
+        }
+
+        function turnindicator(msg) {
+            let m = $('#turnindicator');
+            m.addClass('green');
+            m.text(msg);
         }
 
         function va_message(msg) {
