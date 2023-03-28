@@ -8,12 +8,12 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-    
+
 class Constants(BaseConstants):
     name_in_url = 'demographics_nbo'
     players_per_group = None
     num_rounds = 1
-    
+
 states = {
         'AK': 'Alaska',
         'AL': 'Alabama',
@@ -97,8 +97,8 @@ class Player(BasePlayer):
         min=1900,
         max=2005
         )
-        
-#sex assigned at birth 
+
+#sex assigned at birth
     sex = models.StringField(
         label = 'What sex were you assigned at birth, on your original birth certificate?',
         choices = ['Male', 'Female']
@@ -146,7 +146,7 @@ class Player(BasePlayer):
     def diff_gend_error_message(self,value):
         if self.other_g and type(value) == type(None):
             return 'If you select Other, you must specify in the provided field'
-            
+
 #sexual orientation
     orientation = models.StringField(
         label = 'Which do you consider yourself to be:',
@@ -253,14 +253,14 @@ class Player(BasePlayer):
         label = '',
         blank = True
         )
-    
+
 #politics
     econ_politics = models.StringField(
         label = '',
         choices = ['More conservative than liberal', 'Equally conservative and liberal', 'More liberal than conservative'],
         widget = widgets.RadioSelect
         )
-    
+
     social_politics = models.StringField(
         label = '',
         choices = ['More conservative than liberal', 'Equally conservative and liberal', 'More liberal than conservative'],
@@ -279,7 +279,7 @@ class Player(BasePlayer):
         widget = widgets.RadioSelect
         )
 
-    
+
 #locations
     live_in = models.StringField(
         label = 'In which US state/territory do you currently live?',
@@ -303,7 +303,7 @@ class Player(BasePlayer):
         choices = [1,2,3,4,5],
         blank = True
         )
-    
+
 #allyship questions
     consider_lgbt_ally = models.IntegerField(
         label = 'Do you consider yourself to be an ally to the LGBTQ+ community?',
@@ -315,5 +315,93 @@ class Player(BasePlayer):
         choices = [[1, 'Yes'],[0,'No']],
         widget = widgets.RadioSelect
         )
-        
-        
+
+#gender attitudes
+    #used in Charles et al. (2023)
+    FEWORK = models.IntegerField(
+        label = 'Do you approve or disapprove of a married woman earning money in business or industry if she has a husband capable of supporting her?',
+        choices = [[5,'Strongly Agree'],
+                   [4,'Agree'],
+                   [3,'Neither Agree nor Disagree'],
+                   [2,'Disagree'],
+                   [1,'Strongly Disagree']
+                   ],
+        widget = widgets.RadioSelect
+        )
+
+    FEHOME = models.IntegerField(
+        label = 'Do you agree or disagree with this statement? Women should take care of running their home and leave running the country up to men.',
+        choices = [[5,'Strongly Agree'],
+                   [4,'Agree'],
+                   [3,'Neither Agree nor Disagree'],
+                   [2,'Disagree'],
+                   [1,'Strongly Disagree']
+                   ],
+        widget = widgets.RadioSelect
+        )
+
+    FEPRES = models.IntegerField(
+        label = 'If your party nominated a woman for president, would you vote for her if she were qualified for the job?',
+        choices = [[5,'Strongly Agree'],
+                   [4,'Agree'],
+                   [3,'Neither Agree nor Disagree'],
+                   [2,'Disagree'],
+                   [1,'Strongly Disagree']
+                   ],
+        widget = widgets.RadioSelect
+        )
+
+    FEPOL = models.IntegerField(
+        label = 'Tell me if you agree or disagree with this statement: Most men are better suited emotionally for politics than are most women.',
+        choices = [[5,'Strongly Agree'],
+                   [4,'Agree'],
+                   [3,'Neither Agree nor Disagree'],
+                   [2,'Disagree'],
+                   [1,'Strongly Disagree']
+                   ],
+        widget = widgets.RadioSelect
+        )
+
+    FECHILD = models.IntegerField(
+        label = 'A working mother can establish just as warm and secure a relationship with her children as a mother who does not work.',
+        choices = [[5,'Strongly Agree'],
+                   [4,'Agree'],
+                   [3,'Neither Agree nor Disagree'],
+                   [2,'Disagree'],
+                   [1,'Strongly Disagree']
+                   ],
+        widget = widgets.RadioSelect
+        )
+
+    FEPRESCH = models.IntegerField(
+        label = 'A preschool child is likely to suffer if his or her mother works.',
+        choices = [[5,'Strongly Agree'],
+                   [4,'Agree'],
+                   [3,'Neither Agree nor Disagree'],
+                   [2,'Disagree'],
+                   [1,'Strongly Disagree']
+                   ],
+        widget = widgets.RadioSelect
+        )
+
+    FEHELP = models.IntegerField(
+        label = 'It is more important for a wife to help her husband`s career than to have one herself.',
+        choices = [[5,'Strongly Agree'],
+                   [4,'Agree'],
+                   [3,'Neither Agree nor Disagree'],
+                   [2,'Disagree'],
+                   [1,'Strongly Disagree']
+                   ],
+        widget = widgets.RadioSelect
+        )
+
+    FEFAM = models.IntegerField(
+        label = 'It is much better for everyone involved if the man is the achiever outside the home and the women takes care of the home and family.',
+        choices = [[5,'Strongly Agree'],
+                   [4,'Agree'],
+                   [3,'Neither Agree nor Disagree'],
+                   [2,'Disagree'],
+                   [1,'Strongly Disagree']
+                   ],
+        widget = widgets.RadioSelect
+        )
