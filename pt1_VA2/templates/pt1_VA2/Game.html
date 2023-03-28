@@ -382,8 +382,10 @@ VA Task 1
                 this.draw_blocked();
 
                 for (var remaining = {{ turnlength }} * 1000; remaining > 0; remaining-=1000) {
-                    var minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+                    var minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))
+                        .toString().padStart(1,"0");
+                    var seconds = Math.floor((remaining % (1000 * 60)) / 1000)
+                        .toString().padStart(2,"0");;
                     document.getElementById("turntimer").innerHTML = minutes + ":" + seconds;
                     await this.timer(1000);
                 }
@@ -439,7 +441,7 @@ VA Task 1
                 var prob = this.probs.splice(0,1);
                 this.probs.push(prob[0]);
 
-                await this.timer(2000);
+                await this.timer(3000);
                 va_message("");
                 turnindicator("");
                 this.draw();
@@ -471,8 +473,10 @@ VA Task 1
 
                 turnindicator("It is your turn.");
                 for (var remaining = {{ turnlength }} * 1000; remaining > 0; remaining-=1000) {
-                    var minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+                    var minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))
+                        .toString().padStart(1,"0");
+                    var seconds = Math.floor((remaining % (1000 * 60)) / 1000)
+                        .toString().padStart(2,"0");
                     document.getElementById("turntimer").innerHTML = minutes + ":" + seconds;
                     await this.timer(1000);
                 }
