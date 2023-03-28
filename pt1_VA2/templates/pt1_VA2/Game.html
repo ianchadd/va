@@ -111,7 +111,7 @@ VA Task 1
 
         </div>
 
-        <img src="{% static pt1image_path %}"/>
+        <img id="avatar" src="{% static pt1image_path %}"/>
 
         <p id="vamessage"></p>
     </div>
@@ -378,10 +378,11 @@ VA Task 1
                 });
 
                 turnindicator("It's the VA's turn.");
+                document.getElementById("avatar").style.opacity = 1;
                 va_message("");
                 this.draw_blocked();
 
-                for (var remaining = {{ turnlength }} * 1000; remaining > 0; remaining-=1000) {
+                for (var remaining = {{ turnlength }} * 1000; remaining >= 0; remaining-=1000) {
                     var minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))
                         .toString().padStart(1,"0");
                     var seconds = Math.floor((remaining % (1000 * 60)) / 1000)
@@ -471,8 +472,16 @@ VA Task 1
                     resolve();
                 });
 
+                await new Promise((resolve) => {
+                    turnindicator("It is your turn.");
+                    document.getElementById("avatar").style.opacity = 0;
+                    resolve();
+                });
+
                 turnindicator("It is your turn.");
-                for (var remaining = {{ turnlength }} * 1000; remaining > 0; remaining-=1000) {
+                document.getElementById("avatar").opacity = 0;
+
+                for (var remaining = {{ turnlength }} * 1000; remaining >= 0; remaining-=1000) {
                     var minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))
                         .toString().padStart(1,"0");
                     var seconds = Math.floor((remaining % (1000 * 60)) / 1000)
