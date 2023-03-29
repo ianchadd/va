@@ -455,6 +455,7 @@ VA Task 1
                 this.solved();
                 if (this.solvedflag == 1) {
                     let solved_event = new Event('solved');
+                    solved_event.turn = { key: 0 };
                     this.table.dispatchEvent(solved_event);
                     this.solvedflag = 0;
                     return;
@@ -498,6 +499,7 @@ VA Task 1
                 this.turncount = this.turncount + 1;
                 if (this.solvedflag == 1) {
                     let solved_event = new Event('solved');
+                    solved_event.turn = { key: 1 };
                     this.table.dispatchEvent(solved_event);
                     this.solvedflag = 0;
                     return;
@@ -734,7 +736,10 @@ VA Task 1
             //console.log("History:", histories[current_board]);
         }, false);
 
-        sg.table.addEventListener('solved', function () {
+        sg.table.addEventListener('solved', function (e) {
+            console.log("Event triggered");
+            var turn = e.turn.key;
+            console.log(turn);
             $('#id_puzzle_solved').val(num_solved);
             va_message("");
             setTimeout(() => {green_message("You have solved the puzzle!");}, 1000);
@@ -747,7 +752,14 @@ VA Task 1
                     sg.clear();
                     sg.set_board(boards[current_board]);
                     green_message("");
-                    sg.ptimeout();
+                    if (turn == 0) {
+                        console.log("Participant starts");
+                        sg.ptimeout();
+                    }
+                    else if (turn == 1) {
+                        console.log("VA starts");
+                        sg.vamove_astar();
+                    }
                     //sg.astar_tester();
                 } else {
                     orange_message("You have solved all the puzzles!");
