@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Debrief Questionnaire
+{% endblock %}
+
+{% block content %}
+    <p>
+        Make a guess on how often the VA was correct within your trial. You will be paid ??? extra for the correctness of your answer.
+    </p>
+    {% formfields %}
+    {% next_button %}
+
+{% endblock %}

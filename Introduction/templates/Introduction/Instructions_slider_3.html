@@ -1,0 +1,38 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Instructions: Slider Puzzle
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+
+
+  <p>
+      <strong> <u> Example 3 </u> </strong>:
+  </p>
+  <p>
+      Finally, consider the following puzzle.
+  </p>
+  <p>
+      <img src="{% static 'puzzle_3_0.png' %}" width='200'/>
+  </p>
+  <p>
+      This puzzle is more difficult than the previous two.
+
+  <p>
+      However, note that the top row is already in the correct order. So, let's keep the top row
+      as it is and think about the remaining part.
+      <strong> When the top line is in the correct order, you should
+      always keep it as it is </strong>.
+  </p>
+
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=5000 label='NEXT'%}
+
+{% endblock %}

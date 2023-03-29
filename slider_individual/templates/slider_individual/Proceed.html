@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+
+{% endblock %}
+{% block content %}
+    <p>
+        The Slider Task is over. You solved
+        <strong> {{player.puzzles_solved_pt1}} </strong> puzzles correctly.
+    </p>
+    <p>
+        Click Next to proceed.
+    </p>
+
+    <!-- {% delayed_next wait=30000 label='NEXT'%} -->
+
+    {% delayed_next wait=5000 label='NEXT'%}
+{% endblock %}

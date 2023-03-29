@@ -1,0 +1,65 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Instructions: Slider Puzzle
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+
+
+  <p>
+      <strong> <u> Example 3 </u> </strong>:
+  </p>
+
+  <p>
+      Let's try to move the 4 to the right:
+  </p>
+  <p>
+      <img src="{% static 'puzzle_3_1_bad_0.png' %}" width='200'/>
+  </p>
+  <p>
+      Now the only tile you can move is 8.
+      So let's move it down:
+  </p>
+  <p>
+      <img src="{% static 'puzzle_3_1_bad_1.png' %}" width='200'/>
+  </p>
+  <p>
+      Now, if you ignore the top row which is already in the correct order,
+      the only tile you can move is 7. So, let's move it to the left:
+  </p>
+  <p>
+      <img src="{% static 'puzzle_3_1_bad_2.png' %}" width='200'/>
+  </p>
+  <p>
+      Then, move the 4 up, the 8 to the right and finally the 7 down.
+      By doing so, you have placed the left column in the correct order.
+      You have moved the tiles seven times so far.
+  </p>
+  <p>
+      <img src="{% static 'puzzle_3_1_bad_3.png' %}" width='200'/>
+  </p>
+  <p>
+      Now, per the instructions before, we should leave the left column as it is and focus on the remainder of the puzzle:
+  </p>
+  <p>
+      <img src="{% static 'puzzle_3_1_bad_3_2x2.png' %}" width='133.33'/>
+  </p>
+  <p>
+      Then you can solve the puzzle by moving the 5 to the left and
+      then 6 up. With this method,
+      <strong> you moved the tiles nine times in total </strong>.
+  </p>
+
+
+
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=5000 label='NEXT'%}
+
+{% endblock %}

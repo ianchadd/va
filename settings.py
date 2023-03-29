@@ -34,24 +34,59 @@ SESSION_CONFIG_DEFAULTS = dict(
 
 SESSION_CONFIGS = [
     dict(
-        name='main_session',
-        display_name='Full session',
-        num_demo_participants=24,
-        app_sequence=['pt0', 'slider_training', 
-                      'pt1grp', 'pt2', 'pt2grp',
-                      'pt3', 'pt4', 'pt99'
+        name='pilot_session',
+        display_name='Pilot session',
+        num_demo_participants=1,
+        app_sequence=[
+            # 'prolific_id_begin',
+            # 'informed_consent',
+            'Introduction',
+            'slider_individual',
+            # 'pt1_VA2',
+            'survey_va_pilot'
+            # 'prolific_id_end'
                      ],
+        consent = 'va/consent.pdf',
+        p_completion_link = 'xxxxxxxx',
+        consent_additional_message = """
+
+        """,
         test=0,
-        va_probs=[100],
-        failure_tracking=0,  # 0 for no turn, 1 for bad turn
+        study="pilot",
+        va_probs=[0, 25, 50, 75, 100],
         participation_fee=0,  # this is set to 0 b/c this is added to payoff
         real_world_currency_per_point=1,
         partfee=2,
         pt1rate=0.2,
         pt3rate=1,
+        num_part=16,
+        max_earning=25,
+        uq_error='Check your answer.',
+        doc="""
+        Program for pilot sessions on Prolific
+        for gender and VA project.
+        """
+    ),
+    dict(
+        name='main_session',
+        display_name='Full session',
+        num_demo_participants=24,
+        app_sequence=['pt0', 'slider_training',
+                      'pt1grp', 'pt2', 'pt2grp',
+                      'pt3', 'pt4', 'pt99'
+                     ],
+        test=0,
+        va_probs=[100],
+        participation_fee=0,  # this is set to 0 b/c this is added to payoff
+        real_world_currency_per_point=1,
+        partfee=2,
+        pt1rate=0.2,
+        pt1qbonus=1, # bonus for answering accuracy question accurately, in usd
+        pt3rate=1,
         pt1gender=0, # 0 for male, 1 for female
         failure_tracking=0, # 0 for no move, 1 for bad move
         turnlength=10, # in seconds
+        roundlength=4*60, # in seconds, must be divisible by turnlength
         num_part=16,
         max_earning=25,
         uq_error='Check your answer.',
@@ -78,15 +113,16 @@ SESSION_CONFIGS = [
                      ],
         test=0,
         va_probs=[0, 25, 50, 75, 100],
-        failure_tracking=0,  # 0 for no turn, 1 for bad turn
         participation_fee=0,  # this is set to 0 b/c this is added to payoff
         real_world_currency_per_point=1,
         partfee=2,
         pt1rate=0.2,
+        pt1qbonus=1, # bonus for answering accuracy question accurately, in usd
         pt3rate=1,
         pt1gender=1, # 0 for male, 1 for female
         failure_tracking=0, # 0 for no move, 1 for bad move
         turnlength=10, # in seconds
+        roundlength=4*60, # in seconds, must be divisible by turnlength
         num_part=16,
         max_earning=25,
         uq_error='Check your answer.',
