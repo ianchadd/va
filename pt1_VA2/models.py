@@ -67,6 +67,8 @@ class Player(BasePlayer):
     # puzzle info
     puzzles_solved_pt1 = models.IntegerField()
     puzzle_histories = models.LongStringField()
+    va_correct = models.IntegerField()
+    guess_correct = models.IntegerField()
     # understanding questions
     uq1 = models.IntegerField (
         label = '1. Which of the following statements is true? ',

@@ -124,6 +124,7 @@ VA Task 1
 
         <input type="hidden" name="puzzles_solved_pt1" id="id_puzzle_solved" value=0>
         <input type='hidden' name='puzzle_histories' id='id_puzzle_histories'>
+        <input type='hidden' name='va_correct' id='va_correct' value=0>
 
     </div>
 
@@ -410,6 +411,10 @@ VA Task 1
                     isgood = true;
                     va_message("The VA found and made an optimal move.");
                     console.log("Success");
+                    $('#va_correct').val( function(i, oldval) {
+                        return ++oldval;
+                    });
+                    console.log("Correct",$('#va_correct'));
                 }
                 //Otherwise, randomly select a valid turn not in the solution
                 else {

@@ -21,7 +21,8 @@ class Ready(Page):
 class Game(Page):
     form_model = 'player'
     form_fields = ['puzzles_solved_pt1',
-                   'puzzle_histories']
+                   'puzzle_histories',
+                   'va_correct']
 
     ###def get_timeout_seconds(self):
     ###    if self.session.config['test'] == 1:
@@ -50,7 +51,16 @@ class Proceed(Page):
         self.player.add_payoff()
         self.player.pass_variable()
 
+class Debrief(Page):
+    form_model = 'player'
+    form_fields = ['guess_correct']
+
+    def before_next_page(self):
+        if self.player.guess_correct == self.player.va_correct:
+            self.player.payoff += self.session.config['pt1qbonus'] #TODO: Change
+
 
 page_sequence = [Ready,
                  Game,
-                 Proceed]
+                 Proceed,
+                 Debrief]
