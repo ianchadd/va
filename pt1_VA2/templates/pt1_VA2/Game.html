@@ -2,7 +2,6 @@
 {% load otree static %}
 
 {% block title %}
-VA Task 1
 {% endblock %}
 
 {% block styles %}
@@ -11,14 +10,13 @@ VA Task 1
           border: 1px solid #ddd;
           border-radius: 4px;
           padding: 5px;
-          width: 150px;
-          margin-bottom: 25px;
+          width: 100px;
+          //margin-bottom: 25px;
           display: inline-block;
         }
 
         a {
            display: inline-block;
-           margin-right: 20px;
         }
 
         table.slider_game {
@@ -65,6 +63,7 @@ VA Task 1
         #turntimer {
             font-weight: bold;
             display: inline-block;
+            padding-left: 5px;
         }
 
         #message {
@@ -76,12 +75,12 @@ VA Task 1
             width: 750px;
             padding-left: 50px;
             font-weight: bold;
+            font-size: 25px;
             display: inline-block;
         }
 
         #turnindicator {
             width: 750px;
-            padding-left: 50px;
             font-weight: bold;
             display: inline-block;
         }
@@ -104,16 +103,18 @@ VA Task 1
 
         </p>
 
-        <p id="turnindicator"></p>
-
-        <div>
-            <a> Time remaining:   </a><p id="turntimer"></p>
-
+        <div class="center vspace">
+            <p id="turnindicator"></p>
         </div>
 
-        <img id="avatar" src="{% static pt1image_path %}"/>
+        <div class="center vspace">
+            <a> Time remaining:   </a><p id="turntimer"></p>
+        </div>
 
-        <p id="vamessage"></p>
+        <div class="center vspace">
+            <img id="avatar" src="{% static pt1image_path %}"/>
+        </div>
+
     </div>
 
     <div class="center vspace">
@@ -126,6 +127,10 @@ VA Task 1
         <input type='hidden' name='puzzle_histories' id='id_puzzle_histories'>
         <input type='hidden' name='va_correct' id='va_correct' value=0>
 
+    </div>
+
+    <div class="center vspace">
+        <p id="vamessage"></p>
     </div>
 
     <div>
@@ -378,7 +383,7 @@ VA Task 1
                     resolve();
                 });
 
-                turnindicator("It's the VA's turn.");
+                turnindicator("VA Turn");
                 document.getElementById("avatar").style.opacity = 1;
                 va_message("");
                 this.draw_blocked();
@@ -479,12 +484,12 @@ VA Task 1
                 });
 
                 await new Promise((resolve) => {
-                    turnindicator("It is your turn.");
+                    turnindicator("Your Turn");
                     document.getElementById("avatar").style.opacity = 0;
                     resolve();
                 });
 
-                turnindicator("It is your turn.");
+                turnindicator("Your Turn");
                 document.getElementById("avatar").opacity = 0;
 
                 for (var remaining = {{ turnlength }} * 1000; remaining >= 0; remaining-=1000) {
