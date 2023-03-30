@@ -112,7 +112,7 @@ SESSION_CONFIGS = [
                       'pt99'
                      ],
         test=0,
-        va_probs=[0, 25, 50, 75, 100],
+        va_probs=[75],
         participation_fee=0,  # this is set to 0 b/c this is added to payoff
         real_world_currency_per_point=1,
         partfee=2,

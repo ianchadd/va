@@ -4,8 +4,7 @@ from .models import Constants
 
 
 class ThankYou(Page):
-    def is_displayed(self):
-        return self.participant.vars['participate'] == 0
+    pass
 
 
 page_sequence = [ThankYou]
