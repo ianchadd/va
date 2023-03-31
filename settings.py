@@ -40,8 +40,9 @@ SESSION_CONFIGS = [
         app_sequence=[
             # 'prolific_id_begin',
             # 'informed_consent',
-            'Introduction',
-            'slider_individual',
+            # 'Introduction',
+            # 'slider_individual',
+            'instructions_slider_va',
             # 'pt1_VA2',
             'survey_va_pilot'
             # 'prolific_id_end'
@@ -54,13 +55,17 @@ SESSION_CONFIGS = [
         test=0,
         study="pilot",
         va_probs=[0, 25, 50, 75, 100],
+        va_name='SAM',
         participation_fee=0,  # this is set to 0 b/c this is added to payoff
         real_world_currency_per_point=1,
+        pt1gender=0, # 0 for male, 1 for female
         partfee=2,
         pt1rate=0.2,
         pt3rate=1,
         num_part=16,
         max_earning=25,
+        turnlength=10, # in seconds
+        roundlength=4*60, # in seconds, must be divisible by turnlength
         uq_error='Check your answer.',
         doc="""
         Program for pilot sessions on Prolific

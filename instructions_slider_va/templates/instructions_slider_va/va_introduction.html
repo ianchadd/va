@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Task 2: Instructions
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+<p>
+  Meet <b>{{va_name}}</b>!
+  <b>{{va_name}}</b> is your Virtual Assistant.
+  Whenever {{va_pronoun}} is taking a turn in a slider puzzle, {{va_pronoun}} will appear on your screen like this:
+</p>
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
+  <img id="avatar" src="{% static va_img_path %}" width="250" height="250" />
+  <p style="margin-top: 10px;"><b>{{va_name}}</b></p>
+</div>
+
+
+
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=500 label='NEXT'%}
+
+{% endblock %}

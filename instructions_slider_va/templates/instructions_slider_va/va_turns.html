@@ -1,0 +1,45 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Task 2: Instructions
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+  <p>
+    Just like in the last task, you'll have {{round_length}} minutes to solve Slider Puzzles.
+    However, these {{round_length}} minutes are divided into turns that last {{turn_length}} seconds each.
+    Half of these turns will be yours and half will be <b>{{va_name}}'s</b>.
+  </p>
+
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
+  <img id="avatar" src="{% static va_img_path %}" width="250" height="250" />
+  <p style="margin-top: 10px;"><b>{{va_name}}</b></p>
+</div>
+
+<p>
+  On each one of your turns, you will have {{turn_length}} seconds to make at most <b>one</b> move.
+  You cannot make more than one move on your turn.
+  Once you have made your move (by clicking on a tile), your puzzle will <b>grey out</b> and you won't be able to make another move for the rest of your turn.
+</p>
+
+<p>
+  Similarly, <b>{{va_name}}</b> can only make one move in each turn.
+  While {{va_pronoun}} is trying to find a correct move, your puzzle will <b>grey out</b> and you won't be able to make moves during <b>{{va_name}}'s</b> turn.
+</p>
+
+<p>
+ Remember, at the end of each of <b>{{va_name}}'s</b> turns, {{va_pronoun}} will let you know whether {{va_pronoun}} was able to find (and make) a correct move.
+</p>
+
+
+
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=500 label='NEXT'%}
+
+{% endblock %}

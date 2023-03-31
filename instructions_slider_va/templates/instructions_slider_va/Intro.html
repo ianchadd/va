@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Task 2: Instructions
+{% endblock %}
+
+{% block content %}
+<p>These are the instructions for the second task in this study.</p>
+
+<p>
+  In this task, you will again solve Slider Puzzles, but not on your own.
+  Instead, you will be solving these puzzles with the assistance of a <b>Virtual Assistant</b>.
+</p>
+
+<p>
+  In this task, you and the Virtual Assistant will <b>take turns</b> moving tiles in order to solve Slider Puzzles.
+  You will be paid <b>${{va_slider_rate}} </b>for each Slider Puzzle that you and the Virtual Assistant solve in this Task.
+</p>
+
+<p>
+  On the next page, we'll give you some additional information about the Virtual Assistant.
+</p>
+
+
+
+<!-- {% delayed_next wait=30000 label='NEXT'%} -->
+
+{% delayed_next wait=500 label='NEXT'%}
+
+
+{% endblock %}

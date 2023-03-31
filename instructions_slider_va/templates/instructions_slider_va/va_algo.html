@@ -1,0 +1,43 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Task 2: Instructions
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+  <p>
+    We'll now give you a little more information about how <b>{{va_name}}</b> can help you with Slider Puzzles.
+  </p>
+
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
+  <img id="avatar" src="{% static va_img_path %}" width="250" height="250" />
+  <p style="margin-top: 10px;"><b>{{va_name}}</b></p>
+</div>
+
+<p>
+  <b>{{va_name}}</b> was programmed with an <b>algorithm</b> specifically to work on Slider Puzzles with you.
+  Whenever it is <b>{{va_name}}'s</b> turn, {{va_pronoun}} will search through the possible moves based on the state of the puzzle and try to find a <b>correct</b> move.
+</p>
+
+<p>
+ But <b>{{va_name}}'s</b> algorithm isn't perfect.
+ Sometimes {{va_pronoun}} will be able to find a correct move.
+ And sometimes {{va_pronoun}} won't be able to find a correct move.
+</p>
+
+<p>
+ At the end of each of <b>{{va_name}}'s</b> turns, {{va_pronoun}} will let you know whether {{va_pronoun}} was able to find (and make) a correct move.
+</p>
+
+
+
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=500 label='NEXT'%}
+
+{% endblock %}

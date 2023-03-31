@@ -1,0 +1,38 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Task 2: Instructions
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+  <p>
+    Finally, keep in mind that <b>{{va_name}}'s</b> algorithm isn't perfect and that {{va_pronoun}} might not be able to find a correct move in every turn.
+  </p>
+
+<p>
+  We'd like for you to estimate how many of <b>{{va_name}}'s</b> turns will result in a correct move.
+  Once this task is done, <b>{{va_name}}</b> will have had {{va_turns}} turns.
+</p>
+
+<p>
+  We're going to ask you for this estimate <b>once more</b> after all the turns are over.
+  So it would be best for you to <b>get a pen/pencil and some paper</b> to keep a tally of how many correct moves {{va_pronoun}} makes.
+</p>
+
+<p>
+ Remember, at the end of each of <b>{{va_name}}'s</b> turns, {{va_pronoun}} will let you know whether {{va_pronoun}} was able to find (and make) a correct move.
+ This message will be displayed on the screen for a few seconds, so it should be easy to keep track of this number.
+</p>
+
+
+
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=500 label='NEXT'%}
+
+{% endblock %}
