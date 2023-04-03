@@ -33,7 +33,13 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass 
+    initial_guess = models.IntegerField (
+        label = 'How many times do you think the Virtual Assistant will find a correct move?',
+        )
+
+def initial_guess_max(player):
+    guess_max = int(player.session.config['roundlength']/(2 * player.session.config['turnlength']))
+    return guess_max
     # uq2 = models.IntegerField (
     #     label = "1. Which of the following puzzles is in the correct order?",
     #     widget = widgets.RadioSelect,

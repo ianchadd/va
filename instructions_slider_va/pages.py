@@ -72,7 +72,7 @@ class VA_Quality_Guess(Page):
         return {
             'turn_length': self.session.config['turnlength'],
             'round_length': self.session.config['roundlength']/60,
-            'va_turns': self.session.config['roundlength']/(2 * self.session.config['turnlength']),
+            'va_turns': int(self.session.config['roundlength']/(2 * self.session.config['turnlength'])),
             'va_pronoun': va_pron,
             'va_name': self.session.config['va_name'],
             'va_img_path': 'GenderedIcons/{}.png'.format(self.session.config['pt1gender']),
@@ -84,6 +84,8 @@ class VA_Quality_Guess(Page):
 
 class VA_Quality_Guess_Entry(Page):
     # Info on the nature of turns
+    form_model = 'player'
+    form_fields = ['initial_guess']
     def vars_for_template(self):
         va_pron = 'he'
         if self.session.config['pt1gender']:
@@ -91,7 +93,7 @@ class VA_Quality_Guess_Entry(Page):
         return {
             'turn_length': self.session.config['turnlength'],
             'round_length': self.session.config['roundlength']/60,
-            'va_turns': self.session.config['roundlength']/(2 * self.session.config['turnlength']),
+            'va_turns': int(self.session.config['roundlength']/(2 * self.session.config['turnlength'])),
             'va_pronoun': va_pron,
             'va_name': self.session.config['va_name'],
             'va_img_path': 'GenderedIcons/{}.png'.format(self.session.config['pt1gender']),
