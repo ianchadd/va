@@ -38,7 +38,11 @@ class Game(Page):
         }
 
     def vars_for_template(self):
+        va_pron = 'he'
+        if self.session.config['pt1gender']:
+            va_pron = 'she'
         return dict(
+            va_pron = va_pron,
             pt1image_path='GenderedIcons/{}.png'.format(self.session.config['pt1gender']),
             failure=self.session.config['failure_tracking'],
             turnlength=self.session.config['turnlength'],
@@ -55,6 +59,15 @@ class Debrief(Page):
     form_model = 'player'
     form_fields = ['guess_correct']
 
+    def vars_for_template(self):
+        va_pron = 'he'
+        if self.session.config['pt1gender']:
+            va_pron = 'she'
+        return {
+            'va_pronoun': va_pron,
+            'va_name': self.session.config['va_name'],
+            'va_turns': int(self.session.config['roundlength']/(2 * self.session.config['turnlength']))
+            }
     def before_next_page(self):
         if self.player.guess_correct == self.player.va_correct:
             self.player.payoff += self.session.config['pt1qbonus'] #TODO: Change

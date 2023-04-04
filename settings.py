@@ -40,10 +40,10 @@ SESSION_CONFIGS = [
         app_sequence=[
             # 'prolific_id_begin',
             # 'informed_consent',
-            # 'Introduction',
-            # 'slider_individual',
+            'Introduction',
+            'slider_individual',
             'instructions_slider_va',
-            # 'pt1_VA2',
+            'pt1_VA2',
             'survey_va_pilot'
             # 'prolific_id_end'
                      ],
@@ -64,6 +64,7 @@ SESSION_CONFIGS = [
         pt3rate=1,
         num_part=16,
         max_earning=25,
+        failure_tracking=0, # 0 for no move, 1 for bad move
         turnlength=10, # in seconds
         roundlength=4*60, # in seconds, must be divisible by turnlength
         uq_error='Check your answer.',

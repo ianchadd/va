@@ -10,7 +10,7 @@ from otree.api import (
 )
 
 class Constants(BaseConstants):
-    name_in_url = 'demographics_nbo'
+    name_in_url = 'demographics_va'
     players_per_group = None
     num_rounds = 1
 
@@ -320,11 +320,11 @@ class Player(BasePlayer):
     #used in Charles et al. (2023)
     FEWORK = models.IntegerField(
         label = 'Do you approve or disapprove of a married woman earning money in business or industry if she has a husband capable of supporting her?',
-        choices = [[5,'Strongly Agree'],
-                   [4,'Agree'],
-                   [3,'Neither Agree nor Disagree'],
-                   [2,'Disagree'],
-                   [1,'Strongly Disagree']
+        choices = [[5,'Strongly Approve'],
+                   [4,'Approve'],
+                   [3,'Neither Approve nor Disapprove'],
+                   [2,'Disapprove'],
+                   [1,'Strongly Disapprove']
                    ],
         widget = widgets.RadioSelect
         )
@@ -342,17 +342,15 @@ class Player(BasePlayer):
 
     FEPRES = models.IntegerField(
         label = 'If your party nominated a woman for president, would you vote for her if she were qualified for the job?',
-        choices = [[5,'Strongly Agree'],
-                   [4,'Agree'],
-                   [3,'Neither Agree nor Disagree'],
-                   [2,'Disagree'],
-                   [1,'Strongly Disagree']
+        choices = [[1,'Yes'],
+                   [0,'No'],
+                   [-1,"Wouldn't vote"]
                    ],
         widget = widgets.RadioSelect
         )
 
     FEPOL = models.IntegerField(
-        label = 'Tell me if you agree or disagree with this statement: Most men are better suited emotionally for politics than are most women.',
+        label = 'Do you agree or disagree with this statement? Most men are better suited emotionally for politics than are most women.',
         choices = [[5,'Strongly Agree'],
                    [4,'Agree'],
                    [3,'Neither Agree nor Disagree'],
@@ -363,7 +361,7 @@ class Player(BasePlayer):
         )
 
     FECHILD = models.IntegerField(
-        label = 'A working mother can establish just as warm and secure a relationship with her children as a mother who does not work.',
+        label = 'Do you agree or disagree with this statement? A working mother can establish just as warm and secure a relationship with her children as a mother who does not work.',
         choices = [[5,'Strongly Agree'],
                    [4,'Agree'],
                    [3,'Neither Agree nor Disagree'],
@@ -374,7 +372,7 @@ class Player(BasePlayer):
         )
 
     FEPRESCH = models.IntegerField(
-        label = 'A preschool child is likely to suffer if his or her mother works.',
+        label = 'Do you agree or disagree with this statement? A preschool child is likely to suffer if his or her mother works.',
         choices = [[5,'Strongly Agree'],
                    [4,'Agree'],
                    [3,'Neither Agree nor Disagree'],
@@ -385,7 +383,7 @@ class Player(BasePlayer):
         )
 
     FEHELP = models.IntegerField(
-        label = 'It is more important for a wife to help her husband`s career than to have one herself.',
+        label = 'Do you agree or disagree with this statement? It is more important for a wife to help her husband`s career than to have one herself.',
         choices = [[5,'Strongly Agree'],
                    [4,'Agree'],
                    [3,'Neither Agree nor Disagree'],
@@ -396,7 +394,7 @@ class Player(BasePlayer):
         )
 
     FEFAM = models.IntegerField(
-        label = 'It is much better for everyone involved if the man is the achiever outside the home and the women takes care of the home and family.',
+        label = 'Do you agree or disagree with this statement? It is much better for everyone involved if the man is the achiever outside the home and the women takes care of the home and family.',
         choices = [[5,'Strongly Agree'],
                    [4,'Agree'],
                    [3,'Neither Agree nor Disagree'],

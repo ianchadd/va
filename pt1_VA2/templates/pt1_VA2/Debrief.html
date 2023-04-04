@@ -2,14 +2,22 @@
 {% load otree static %}
 
 {% block title %}
-    Debrief Questionnaire
+    Performance Estimate
 {% endblock %}
 
 {% block content %}
     <p>
-        Make a guess on how often the VA was correct within your trial. You will be paid ??? extra for the correctness of your answer.
+        Recall earlier we requested that you keep track of how many of <b>{{va_name}}'s</b> moves were <b>correct.</b>
+        We'll now ask for your estimate of this number.
     </p>
-    {% formfield 'guess_correct' label="Guess" %}
+    <p>
+      [INCENTIVE INFORMATION]
+    </p>
+
+    <p>
+      Out of <b>{{va_turns}} turns</b>, how many <b>correct moves</b> did <b>{{va_name}}</b> make?
+    </p>
+    {% formfield player.guess_correct label='' %}
     {% next_button %}
 
 {% endblock %}

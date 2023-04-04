@@ -18,12 +18,12 @@
 {% block content %}
     <p>
         In this part, you will solve slider puzzles on your own.
-        You have <strong> 4 minutes </strong> to solve
+        You have <strong> {{roundlength}} minutes</strong> to solve
         as many puzzles as possible (up to a maximum of 15 puzzles).
         You will earn <strong> ${{session.config.pt1rate}}</strong> per puzzle solved.
     </p>
 
     <!-- {% delayed_next wait=30000 label='NEXT'%} -->
-    {% delayed_next wait=5000 label='NEXT'%}
+    {% delayed_next wait=50 label='NEXT'%}
 
 {% endblock %}

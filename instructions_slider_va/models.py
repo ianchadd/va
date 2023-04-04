@@ -19,7 +19,7 @@ Your app description
 
 
 class Constants(BaseConstants):
-    name_in_url = 'Introduction'
+    name_in_url = 'Instructions VA'
     players_per_group = None
     num_rounds = 1
 
@@ -34,11 +34,11 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     initial_guess = models.IntegerField (
-        label = 'How many times do you think the Virtual Assistant will find a correct move?',
+        label = '',
         )
 
-def initial_guess_max(player):
-    guess_max = int(player.session.config['roundlength']/(2 * player.session.config['turnlength']))
+def initial_guess_max(player,self):
+    guess_max = int(self.session.config['roundlength']/(2 * self.session.config['turnlength']))
     return guess_max
     # uq2 = models.IntegerField (
     #     label = "1. Which of the following puzzles is in the correct order?",

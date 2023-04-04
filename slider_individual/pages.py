@@ -4,7 +4,11 @@ from .models import Constants
 
 
 class Intro(Page):
-    pass
+    def vars_for_template(self):
+        roundlength = self.session.config['roundlength']/60 #in minutes
+        return{
+            'roundlength': int(roundlength)
+        }
 
 
 class Ready(Page):
@@ -20,7 +24,7 @@ class Game(Page):
         if self.session.config['test'] == 1:
             return 30  # 30 seconds if test session
         if self.session.config['test'] == 0:
-            return 4*60  # 4 minutes if real session
+            return self.session.config['roundlength']
 
     def js_vars(self):
         return {

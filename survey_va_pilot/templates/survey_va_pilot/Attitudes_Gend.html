@@ -1,8 +1,14 @@
 {% extends "global/Page.html" %}
-{% load otree static %}
+{% load otree %}
+
 {% block title %}
-    Get ready, Task 1 will start in just a moment.
 {% endblock %}
+
 {% block content %}
+
+
+    {% formfields %}
+
+    {% next_button %}
 
 {% endblock %}
