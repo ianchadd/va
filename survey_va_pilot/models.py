@@ -403,3 +403,19 @@ class Player(BasePlayer):
                    ],
         widget = widgets.RadioSelect
         )
+
+#gender perceptions of VA
+    #used in Brenoe et al.
+    CGI = models.IntegerField(
+        label = 'Where would you put the Virtual Assistant on this scale?',
+        choices = [ [1, 'Very masculine'],
+                    [2, 'Somewhat masculine'],
+                    [3, 'A little masculine'],
+                    [4, 'Neither masculine nor feminine'],
+                    [5, 'A little feminine'],
+                    [6, 'Somewhat feminine'],
+                    [7, 'Very feminine']
+        ],
+        widget = widgets.RadioSelect
+    )
+    #
