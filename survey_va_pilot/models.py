@@ -13,6 +13,8 @@ class Constants(BaseConstants):
     name_in_url = 'demographics_va'
     players_per_group = None
     num_rounds = 1
+    decision_template = 'survey_va_pilot/decision_template.html'
+
 
 states = {
         'AK': 'Alaska',
@@ -407,7 +409,6 @@ class Player(BasePlayer):
 #gender perceptions of VA
     #used in Brenoe et al.
     CGI = models.IntegerField(
-        label = 'Where would you put the Virtual Assistant on this scale?',
         choices = [ [1, 'Very masculine'],
                     [2, 'Somewhat masculine'],
                     [3, 'A little masculine'],
@@ -418,4 +419,28 @@ class Player(BasePlayer):
         ],
         widget = widgets.RadioSelect
     )
-    #
+    #BSRI short form
+
+#VA performance perceptions, from Exley and Kessler (2022, QJE)
+    #performance bucket, 6 point likert scale, terrible to exceptional
+    va_performance_bucket = models.IntegerField(
+        choices = [ [1, 'Terrible'],
+                    [2, 'Very Poor'],
+                    [3, 'Neutral'],
+                    [4, 'Good'],
+                    [5, 'Very Good'],
+                    [6, 'Exceptional'],
+        ],
+        widget = widgets.RadioSelect
+    )
+    #continuous response, 0 to 100, agree or disagree with 'The Virtual Assistant Performed Well in the Slider Task'
+    va_performance_cts = models.IntegerField(
+        min = 0,
+        max = 100
+    )
+
+#VA/AI Usage questions
+
+#what did you think this study was about?
+
+#

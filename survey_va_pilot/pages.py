@@ -129,7 +129,40 @@ class Attitudes_Gend(Page):
         'FEFAM'
     ]
 
+class VA_Perception_Gend(Page):
+    form_model = 'player'
+    form_fields = [
+        'CGI',
+    ]
+    def vars_for_template(self):
+        va_pron = 'he'
+        if self.session.config['pt1gender']:
+            va_pron = 'she'
+        return dict(
+            va_pron = va_pron,
+            va_name = self.session.config['va_name'],
+            va_img_path='GenderedIcons/{}.png'.format(self.session.config['pt1gender'])
+        )
+
+class VA_Perception_Perf(Page):
+    form_model = 'player'
+    form_fields = [
+        'va_performance_bucket',
+        'va_performance_cts'
+    ]
+    def vars_for_template(self):
+        va_pron = 'he'
+        if self.session.config['pt1gender']:
+            va_pron = 'she'
+        return dict(
+            va_pron = va_pron,
+            va_name = self.session.config['va_name'],
+            va_img_path='GenderedIcons/{}.png'.format(self.session.config['pt1gender'])
+        )
+
 page_sequence = [Instructions,
+                VA_Perception_Gend,
+                VA_Perception_Perf,
                  Age,
                  Sex,
                  Gender,
@@ -145,5 +178,5 @@ page_sequence = [Instructions,
                  #LGBT_Free,
                  #LGBT_Ally,
                  #Location,
-                 Attitudes_Gend
+                 Attitudes_Gend,
                  ]

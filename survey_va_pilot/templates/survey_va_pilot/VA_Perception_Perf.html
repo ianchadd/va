@@ -1,0 +1,56 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<p>
+The following questions are about {{va_name}}'s ability to solve Slider Puzzles:
+</p>
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
+  <img id="avatar" src="{% static va_img_path %}" width="250" height="250" />
+  <p style="margin-top: 10px;"><b>{{va_name}}</b></p>
+</div>
+
+<p>
+Please indicate how well you think {{va_name}} did at solving Slider Puzzles:
+</p>
+    {% formfield player.va_performance_bucket label = ''%}
+
+
+
+<p>
+On a scale from 0 (entirely disagree) to 100 (entirely agree), please indicate the extent to which you agree with the following statement: <b>{{va_name}}</b> performed well at solving Slider Puzzles.
+</p>
+{% include Constants.decision_template %}
+        <style>
+
+        #submit {
+          display: none;
+        }
+    </style>
+
+    <br>
+    <br>
+
+
+    <script>
+      var slider = document.getElementById("myRange");
+      var output_1 = document.getElementById("their_amt");
+      var output_2 = document.getElementById("my_amt");
+      var button = document.getElementById("submit");
+
+
+      slider.oninput = function() {
+        output_1.innerHTML = this.value;
+        output_2.innerHTML = 100 - this.value;
+        button.style.display = "block";
+      }
+
+
+    </script>
+
+    {% next_button %}
+
+{% endblock %}
