@@ -68,6 +68,7 @@ SESSION_CONFIGS = [
         turnlength=10, # in seconds
         roundlength=4*60, # in seconds, must be divisible by turnlength
         uq_error='Check your answer.',
+        va_initial_prediction_rate = 2,
         doc="""
         Program for pilot sessions on Prolific
         for gender and VA project.
