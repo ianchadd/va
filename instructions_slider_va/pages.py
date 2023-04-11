@@ -91,6 +91,8 @@ class VA_Quality_Guess_Entry(Page):
         if self.session.config['pt1gender']:
             va_pron = 'she'
         return {
+            'va_initial_estimate_rate': self.session.config['va_initial_prediction_rate'],
+            'details': 'va/details.pdf',
             'turn_length': self.session.config['turnlength'],
             'round_length': self.session.config['roundlength']/60,
             'va_turns': int(self.session.config['roundlength']/(2 * self.session.config['turnlength'])),

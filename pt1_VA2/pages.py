@@ -64,6 +64,7 @@ class Debrief(Page):
         if self.session.config['pt1gender']:
             va_pron = 'she'
         return {
+            'details': 'va/details.pdf',
             'va_pronoun': va_pron,
             'va_name': self.session.config['va_name'],
             'va_turns': int(self.session.config['roundlength']/(2 * self.session.config['turnlength']))

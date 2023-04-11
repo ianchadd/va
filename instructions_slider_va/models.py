@@ -19,7 +19,7 @@ Your app description
 
 
 class Constants(BaseConstants):
-    name_in_url = 'Instructions VA'
+    name_in_url = 'instructions_va'
     players_per_group = None
     num_rounds = 1
 

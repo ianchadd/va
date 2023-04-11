@@ -11,8 +11,41 @@
         We'll now ask for your estimate of this number.
     </p>
     <p>
-      [INCENTIVE INFORMATION]
+      Remember, you can <b>earn additional money</b> based on the accuracy of your estimate.
     </p>
+
+    <p>
+      Clicking the button below will provide a detailed description of how you will be paid for your estimate.
+      You do not need to know it in detail, except that the procedure is designed so that <b>it is in your best interest to state your estimate as accurately and truthfully as possible.</b>
+    </p>
+    <div style="text-align: center;">
+      <button type="button" onclick="show_hide_Instructions()">Show/Hide Additional Details</button>
+    </div>
+        <div id="instructions">
+          <div class="card bg-secondary text-white m-3">
+            <div class="card-body">
+              <iframe src= "{% static details %}" width="100%" height="500px">
+              </iframe>
+            </div>
+          </div>
+          <p>If you are unable to see the embedded document above, please click <a target = "_blank" href='https://virtual-experimental-lab.github.io/virtual-experimental-lab.github.io/Prediction%20Payment.pdf'>here</a>
+          </p>
+        </div>
+    <style>
+        #instructions {
+          display: none;
+        }
+    </style>
+    <script>
+    function show_hide_Instructions() {
+      var x = document.getElementById("instructions");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+    </script>
 
     <p>
       Out of <b>{{va_turns}} turns</b>, how many <b>correct moves</b> did <b>{{va_name}}</b> make?
