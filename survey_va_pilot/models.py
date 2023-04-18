@@ -440,6 +440,236 @@ class Player(BasePlayer):
     )
 
 #VA/AI Usage questions
+    # ChatGPT Questions
+    VAFREQ = models.IntegerField(
+        label = 'How often do you interact with a virtual voice assistant (e.g., Siri, Alexa, Google Home)?',
+        choices = [[5,'Daily'],
+                   [4,'Several times a week'],
+                   [3,'Once a week'],
+                   [2,'Once a month'],
+                   [1,'Rarely or never']
+        ],
+        widget = widgets.RadioSelect
+    )
+
+    VAACCESS = models.IntegerField(
+        label = 'Do you feel like you have access to VA technology??',
+        choices = [[4,'Yes, using a VA is easy and accessible for me'],
+                   [3,'No, using a VA hard and unaccessible for me'],
+                   [2,'Neutral, I do not feel like VA is neither easy and accesible nor hard an unaccessible']
+                   ],
+        widget = widgets.RadioSelect()
+    )
+
+
+    VAWORK = models.IntegerField(
+        label='Is VA use encouraged at your workplace??',
+        choices=[[4, 'Yes, using a VA is encouraged'],
+                 [3, 'No, VA use is discouraged'],
+                 [2, 'Neutral, VA use is neither discouraged nor encouraged']
+                 ],
+            widget = widgets.RadioSelect()
+    )
+
+    VAGEN = models.IntegerField(
+        label='What is the gender of the voice you use for your virtual assistant??',
+        choices=[[3, 'Female'],
+                 [2, 'Male'],
+                 [1, 'Neutal/Robot']
+                 ],
+        widget=widgets.RadioSelect
+    )
+
+    AI_alarms = models.BooleanField(
+        label = 'Setting reminders and alarms',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_info = models.BooleanField(
+        label = 'Answering questions and providing information',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_music = models.BooleanField(
+        label = 'Playing music and controlling smart home devices',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_calls = models.BooleanField(
+        label = 'Sending messages and making calls',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_sched = models.BooleanField(
+        label = 'Creating and managing schedules',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_recs = models.BooleanField(
+        label = 'Providing recommendations and suggestions',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_calcs = models.BooleanField(
+        label = 'Performing simple tasks like conversions and calculations',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_other = models.BooleanField(
+        label = 'Other (please state below)',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    diff_AI = models.StringField(
+        label = '',
+        initial = '',
+        blank = True)
+
+    VATRUST = models.IntegerField(
+        label = 'How often much do you trust and follow the output of your virtual voice assistant (e.g., Siri, Alexa, Google Home)?',
+        choices = [[6,'Completely, I never double-check'],
+                   [5,'I tend to trust what my VA says, but sometimes, I double-check to make sure'],
+                   [4,'I double check to make sure about half the time'],
+                   [3,'I am more likely to not trust my VA, and more often than not double-check their answer'],
+                   [2,'I never trust my VA, and always make sure to double-check'],
+                   [1,'I am not a VA user']
+                   ],
+        widget = widgets.RadioSelect()
+    )
+
+    AI_trust_conv = models.BooleanField(
+        label = 'Convenience',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_trust_eff = models.BooleanField(
+        label = 'Efficiency',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_trust_prod = models.BooleanField(
+        label = 'Productivity',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_trust_help = models.BooleanField(
+        label = 'Helpful for tasks',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_trust_acc = models.BooleanField(
+        label = 'Accurate responses',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_trust_rel = models.BooleanField(
+        label = 'Technology is reliable',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_trust_priv = models.BooleanField(
+        label = 'Privacy concerns',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_trust_sec = models.BooleanField(
+        label = 'Security concerns',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_trust_human = models.BooleanField(
+        label = 'Lack of human interaction',
+        widget=widgets.CheckboxInput,
+        initial = False,
+        blank = True)
+    AI_trust_other = models.BooleanField(
+        label='Other (please state below)',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    diff_AI_trust = models.StringField(
+        label='',
+        initial='',
+        blank=True)
+
+
+    AI_distrust_conv = models.BooleanField(
+        label='Convenience',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    AI_distrust_eff = models.BooleanField(
+        label='Efficiency',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    AI_distrust_prod = models.BooleanField(
+        label='Productivity',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    AI_distrust_help = models.BooleanField(
+        label='Helpful for tasks',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    AI_distrust_acc = models.BooleanField(
+        label='Accurate responses',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    AI_distrust_rel = models.BooleanField(
+        label='Technology is reliable',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+
+    AI_distrust_priv = models.BooleanField(
+        label='Privacy concerns',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    AI_distrust_sec = models.BooleanField(
+        label='Security concerns',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    AI_distrust_human = models.BooleanField(
+        label='Lack of human interaction',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    AI_distrust_other = models.BooleanField(
+        label='Other (please state below)',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    diff_AI_distrust = models.StringField(
+        label='',
+        initial='',
+        blank=True)
+
+    VAHAPPY = models.IntegerField(
+        label='Do you feel happier when using VAs as compared to doing things on your own?',
+        choices=[[4, 'Yes, using a VA makes me feel happier'],
+                 [3, 'No, using a VA makes me feel less happy'],
+                 [2, 'Neutral, using a VA does not affect my happiness'],
+                 [1, 'I am not a VA user']
+                 ],
+        widget=widgets.RadioSelect()
+    )
+
+    VAPROD = models.IntegerField(
+        label='Do you feel more productive when using VAs as compared to doing things on your own?',
+        choices=[[4, 'Yes, using a VA makes me feel more productive'],
+                 [3, 'No, using a VA makes me feel less productive'],
+                 [2, 'Neutral, using a VA does not affect my productivity'],
+                 [1, 'I am not a VA user']
+                 ],
+        widget=widgets.RadioSelect()
+    )
+
+
 
 #what did you think this study was about?
 

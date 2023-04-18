@@ -160,23 +160,125 @@ class VA_Perception_Perf(Page):
             va_img_path='GenderedIcons/{}.png'.format(self.session.config['pt1gender'])
         )
 
+
+class VA_Freq(Page):
+    form_model = 'player'
+    form_fields = [
+        'VAFREQ',
+        'VAACCESS',
+        'VAWORK'
+    ]
+
+class VA_Gen(Page):
+    form_model = 'player'
+    form_fields = [
+        'VAGEN'
+    ]
+
+class VA_Uses(Page):
+    form_model = 'player'
+    form_fields = [
+        'AI_alarms',
+        'AI_info',
+        'AI_music',
+        'AI_calls',
+        'AI_sched',
+        'AI_recs',
+        'AI_calcs',
+        'AI_other',
+        'diff_AI'
+    ]
+    def error_message(self,values):
+        if values['AI_other']:
+            return 'If you select Other, you must specify in the provided field'
+
+        if values['AI_alarms'] == 0 and values['AI_info'] == 0 and values['AI_music'] == 0 and values['AI_calls'] == 0 and values['AI_sched'] == 0 and values['AI_recs'] == 0 and values['AI_calcs'] == 0 and values['AI_other'] == 0:
+            return 'You must select at least one response.'
+        elif values['AI_other'] and type(values['diff_AI']) == type(None):
+            return 'If you select Other, you must specify in the provided field'
+
+class VA_Trust(Page):
+    form_model = 'player'
+    form_fields = [
+        'VATRUST'
+    ]
+
+class VA_TrustMC(Page):
+    form_model = 'player'
+    form_fields = [
+        'AI_trust_conv',
+        'AI_trust_eff',
+        'AI_trust_prod',
+        'AI_trust_help',
+        'AI_trust_acc',
+        'AI_trust_rel',
+        'AI_trust_priv',
+        'AI_trust_sec',
+        'AI_trust_human',
+        'AI_trust_other',
+        'diff_AI_trust'
+    ]
+
+    def error_message(self, values):
+        if values['AI_trust_conv'] == 0 and values['AI_trust_eff'] == 0 and values['AI_trust_prod'] == 0 and values['AI_trust_help'] == 0 and values['AI_trust_acc'] == 0 and values['AI_trust_rel'] == 0 and values['AI_trust_priv'] == 0 and values['AI_trust_sec'] == 0 and values['AI_trust_human'] == 0 and values['AI_trust_other'] == 0:
+            return 'You must select at least one response.'
+        elif values['AI_trust_other'] and type(values['diff_AI_trust']) == type(None):
+            return 'If you select Other, you must specify in the provided field'
+
+class VA_DistrustMC(Page):
+    form_model = 'player'
+    form_fields = [
+        'AI_distrust_conv',
+        'AI_distrust_eff',
+        'AI_distrust_prod',
+        'AI_distrust_help',
+        'AI_distrust_acc',
+        'AI_distrust_rel',
+        'AI_distrust_priv',
+        'AI_distrust_sec',
+        'AI_distrust_human',
+        'AI_distrust_other',
+        'diff_AI_distrust'
+    ]
+
+    def error_message(self, values):
+        if values['AI_distrust_conv'] == 0 and values['AI_distrust_eff'] == 0 and values['AI_distrust_prod'] == 0 and values['AI_distrust_help'] == 0 and values['AI_distrust_acc'] == 0 and values['AI_distrust_rel'] == 0 and values['AI_distrust_priv'] == 0 and values['AI_distrust_sec'] == 0 and values['AI_distrust_human'] == 0 and values['AI_distrust_other'] == 0:
+            return 'You must select at least one response.'
+        elif values['AI_distrust_other'] and type(values['diff_AI_distrust']) == type(None):
+            return 'If you select Other, you must specify in the provided field'
+
+class VA_Emotions(Page):
+    form_model = 'player'
+    form_fields = [
+        'VAHAPPY',
+        'VAPROD'
+    ]
+
+
 page_sequence = [Instructions,
-                VA_Perception_Gend,
-                VA_Perception_Perf,
-                 Age,
-                 Sex,
-                 Gender,
-                 #Orientation,
-                 #S_History,
-                 #Relationship,
-                 #Primary_Earner,
-                 Income,
-                 Attn_Check,
-                 Ethnicity,
-                 #Religion,
-                 #Politics,
-                 #LGBT_Free,
-                 #LGBT_Ally,
-                 #Location,
-                 Attitudes_Gend,
+                # VA_Perception_Gend,
+                # VA_Perception_Perf,
+                # Age,
+                # Sex,
+                # Gender,
+                # Orientation,
+                # S_History,
+                # Relationship,
+                # Primary_Earner,
+                # Income,
+                # Attn_Check,
+                # Ethnicity,
+                # Religion,
+                # Politics,
+                # LGBT_Free,
+                # LGBT_Ally,
+                # Location,
+                # Attitudes_Gend,
+                 VA_Freq,
+                 VA_Uses,
+                 VA_Gen,
+                 VA_Trust,
+                 VA_TrustMC,
+                 VA_DistrustMC,
+                 VA_Emotions
                  ]
