@@ -1,15 +1,19 @@
 {% extends "global/Page.html" %}
 {% load otree static %}
 {% block title %}
-    The individual round is over
+
 {% endblock %}
 {% block content %}
     <p>
-        The individual round is over. You solved
+        Task 2 is over. You solved
         <strong> {{player.puzzles_solved_pt1}} puzzles</strong>.
     </p>
     <p>
         Click Next to proceed.
     </p>
         {% next_button %}
+
+    <!-- {% delayed_next wait=30000 label='NEXT'%} -->
+
+    {% delayed_next wait=5000 label='NEXT'%}
 {% endblock %}
