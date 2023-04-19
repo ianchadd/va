@@ -669,6 +669,210 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect()
     )
 
+### CHATGPT Questions From CATA
+
+    GPTFAM = models.IntegerField(
+        label = "How familiar are you with ChatGPT?",
+        choices = [
+            [1, "I have not heard of it"],
+            [2, "I have heard of it but have not used it myself"],
+            [3, "I use it occasionally"],
+            [4, "I use it all the time"]
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+    GPTSTART = models.IntegerField(
+        label = 'Around when did you start using ChatGPT? Please select your best guess if you do not remember.',
+        choices = [
+            [1, 'December 2022'],
+            [2, 'January 2023'],
+            [3, 'February 2023'],
+            [4, 'March 2023'],
+            [5, 'April 2023'],
+            [6, "I don't use it"]
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+    GPTPROL = models.IntegerField(
+        label = 'Have you used ChatGPT in your Prolific work?',
+        choices = [
+            [1, "No, ChatGPT cannot help me in my Prolific work"],
+            [2, "No, I do not use ChatGPT even though it is possible to use it in my Prolific work"],
+            [3, "Yes, I have used ChatGPT occasionally in my Prolific work"],
+            [4, "Yes, ChatGPT is a main resource for my Prolific work"]
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+    GPT_USE_time = models.BooleanField(
+        label='Save time',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    GPT_USE_accu = models.BooleanField(
+        label='Increase accuracy or work quality',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    GPT_USE_comp = models.BooleanField(
+        label='Increasing chances of beating others in tasks that involve competition',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    GPT_USE_bonus = models.BooleanField(
+        label='Increasing chances of earning bonuses',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    GPT_USE_none = models.BooleanField(
+        label='I do not see any advantages',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    GPT_USE_other = models.BooleanField(
+        label='Other. Please write down:',
+        widget=widgets.CheckboxInput,
+        initial=False,
+        blank=True)
+    diff_GPT_USE = models.StringField(
+        label='',
+        initial='',
+        blank=True)
+
+    GPTCHEAT_PRO = models.IntegerField(
+        label = 'Using ChatGPT as an aid in Prolific work is equivalent to cheating',
+        choices = [
+            [5, 'Completely agree'],
+            [4, 'Somewhat agree'],
+            [3, 'Neither agree nor disagree'],
+            [2, 'Somewhat disagree'],
+            [1, 'Completely disagree']
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+    GPTCHEAT_EDU = models.IntegerField(
+        label = 'Using ChatGPT as an aid in schoolwork is equivalent to cheating',
+        choices = [
+            [5, 'Completely agree'],
+            [4, 'Somewhat agree'],
+            [3, 'Neither agree nor disagree'],
+            [2, 'Somewhat disagree'],
+            [1, 'Completely disagree']
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+    GPTPROD_PRO = models.IntegerField(
+        label = 'ChatGPT is a tool to increase productivity in Prolific work',
+        choices = [
+            [5, 'Completely agree'],
+            [4, 'Somewhat agree'],
+            [3, 'Neither agree nor disagree'],
+            [2, 'Somewhat disagree'],
+            [1, 'Completely disagree']
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+    GPTLEARN_EDU = models.IntegerField(
+        label = 'ChatGPT is a tool to enhance learning in school',
+        choices = [
+            [5, 'Completely agree'],
+            [4, 'Somewhat agree'],
+            [3, 'Neither agree nor disagree'],
+            [2, 'Somewhat disagree'],
+            [1, 'Completely disagree']
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+    GPTFAIR_PRO = models.IntegerField(
+        label = 'Using ChatGPT as an aid in Prolific work is unfair to other Prolific workers',
+        choices = [
+            [5, 'Completely agree'],
+            [4, 'Somewhat agree'],
+            [3, 'Neither agree nor disagree'],
+            [2, 'Somewhat disagree'],
+            [1, 'Completely disagree']
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+    GPTFAIR_EDU = models.IntegerField(
+        label = 'Using ChatGPT as an aid in schoolwork is unfair to other students',
+        choices = [
+            [5, 'Completely agree'],
+            [4, 'Somewhat agree'],
+            [3, 'Neither agree nor disagree'],
+            [2, 'Somewhat disagree'],
+            [1, 'Completely disagree']
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+    GPTFAIR_COMP = models.IntegerField(
+        label = 'Using ChatGPT as an aid is fair game when competing against others',
+        choices = [
+            [5, 'Completely agree'],
+            [4, 'Somewhat agree'],
+            [3, 'Neither agree nor disagree'],
+            [2, 'Somewhat disagree'],
+            [1, 'Completely disagree']
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+    GPTABILITY = models.IntegerField(
+        label = 'Lower-ability workers are helped more by ChatGPT than higher-ability workers',
+        choices = [
+            [5, 'Completely agree'],
+            [4, 'Somewhat agree'],
+            [3, 'Neither agree nor disagree'],
+            [2, 'Somewhat disagree'],
+            [1, 'Completely disagree']
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+    GPTGENDER = models.IntegerField(
+        label = 'My general sense is that female workers are more likely to use ChatGPT as an aid in Prolific work than male workers',
+        choices = [
+            [5, 'Completely agree'],
+            [4, 'Somewhat agree'],
+            [3, 'Neither agree nor disagree'],
+            [2, 'Somewhat disagree'],
+            [1, 'Completely disagree']
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+    GPTSKILLS = models.IntegerField(
+        label = 'ChatGPT is mostly a tool complementing skills rather than substituting effort',
+        choices = [
+            [5, 'Completely agree'],
+            [4, 'Somewhat agree'],
+            [3, 'Neither agree nor disagree'],
+            [2, 'Somewhat disagree'],
+            [1, 'Completely disagree']
+        ],
+        widget = widgets.RadioSelect()
+    )
+
+
+    GPTCREATIVE = models.IntegerField(
+        label = 'I feel like using ChatGPT makes me more creative',
+        choices = [
+            [5, 'Completely agree'],
+            [4, 'Somewhat agree'],
+            [3, 'Neither agree nor disagree'],
+            [2, 'Somewhat disagree'],
+            [1, 'Completely disagree']
+        ],
+        widget = widgets.RadioSelect()
+    )
 
 
 #what did you think this study was about?

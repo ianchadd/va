@@ -254,6 +254,57 @@ class VA_Emotions(Page):
         'VAPROD'
     ]
 
+class GPT_Time(Page):
+    form_model = 'player'
+    form_fields = [
+        'GPTFAM',
+        'GPTSTART',
+        'GPTPROL'
+    ]
+
+
+class GPT_Uses(Page):
+    form_model = 'player'
+    form_fields = [
+        'GPT_USE_time',
+        'GPT_USE_accu',
+        'GPT_USE_comp',
+        'GPT_USE_bonus',
+        'GPT_USE_none',
+        'GPT_USE_other',
+        'diff_GPT_USE'
+    ]
+
+    def error_message(self, values):
+        if values['GPT_USE_time'] == 0 and values['GPT_USE_accu'] == 0 and values['GPT_USE_comp'] == 0 and values['GPT_USE_bonus'] == 0 and values['GPT_USE_none'] == 0 and values['GPT_USE_other'] == 0:
+            return 'You must select at least one response.'
+        elif values['GPT_USE_other'] and type(values['diff_GPT_USE']) == type(None):
+            return 'If you select Other, you must specify in the provided field'
+
+class GPT_Fair(Page):
+    form_model = 'player'
+    form_fields = [
+        'GPTCHEAT_PRO',
+        'GPTCHEAT_EDU',
+        'GPTPROD_PRO',
+        'GPTLEARN_EDU',
+        'GPTFAIR_PRO',
+        'GPTFAIR_COMP'
+    ]
+
+class GPT_Bias(Page):
+    form_model = 'player'
+    form_fields = [
+        'GPTABILITY',
+        'GPTGENDER'
+    ]
+
+class GPT_Misc(Page):
+    form_model = 'player'
+    form_fields = [
+        'GPTSKILLS',
+        'GPTCREATIVE'
+    ]
 
 page_sequence = [Instructions,
                 # VA_Perception_Gend,
@@ -274,11 +325,16 @@ page_sequence = [Instructions,
                 # LGBT_Ally,
                 # Location,
                 # Attitudes_Gend,
-                 VA_Freq,
-                 VA_Uses,
-                 VA_Gen,
-                 VA_Trust,
-                 VA_TrustMC,
-                 VA_DistrustMC,
-                 VA_Emotions
+                # VA_Freq,
+                # VA_Uses,
+                # VA_Gen,
+                # VA_Trust,
+                # VA_TrustMC,
+                # VA_DistrustMC,
+                # VA_Emotions,
+                 GPT_Time,
+                 GPT_Uses,
+                 GPT_Fair,
+                 GPT_Bias,
+                 GPT_Misc
                  ]
