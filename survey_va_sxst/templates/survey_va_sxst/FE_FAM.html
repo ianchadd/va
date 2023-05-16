@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<p>For each question on this page, consider a married household consisting of a father and a mother.</p>
+
+<p>
+  Indicate the extent to which you agree with the following statements:
+</p>
+    {% formfields %}
+
+    {% next_button %}
+
+{% endblock %}

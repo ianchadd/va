@@ -1,0 +1,79 @@
+{% load otree %}
+
+
+<style>
+.input-group{
+  max-width: 700px;
+}
+.slidecontainer {
+  width: 100%;
+  display:inline;
+}
+.input-group-text{
+  height:25px;
+  padding:0 5px;
+  margin:0;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 75%;
+  height: 25px;
+  flex:1;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+input[type=range]:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+        height: 20px !important;
+        width: 20px !important;
+        background: #4CAF50 !important;
+        cursor: pointer !important !important;
+        -webkit-appearance: none !important;
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    border: 0px;
+    height: 0px;
+    width: 0px;
+    border-radius: 0px;
+    -webkit-appearance: none;
+}
+</style>
+</head>
+<body>  ​
+  <div class="input-group" align="center">
+
+  ​
+    <input type="range" min="0" max="100" step="1" name="va_performance_cts" id="myRange">
+  ​
+  ​
+    <label for="their_amt" class="float-right" style="width:75px" >&nbsp &nbsp <b><span id="their_amt" style="font-size:larger"></span></b></label>
+
+  </div>
+<p>Note: you must click on the above in order for the selection slider to be displayed.</p>
+
+<script>
+$(document).ready(function () {
+    $('input[type=range]').on('input change', function () {
+        $('input[type=range]').addClass('slider');
+    });
+
+});
+</script>
+
+
+</body>

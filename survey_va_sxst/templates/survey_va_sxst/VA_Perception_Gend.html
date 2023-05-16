@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<p>
+Please answer the following question about {{va_name}}:
+</p>
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
+  <img id="avatar" src="{% static va_img_path %}" width="250" height="250" />
+  <p style="margin-top: 10px;"><b>{{va_name}}</b></p>
+</div>
+
+<p>
+Where would you put {{va_name}} on the following scale?
+</p>
+    {% formfield player.CGI label = ''%}
+
+    {% next_button %}
+
+{% endblock %}

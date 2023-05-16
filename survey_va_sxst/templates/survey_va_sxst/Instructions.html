@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+Questionnaire
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        In this study, you'll be asked a series of questions about yourself.
+    </p>
+    <p>
+        Please answer each question to the best of your ability.
+    </p>
+
+    <p>
+        At the end of the study, you'll be paid <b>$1.00</b> for your participation.
+    </p>
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+
+    {% formfield player.FEPRES %}
+
+  <p>
+Indicate the extent to which you agree with the following statements:
+  </p>
+
+  {% formfield player.FEHOME %}
+  {% formfield player.FEPOL %}
+
+    {% next_button %}
+
+{% endblock %}
