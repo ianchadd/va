@@ -526,7 +526,7 @@ class Player(BasePlayer):
         blank = True)
 
     VATRUST = models.IntegerField(
-        label = 'How often much do you trust and follow the output of your virtual voice assistant (e.g., Siri, Alexa, Google Home)?',
+        label = 'How often do you trust and follow the output of your virtual voice assistant (e.g., Siri, Alexa, Google Home)?',
         choices = [[6,'Completely, I never double-check'],
                    [5,'I tend to trust what my VA says, but sometimes, I double-check to make sure'],
                    [4,'I double check to make sure about half the time'],
@@ -619,7 +619,7 @@ class Player(BasePlayer):
         initial=False,
         blank=True)
     AI_distrust_rel = models.BooleanField(
-        label='Technology is reliable',
+        label='Technology is unreliable',
         widget=widgets.CheckboxInput,
         initial=False,
         blank=True)
@@ -690,7 +690,8 @@ class Player(BasePlayer):
             [3, 'February 2023'],
             [4, 'March 2023'],
             [5, 'April 2023'],
-            [6, "I don't use it"]
+            [6, 'May 2023'],
+            [99, "I don't use it"],
         ],
         widget = widgets.RadioSelect()
     )

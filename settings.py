@@ -51,7 +51,8 @@ SESSION_CONFIGS = [
         consent = 'va/consent.pdf',
         p_completion_link = 'xxxxxxxx',
         consent_additional_message = """
-
+        Please note that this consent form is used for several studies.
+        You will receive a fixed payment of $2.5 for completing this study.
         """,
         test=0,
         study="pilot",
