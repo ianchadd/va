@@ -43,6 +43,7 @@ class Game(Page):
             va_pron = 'she'
         return dict(
             va_pron = va_pron,
+            va_name = self.session.config['va_name'],
             pt1image_path='GenderedIcons/{}.png'.format(self.session.config['pt1gender']),
             failure=self.session.config['failure_tracking'],
             turnlength=self.session.config['turnlength'],

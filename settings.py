@@ -51,8 +51,7 @@ SESSION_CONFIGS = [
         consent = 'va/consent.pdf',
         p_completion_link = 'xxxxxxxx',
         consent_additional_message = """
-        Please note that this consent form is used for several studies.
-        You will receive a fixed payment of $2.5 for completing this study.
+
         """,
         test=0,
         study="pilot",
@@ -75,48 +74,48 @@ SESSION_CONFIGS = [
         Program for pilot sessions to check for variance in sexist attitudes.
         """
     ),
-    # dict(
-    #     name='pilot_session',
-    #     display_name='Pilot session',
-    #     num_demo_participants=1,
-    #     app_sequence=[
-    #         # 'prolific_id_begin',
-    #         # 'informed_consent',
-    #         # 'Introduction',
-    #         # 'slider_individual',
-    #         # 'instructions_slider_va',
-    #         # 'pt1_VA2',
-    #         'survey_va_pilot',
-    #         # 'survey_va_sxst',
-    #         # 'prolific_id_end'
-    #                  ],
-    #     consent = 'va/consent.pdf',
-    #     p_completion_link = 'xxxxxxxx',
-    #     consent_additional_message = """
-    #
-    #     """,
-    #     test=0,
-    #     study="pilot",
-    #     va_probs=[0, 25, 50, 75, 100],
-    #     va_name='SAM',
-    #     participation_fee=0,  # this is set to 0 b/c this is added to payoff
-    #     real_world_currency_per_point=1,
-    #     pt1gender=0, # 0 for male, 1 for female
-    #     partfee=2,
-    #     pt1rate=0.2,
-    #     pt3rate=1,
-    #     num_part=16,
-    #     max_earning=25,
-    #     failure_tracking=0, # 0 for no move, 1 for bad move
-    #     turnlength=10, # in seconds
-    #     roundlength=4*60, # in seconds, must be divisible by turnlength
-    #     uq_error='Check your answer.',
-    #     va_initial_prediction_rate = 2,
-    #     doc="""
-    #     Program for pilot sessions on Prolific
-    #     for gender and VA project.
-    #     """
-    # ),
+    dict(
+        name='pilot_session',
+        display_name='Pilot session',
+        num_demo_participants=1,
+        app_sequence=[
+            # 'prolific_id_begin',
+            # 'informed_consent',
+            # 'Introduction',
+            # 'slider_individual',
+            'instructions_slider_va',
+            'pt1_VA2',
+            # 'survey_va_pilot',
+            # 'survey_va_sxst',
+            # 'prolific_id_end'
+                     ],
+        consent = 'va/consent.pdf',
+        p_completion_link = 'xxxxxxxx',
+        consent_additional_message = """
+
+        """,
+        test=0,
+        study="pilot",
+        va_probs=[0, 25, 50, 75, 100],
+        va_name='SAM',
+        participation_fee=2.5,
+        real_world_currency_per_point=1,
+        pt1gender=1, # 0 for male, 1 for female
+        partfee=2,
+        pt1rate=0.2,
+        pt3rate=1,
+        num_part=16,
+        max_earning=25,
+        failure_tracking=0, # 0 for no move, 1 for bad move
+        turnlength=10, # in seconds
+        roundlength=4*60, # in seconds, must be divisible by turnlength
+        uq_error='Check your answer.',
+        va_initial_prediction_rate = 2,
+        doc="""
+        Program for pilot sessions on Prolific
+        for gender and VA project.
+        """
+    ),
     # dict(
     #     name='main_session',
     #     display_name='Full session',

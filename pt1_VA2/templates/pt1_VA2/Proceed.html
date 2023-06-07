@@ -1,5 +1,7 @@
 {% extends "global/Page.html" %}
 {% load otree static %}
+
+{% load custom_tags %}
 {% block title %}
 
 {% endblock %}
@@ -11,9 +13,6 @@
     <p>
         Click Next to proceed.
     </p>
-        {% next_button %}
 
-    <!-- {% delayed_next wait=30000 label='NEXT'%} -->
-
-    {% delayed_next wait=5000 label='NEXT'%}
+    {% delayed_next wait=0 label='NEXT'%}
 {% endblock %}

@@ -376,14 +376,14 @@
                 await new Promise((resolve) => {
                     if (this.turncount >= {{ roundlength }} / {{ turnlength }}) {
                         document.getElementById("button").removeAttribute("hidden");
-                        turnindicator("This round is over.");
+                        turnindicator("This Task is over.");
                         va_message("Please click submit.");
                         return false;
                     }
                     resolve();
                 });
 
-                turnindicator("VA Turn");
+                turnindicator("{{va_name}}'s Turn");
                 document.getElementById("avatar").style.opacity = 1;
                 va_message("");
                 this.draw_blocked();
@@ -414,7 +414,7 @@
                 if (thisprob < this.probs[0]) {
                     pos = solution[1].move;
                     isgood = true;
-                    va_message("The VA found and made an optimal move.");
+                    va_message("{{va_name}} found and made an optimal move.");
                     console.log("Success");
                     $('#va_correct').val( function(i, oldval) {
                         return ++oldval;
@@ -430,10 +430,10 @@
                     pos = wrongs[randindex];
                     isgood = false;
                     if ({{ failure }} == 0) {
-                        va_message("The VA was unable to find an optimal move this turn. They did not make any move at all.");
+                        va_message("{{va_name}} was unable to find an optimal move this turn, so {{va_pron}} did not make any move at all.");
                     }
                     else if ({{ failure }} == 1) {
-                        va_message("The VA was unable to find an optimal move this turn. They instead made a move that was suboptimal.");
+                        va_message("{{va_name}} was unable to find an optimal move this turn, so {{va_pron}} instead made a move that was suboptimal.");
                     }
                     console.log("Failure");
                     //console.log("Wrongs:", JSON.parse(JSON.stringify(wrongs)));
@@ -476,7 +476,7 @@
                 await new Promise((resolve) => {
                     if (this.turncount >= {{ roundlength }} / {{ turnlength }}) {
                         document.getElementById("button").removeAttribute("hidden");
-                        turnindicator("This round is over.");
+                        turnindicator("This Task is over.");
                         va_message("Please click submit.");
                         return false;
                     }
@@ -512,7 +512,7 @@
 
                 this.draw();
                 console.log("End player turn");
-                va_message("Your turn time is up. The VA will now make a move.");
+                va_message("Your turn time is up. {{va_name}} will now make a move.");
                 await this.timer(2000);
                 va_message("");
                 turnindicator("");
