@@ -101,6 +101,7 @@ SESSION_CONFIGS = [
         participation_fee=2.5,
         real_world_currency_per_point=1,
         # pt1gender=1, # 0 for male, 1 for female
+        # va_performance="high", #high for 100% correct VA moves, low for 50% correct VA moves
         partfee=2,
         pt1rate=0.2,
         pt3rate=1,
