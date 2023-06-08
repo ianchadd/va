@@ -17,12 +17,12 @@ class VA_Introduction(Page):
     # Intro page for the virtual assistant
     def vars_for_template(self):
         va_pron = 'he'
-        if self.session.config['pt1gender']:
+        if self.participant.vars['pt1gender']:
             va_pron = 'she'
         return {
             'va_pronoun': va_pron,
             'va_name': self.session.config['va_name'],
-            'va_img_path': 'GenderedIcons/{}.png'.format(self.session.config['pt1gender']),
+            'va_img_path': 'GenderedIcons/{}.png'.format(self.participant.vars['pt1gender']),
             'va_slider_rate': self.session.config['pt1rate'],
             'participant_vars': self.participant.vars,
             'participation_fee': self.session.config['participation_fee']
@@ -33,12 +33,12 @@ class VA_Algo(Page):
     # Info on the algo for the VA
     def vars_for_template(self):
         va_pron = 'he'
-        if self.session.config['pt1gender']:
+        if self.participant.vars['pt1gender']:
             va_pron = 'she'
         return {
             'va_pronoun': va_pron,
             'va_name': self.session.config['va_name'],
-            'va_img_path': 'GenderedIcons/{}.png'.format(self.session.config['pt1gender']),
+            'va_img_path': 'GenderedIcons/{}.png'.format(self.participant.vars['pt1gender']),
             'va_slider_rate': self.session.config['pt1rate'],
             'participant_vars': self.participant.vars,
             'participation_fee': self.session.config['participation_fee']
@@ -49,14 +49,14 @@ class VA_Turns(Page):
     # Info on the nature of turns
     def vars_for_template(self):
         va_pron = 'he'
-        if self.session.config['pt1gender']:
+        if self.participant.vars['pt1gender']:
             va_pron = 'she'
         return {
             'turn_length': self.session.config['turnlength'],
             'round_length': self.session.config['roundlength']/60,
             'va_pronoun': va_pron,
             'va_name': self.session.config['va_name'],
-            'va_img_path': 'GenderedIcons/{}.png'.format(self.session.config['pt1gender']),
+            'va_img_path': 'GenderedIcons/{}.png'.format(self.participant.vars['pt1gender']),
             'va_slider_rate': self.session.config['pt1rate'],
             'participant_vars': self.participant.vars,
             'participation_fee': self.session.config['participation_fee']
@@ -67,7 +67,7 @@ class VA_Quality_Guess(Page):
     # Info on the nature of turns
     def vars_for_template(self):
         va_pron = 'he'
-        if self.session.config['pt1gender']:
+        if self.participant.vars['pt1gender']:
             va_pron = 'she'
         return {
             'turn_length': self.session.config['turnlength'],
@@ -75,7 +75,7 @@ class VA_Quality_Guess(Page):
             'va_turns': int(self.session.config['roundlength']/(2 * self.session.config['turnlength'])),
             'va_pronoun': va_pron,
             'va_name': self.session.config['va_name'],
-            'va_img_path': 'GenderedIcons/{}.png'.format(self.session.config['pt1gender']),
+            'va_img_path': 'GenderedIcons/{}.png'.format(self.participant.vars['pt1gender']),
             'va_slider_rate': self.session.config['pt1rate'],
             'participant_vars': self.participant.vars,
             'participation_fee': self.session.config['participation_fee']
@@ -88,7 +88,7 @@ class VA_Quality_Guess_Entry(Page):
     form_fields = ['initial_guess']
     def vars_for_template(self):
         va_pron = 'he'
-        if self.session.config['pt1gender']:
+        if self.participant.vars['pt1gender']:
             va_pron = 'she'
         return {
             'va_initial_estimate_rate': self.session.config['va_initial_prediction_rate'],
@@ -98,7 +98,7 @@ class VA_Quality_Guess_Entry(Page):
             'va_turns': int(self.session.config['roundlength']/(2 * self.session.config['turnlength'])),
             'va_pronoun': va_pron,
             'va_name': self.session.config['va_name'],
-            'va_img_path': 'GenderedIcons/{}.png'.format(self.session.config['pt1gender']),
+            'va_img_path': 'GenderedIcons/{}.png'.format(self.participant.vars['pt1gender']),
             'va_slider_rate': self.session.config['pt1rate'],
             'participant_vars': self.participant.vars,
             'participation_fee': self.session.config['participation_fee']

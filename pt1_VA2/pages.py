@@ -39,12 +39,12 @@ class Game(Page):
 
     def vars_for_template(self):
         va_pron = 'he'
-        if self.session.config['pt1gender']:
+        if self.participant.vars['pt1gender']:
             va_pron = 'she'
         return dict(
             va_pron = va_pron,
             va_name = self.session.config['va_name'],
-            pt1image_path='GenderedIcons/{}.png'.format(self.session.config['pt1gender']),
+            pt1image_path='GenderedIcons/{}.png'.format(self.participant.vars['pt1gender']),
             failure=self.session.config['failure_tracking'],
             turnlength=self.session.config['turnlength'],
             roundlength=self.session.config['roundlength']
@@ -62,7 +62,7 @@ class Debrief(Page):
 
     def vars_for_template(self):
         va_pron = 'he'
-        if self.session.config['pt1gender']:
+        if self.participant.vars['pt1gender']:
             va_pron = 'she'
         return {
             'details': 'va/details.pdf',

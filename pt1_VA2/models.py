@@ -24,7 +24,26 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(self):
+        import itertools
+        treats = itertools.cycle([0,1]) #0 for Male VA, 1 for Female VA
+        for p in self.get_players():
+            p.participant.vars['pt1gender'] = next(treats) #sets treatment var at participant level with balanced treatment
+            if 'pt1gender' in self.session.config:
+                p.participant.vars['pt1gender'] = self.session.config['pt1gender']
+            # p.participant.vars['order'] = list(range(1,Constants.num_rounds + 1))
+            # random.shuffle(p.participant.vars['order'])
+            # rounds = list(range(1,Constants.num_rounds + 1))
+            # random.shuffle(rounds)
+            # p.participant.vars['pay_round'] = rounds[0]
+            # p.participant.vars['points_per_dollar'] = int(1/self.session.config['real_world_currency_per_point'])
+            # nbo_choices = []
+            # for i in range(Constants.num_rounds):
+            #     if p.participant.vars['treat'] == 'exo':
+            #         nbo_choices.append(random.choice([False,True]))
+            #     else:
+            #         nbo_choices.append(False)
+            # p.participant.vars['nbo_choices'] = nbo_choices
 
 
 class Group(BaseGroup):
