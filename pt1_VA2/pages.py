@@ -33,7 +33,7 @@ class Game(Page):
     def js_vars(self):
         return {
             'boards': self.player.puzzle_to_play(formatting=0),
-            'probs': self.session.config['va_probs'],
+            'probs': self.participant.vars['va_probs'],
             'failure': self.session.config['failure_tracking']
         }
 

@@ -96,7 +96,7 @@ SESSION_CONFIGS = [
         """,
         test=0,
         study="pilot",
-        va_probs=[0, 25, 50, 75, 100],
+        # va_probs=[0, 25, 50, 75, 100],
         va_name='SAM',
         participation_fee=2.5,
         real_world_currency_per_point=1,

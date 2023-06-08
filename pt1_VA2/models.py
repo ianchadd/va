@@ -26,11 +26,26 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
     def creating_session(self):
         import itertools
-        treats = itertools.cycle([0,1]) #0 for Male VA, 1 for Female VA
+        import random
+        # gender_treats = itertools.cycle([0,1]) #0 for Male VA, 1 for Female VA
+        # performance_treats = itertools.cycle(["high", "low"]) #high for always correct VA moves, low for 50% correct VA moves
+        treats = itertools.cycle([[0,"high"],[0,"low"],[1,"high"],[1,"low"]]) #sets treatment var at participant level with balanced 2x2
         for p in self.get_players():
-            p.participant.vars['pt1gender'] = next(treats) #sets treatment var at participant level with balanced treatment
+            p.participant.vars['treat'] = next(treats)
+            p.participant.vars['pt1gender'] = p.participant.vars['treat'][0]
+            p.participant.vars['va_performance'] = p.participant.vars['treat'][1]
             if 'pt1gender' in self.session.config:
                 p.participant.vars['pt1gender'] = self.session.config['pt1gender']
+            if 'va_performance' in self.session.config:
+                p.participant.vars['va_performance'] = self.session.config['va_performance']
+            va_turns = int(self.session.config['roundlength']/(2 * self.session.config['turnlength']))
+            if p.participant.vars['va_performance'] == "high":
+                p.participant.vars['va_probs'] = [100]*va_turns
+            if p.participant.vars['va_performance'] == "low":
+                va_probs = [100,0]
+                va_probs = (int(va_turns/2))*va_probs
+                random.shuffle(va_probs)
+                p.participant.vars['va_probs'] = va_probs
             # p.participant.vars['order'] = list(range(1,Constants.num_rounds + 1))
             # random.shuffle(p.participant.vars['order'])
             # rounds = list(range(1,Constants.num_rounds + 1))
