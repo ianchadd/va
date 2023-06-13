@@ -79,15 +79,15 @@ SESSION_CONFIGS = [
         display_name='Pilot session',
         num_demo_participants=1,
         app_sequence=[
-            # 'prolific_id_begin',
-            # 'informed_consent',
-            # 'Introduction',
-            # 'slider_individual',
+            'prolific_ID_begin',
+            'informed_consent',
+            'Introduction',
+            'slider_individual',
             'instructions_slider_va',
             'pt1_VA2',
             # 'survey_va_pilot',
-            # 'survey_va_sxst',
-            # 'prolific_id_end'
+            'survey_va_sxst',
+            'prolific_ID_end'
                      ],
         consent = 'va/consent.pdf',
         p_completion_link = 'xxxxxxxx',

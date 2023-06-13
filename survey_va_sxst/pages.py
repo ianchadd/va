@@ -160,12 +160,12 @@ class VA_Perception_Gend(Page):
     ]
     def vars_for_template(self):
         va_pron = 'he'
-        if self.session.config['pt1gender']:
+        if self.participant.vars['pt1gender']:
             va_pron = 'she'
         return dict(
             va_pron = va_pron,
             va_name = self.session.config['va_name'],
-            va_img_path='GenderedIcons/{}.png'.format(self.session.config['pt1gender'])
+            va_img_path='GenderedIcons/{}.png'.format(self.participant.vars['pt1gender'])
         )
 
 class VA_Perception_Perf(Page):
@@ -176,12 +176,12 @@ class VA_Perception_Perf(Page):
     ]
     def vars_for_template(self):
         va_pron = 'he'
-        if self.session.config['pt1gender']:
+        if self.participant.vars['pt1gender']:
             va_pron = 'she'
         return dict(
             va_pron = va_pron,
             va_name = self.session.config['va_name'],
-            va_img_path='GenderedIcons/{}.png'.format(self.session.config['pt1gender'])
+            va_img_path='GenderedIcons/{}.png'.format(self.participant.vars['pt1gender'])
         )
 
 
@@ -331,8 +331,8 @@ class GPT_Misc(Page):
     ]
 
 page_sequence = [Instructions,
-                # VA_Perception_Gend,
-                # VA_Perception_Perf,
+                VA_Perception_Gend,
+                VA_Perception_Perf,
                 Age,
                 Sex,
                 Gender,

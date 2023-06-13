@@ -13,7 +13,7 @@ class Constants(BaseConstants):
     name_in_url = 'demographics_va'
     players_per_group = None
     num_rounds = 1
-    decision_template = 'survey_va_pilot/decision_template.html'
+    decision_template = 'survey_va_sxst/decision_template.html'
 
 
 states = {
