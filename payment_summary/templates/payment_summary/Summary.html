@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+
+
+  <p>
+      Thank you for participating in this study!
+  </p>
+
+  <p>
+      Once submissions are validated, you will receive ${{participation_fee}}, plus your earnings from {{paid_task}}, which was chosen randomly for your bonus payment.
+  </p>
+
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=50 label='NEXT'%}
+
+{% endblock %}
