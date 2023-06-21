@@ -25,13 +25,15 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    # def creating_session(self):
-    pass
+    def creating_session(self):
+        import random
+        tasks = ["Task 1: Individual Slider Task", "Task 2: VA Slider Task"] #sets treatment var at participant level with balanced 2x2
+        for p in self.get_players():
+            p.participant.vars['pay_task'] = random.choice(tasks)
 
 class Group(BaseGroup):
     pass
 
 
 class Player(BasePlayer):
-    task_for_payment = models.LongStringField(
-    initial = random.choice(["Task 1: Individual Slider Task", "Task 2: VA Slider Task"])
+    pass
