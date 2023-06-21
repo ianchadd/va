@@ -8,7 +8,7 @@ class Summary(Page):
         return {
             'participant_vars': self.participant.vars,
             'participation_fee': self.session.config['participation_fee'],
-            'paid_task': self.player.task_for_payment
+            'paid_task': self.participant.vars['pay_task']
         }
     pass
 
