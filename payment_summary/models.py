@@ -19,7 +19,7 @@ Payment summary app for VA project.
 
 
 class Constants(BaseConstants):
-    name_in_url = 'Payment Summary'
+    name_in_url = 'payment_summary'
     players_per_group = None
     num_rounds = 1
 
@@ -33,4 +33,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    task_for_payment = random.choice(["Task 1: Individual Slider Task", "Task 2: VA Slider Task"])
+    task_for_payment = models.LongStringField(
+    initial = random.choice(["Task 1: Individual Slider Task", "Task 2: VA Slider Task"],
+    )
