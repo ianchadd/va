@@ -34,5 +34,4 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     task_for_payment = models.LongStringField(
-    initial = random.choice(["Task 1: Individual Slider Task", "Task 2: VA Slider Task"],
-    )
+    initial = random.choice(["Task 1: Individual Slider Task", "Task 2: VA Slider Task"])
