@@ -70,9 +70,9 @@ class Debrief(Page):
             'va_name': self.session.config['va_name'],
             'va_turns': int(self.session.config['roundlength']/(2 * self.session.config['turnlength']))
             }
-    def before_next_page(self):
-        if self.player.guess_correct == self.player.va_correct:
-            self.player.payoff += self.session.config['pt1qbonus'] #TODO: Change
+    # def before_next_page(self):
+    #     if self.player.guess_correct == self.player.va_correct:
+    #         self.player.payoff += self.session.config['pt1qbonus'] #TODO: Change
 
 
 page_sequence = [Ready,
