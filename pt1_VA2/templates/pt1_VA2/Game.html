@@ -414,7 +414,7 @@
                 if (thisprob < this.probs[0]) {
                     pos = solution[1].move;
                     isgood = true;
-                    va_message("{{va_name}} found and made an optimal move.");
+                    va_message("{{va_name}} was able to find an optimal move, so {{va_pron}} made it.");
                     console.log("Success");
                     $('#va_correct').val( function(i, oldval) {
                         return ++oldval;
@@ -512,7 +512,7 @@
 
                 this.draw();
                 console.log("End player turn");
-                va_message("Your turn time is up. {{va_name}} will now make a move.");
+                va_message("Now it's {{va_name}}'s turn. {{va_pron}} will now try to find an optimal move.");
                 await this.timer(2000);
                 va_message("");
                 turnindicator("");

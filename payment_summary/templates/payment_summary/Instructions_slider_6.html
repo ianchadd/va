@@ -1,0 +1,59 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Instructions: Slider Puzzle
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+
+
+  <p>
+      <strong> <u> Example 3 </u> </strong>:
+  </p>
+
+  <p>
+      Let's go back to the initial puzzle:
+  </p>
+  <p>
+      <img src="{% static 'puzzle_3_0.png' %}" width='200'/>
+  </p>
+  <p>
+      This time, let's try to move the 7 down.
+  </p>
+  <p>
+      <img src="{% static 'puzzle_3_1_good.png' %}" width='200'/>
+  </p>
+  <p>
+      Then move the 8 to the right, the 4 up and, finally, the 7 to the left.
+      You have now arranged the left column in the correct order
+      with only four moves.
+  </p>
+  <p>
+      <img src="{% static 'puzzle_3_4_good.png' %}" width='200'/>
+  </p>
+  <p>
+      We keep the left column as it is
+      (as well as the top row), and focus on the remainder of the puzzle:
+  </p>
+  <p>
+      <img src="{% static 'puzzle_3_4_good_2x2.png' %}" width='133.33'/>
+  </p>
+  <p>
+      Now it's easy to solve the puzzle: move the 8 down, the 5 to the left
+      and finally the 6 up. With this method,
+      <strong> you only moved the tiles seven times in total </strong>, two fewer than before.
+  </p>
+
+
+
+
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=50 label='NEXT'%}
+
+{% endblock %}

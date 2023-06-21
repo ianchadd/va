@@ -1,0 +1,32 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Instructions: Slider Puzzle
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+
+  <h5><u>The Slider Puzzle</u></h5>
+
+      <p>    <strong>Both</strong> of the tasks in this study revolve around you solving a Slider Puzzle.
+      </p>
+      <p>
+          A Slider Puzzle consists of 8 tiles, numbered 1 through 8, arranged in a 3x3 grid.
+      </p>
+      <p>
+          Your goal is to move the tiles and sort them so that they appear in the following order:
+      </p>
+      <p>
+          <img src="{% static 'puzzle_goal.png' %}" width='200'/>
+      </p>
+
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=50 label='NEXT'%}
+
+{% endblock %}

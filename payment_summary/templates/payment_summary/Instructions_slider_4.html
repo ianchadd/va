@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Instructions: Slider Puzzle
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+
+
+  <p>
+      <strong> <u> Example 3 </u> </strong>:
+  </p>
+
+  <p>
+      You can then just isolate your attention to the part of the puzzle that is not already in the correct order:
+  </p>
+  <p>
+      <img src="{% static 'puzzle_3_0_2x3.png' %}" width='200'/>
+  </p>
+  <p>
+      You could try to solve the puzzle by trial and error. However,
+      there is also a general rule for solving these puzzles faster:
+      <strong> after placing the top row in the correct order,
+      you should proceed by arranging the left column in the correct order </strong>.
+</p>
+
+  <p>
+      There are two possible moves: move the 4 to the right
+      or move the 7 down. What is the fastest way to fix
+      the left column in the correct order based on the instructions so far?
+  </p>
+
+
+
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=50 label='NEXT'%}
+
+{% endblock %}

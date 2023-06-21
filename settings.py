@@ -87,6 +87,7 @@ SESSION_CONFIGS = [
             'pt1_VA2',
             # 'survey_va_pilot',
             'survey_va_sxst',
+            'payment_summary',
             'prolific_ID_end'
                      ],
         consent = 'va/consent.pdf',

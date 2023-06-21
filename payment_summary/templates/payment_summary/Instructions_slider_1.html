@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Instructions: Slider Puzzle
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+
+
+  <p>
+      Before you begin solving puzzles, we'll walk through several examples to make sure that you understand how the puzzle works.
+  </p>
+
+  <p>
+      <strong><u>Example 1</u></strong>:
+  </p>
+  <p>
+      First, consider the following puzzle:
+  </p>
+  <p>
+      <img src="{% static 'puzzle_1.png' %}" width='200'/>
+  </p>
+
+  <p>
+       You'll rearrange the tiles by clicking on them, which will move the tile into the empty space.
+       You can only move the tiles that are next to an empty cell and the tile
+       you choose is automatically moved to the empty cell.
+       For example, in this puzzle there are 3 moves you can do:
+       move the tile with the 3 down, move the one with the 5 to the right,
+       or move the tile with the 6 up.
+   </p>
+   <p>
+       Between the 3 moves, moving the tile with the number 6 upwards
+       is the only correct move: by moving the 6 up, you can solve the puzzle.
+       The other available moves do not help solve the puzzle.
+   </p>
+   <p>
+       When you click on a tile next to an empty cell, the tile
+       will automatically be moved to the empty cell. So, in this
+       case, you should click on the 6 to move it up.
+   </p>
+
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=50 label='NEXT'%}
+
+{% endblock %}

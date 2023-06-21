@@ -1,0 +1,43 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+<!-- {% load custom_tags %} -->
+
+{% block title %}
+    Instructions: Slider Puzzle
+{% endblock %}
+
+{% block content %}
+<head>
+  <title></title>
+</head>
+<body>
+
+
+  <p>
+      Since there is a time limit, it is best to solve the puzzle with
+      the <strong>minimum number of moves.</strong>
+
+  </p>
+  <p>
+      For the remainder of this study, we'll say that a move is <strong>"correct"</strong> if it moves the puzzle closer to the solution.
+  </p>
+
+  <p>
+    We'll say that a move is <strong>"incorrect"</strong> if it moves the puzzle farther away from the solution.
+  </p>
+
+  <p>
+    There are no neutral moves: <strong>all moves are correct or incorrect.</strong>
+  </p>
+  <p>
+      To summarize: when you solve a puzzle, first arrange the cells of in the top row in the correct order, then arrange the cells in the left column in the correct order.
+      Always try to solve the puzzle in as few moves as possible.
+  </p>
+
+
+
+
+  <!-- {% delayed_next wait=15000%} -->
+    {% delayed_next wait=50 label='NEXT'%}
+
+{% endblock %}
